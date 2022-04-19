@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/_Data/_Scenes/00001_Room1.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
