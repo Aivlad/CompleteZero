@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 87557846}
   - component: {fileID: 87557847}
   - component: {fileID: 87557848}
+  - component: {fileID: 87557849}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -304,7 +305,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87557840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8533846949a28043a18f4389a294a05, type: 3}
   m_Name: 
@@ -318,6 +319,22 @@ MonoBehaviour:
   delayBetweenWaves: 0.5
   isReadyAttack: 0
   cooldown: 5
+--- !u!114 &87557849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87557840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dab144a73a5cd46a9e704568002be0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action: 101
+  dashRange: 3
+  isReadyAttack: 0
+  cooldown: 0
 --- !u!1 &138716443
 GameObject:
   m_ObjectHideFlags: 0
