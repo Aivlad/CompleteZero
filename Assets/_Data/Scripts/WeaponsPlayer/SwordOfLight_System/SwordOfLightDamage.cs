@@ -5,14 +5,22 @@ using UnityEngine;
 public class SwordOfLightDamage : MonoBehaviour
 {
     public float damage;
+    private float defaultDamage;
     [Space]
     public int countWeaponKills;
-    public bool isEffectActivated;
+    private bool isEffectActivated; // флаг: баф только первого удара после каждого 5 килла
 
     private void Start()
     {
         countWeaponKills = 0;
-        isEffectActivated = false;
+
+        defaultDamage = damage;
+        isEffectActivated = true;
+    }
+
+    private void Update()
+    {
+        ActivateAttackEffect();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,35 +29,25 @@ public class SwordOfLightDamage : MonoBehaviour
         {
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
-
-            ActivateAttackEffect(collision.gameObject);
+            
+            damage = defaultDamage;
         }
     }
 
     public void CountMurder()
     {
         countWeaponKills++;
-        isEffectActivated = false;
+
+        isEffectActivated = true;
     }
 
-    private void ActivateAttackEffect(GameObject target)
+    private void ActivateAttackEffect()
     {
-        // вызов света каждые 5 киллов
-        if (countWeaponKills > 0 && countWeaponKills % 5 == 0 && !isEffectActivated)
+        // каждый 5й килл = +5 урона (одноразово)
+        if (isEffectActivated && countWeaponKills > 0 && countWeaponKills % 5 == 0)
         {
-            isEffectActivated = true; // флаг, чтобы после каждого 5го килла эффект вешался только на одну цель
-            EffectActivator effectActivator = target.GetComponent<EffectActivator>();
-            if (effectActivator != null)
-            {
-                if (effectActivator.IsEffectLightActivated())
-                {
-                    effectActivator.UpdateEffectLight();
-                }
-                else
-                {
-                    effectActivator.CallEffectLight();
-                }
-            }
+            isEffectActivated = false;
+            damage += 5;
         }
     }
 }

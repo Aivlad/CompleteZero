@@ -45,26 +45,6 @@ public class EffectActivator : MonoBehaviour
     }
     #endregion
 
-    //------------------- свет
-    #region light
-    public GameObject effectLight;
-
-    public void CallEffectLight()
-    {
-        effectLight.SetActive(true);
-    }
-
-    public void UpdateEffectLight()
-    {
-        effectLight.GetComponent<EffectLight>().EffectUpdate();
-    }
-
-    public bool IsEffectLightActivated()
-    {
-        return effectLight.activeInHierarchy;
-    }
-    #endregion
-
     //------------------- огонь
     #region fire
     public GameObject effectFire;

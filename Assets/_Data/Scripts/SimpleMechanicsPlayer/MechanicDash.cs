@@ -27,6 +27,7 @@ public class MechanicDash : MonoBehaviour
         {
             isReadyAttack = false;
             PlayerMovement.Facing facing = pm.GetFacing();
+
             targetPos = Vector2.zero;
             switch (facing)
             {
@@ -43,10 +44,39 @@ public class MechanicDash : MonoBehaviour
                     targetPos.x = 1;
                     break;
             }
-            transform.Translate(targetPos * dashRange);
+            transform.Translate(targetPos * LimitJumpingInRoom(facing));
 
             StartCoroutine(Recharge());
         }
+    }
+
+    // ограничение прыжка: прыжек только в комнате (не выходим за стену)
+    private float LimitJumpingInRoom(PlayerMovement.Facing facing)
+    {
+        RaycastHit2D[] hits;
+        switch (facing)
+        {
+            case PlayerMovement.Facing.UP:
+                hits = Physics2D.RaycastAll(transform.position, Vector2.up, dashRange);
+                break;
+            case PlayerMovement.Facing.DOWN:
+                hits = Physics2D.RaycastAll(transform.position, Vector2.down, dashRange);
+                break;
+            case PlayerMovement.Facing.LEFT:
+                hits = Physics2D.RaycastAll(transform.position, Vector2.left, dashRange);
+                break;
+            default:
+                hits = Physics2D.RaycastAll(transform.position, Vector2.right, dashRange);
+                break;
+        }
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].transform.CompareTag("Wall"))
+            {
+                return Vector2.Distance(transform.position, hits[i].transform.position) - 0.5f;
+            }
+        }
+        return dashRange;
     }
 
     // перезарядка механики

@@ -158,4 +158,4 @@ MonoBehaviour:
   destroyDistance: 8
   countTargetsHit: 0
   countTargetsHitMax: 3
-  chanceCausePoisoning: 100
+  chanceCausePoisoning: 62.1
