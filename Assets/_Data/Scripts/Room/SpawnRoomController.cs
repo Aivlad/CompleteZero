@@ -11,12 +11,12 @@ public class SpawnRoomController : MonoBehaviour
     public RoomController[] typesRooms;             // доступные типы комнат для спавна
     public int roomLength;                          // длина комнаты
     public int roomHeight;                          // высота комнаты
-    public RoomController startingRoom;             // ссылка на стартовую комнату
+    //public RoomController startingRoom;             // ссылка на стартовую комнату
     private RoomController[,] spawnedRooms;         // матрица заспавленных комнат
 
     private void Start()
     {
-        LevelGeneration();
+        //LevelGeneration();
     }
 
     /// <summary>
@@ -24,11 +24,13 @@ public class SpawnRoomController : MonoBehaviour
     /// </summary>
     public void LevelGeneration()
     {
+        // создание и расположение стартовой комнаты
+        RoomController startingRoom = Instantiate(typesRooms[Random.Range(0, typesRooms.Length)], Vector3.zero, Quaternion.identity);
         spawnedRooms = new RoomController[11, 11];  // работаем с матрицей 11х11, где 11 - СЧ
         spawnedRooms[5, 5] = startingRoom;  // помещаем стартовую комнату в центр
 
-        // генерация еще countGeneratedRooms комнат
-        for (int i = 0; i < countGeneratedRooms; i++)
+        // генерация еще countGeneratedRooms - 1 комнат (-1 т.к. startingRoom уже есть)
+        for (int i = 0; i < countGeneratedRooms - 1; i++)
         {
             CreateOneRoom();
         }
@@ -146,4 +148,22 @@ public class SpawnRoomController : MonoBehaviour
         return true;
     }
 
+
+    /// <summary>
+    /// Функциональный метод: очистка всех сгенерированных комнат (используется только для удобства при отладке)
+    /// </summary>
+    public void ClearGeneratedLevel()
+    {
+        for (int i = 0; i < spawnedRooms.GetLength(0); i++)
+        {
+            for (int j = 0; j < spawnedRooms.GetLength(1); j++)
+            {
+                if (spawnedRooms[i, j] == null) continue;
+                Destroy(spawnedRooms[i, j].gameObject);
+                spawnedRooms[i, j] = null;
+            }
+
+        }
+        Debug.Log("Уровень очищен");
+    }
 }
