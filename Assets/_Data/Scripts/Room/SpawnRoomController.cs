@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -11,13 +12,7 @@ public class SpawnRoomController : MonoBehaviour
     public RoomController[] typesRooms;             // доступные типы комнат для спавна
     public int roomLength;                          // длина комнаты
     public int roomHeight;                          // высота комнаты
-    //public RoomController startingRoom;             // ссылка на стартовую комнату
     private RoomController[,] spawnedRooms;         // матрица заспавленных комнат
-
-    private void Start()
-    {
-        //LevelGeneration();
-    }
 
     /// <summary>
     /// Генерация уровня с нуля
@@ -41,6 +36,8 @@ public class SpawnRoomController : MonoBehaviour
             if (room == null) continue;
             room.ClosePassagesAndOpenPlugs();
         }
+
+        Debug.Log("Уровень сгенерирован");
     }
 
     /// <summary>
