@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,13 @@ public class RoomController : MonoBehaviour
     public GameObject prefabPlug;
 
     [Header("Metadata")]
-    [HideInInspector] public int indexInList; // индекс в списке, где необходимо (например, при генерации для save)
+    public int indexInList; // индекс в списке, где необходимо (например, при генерации для save)
+    private RoomControllerSave dataSave;
+
+    private void Start()
+    {
+        dataSave = new RoomControllerSave(indexInList);
+    }
 
     /// <summary>
     /// Закрыть проходы дверями, а вместо дверей болванок повесить заглушки
@@ -44,6 +51,33 @@ public class RoomController : MonoBehaviour
             }
             // неактивы (т.е. проходы) закрываем дверьми
             door.SetActive(true);
+        }
+    }
+
+    public RoomControllerSave GetDataSave()
+    {
+        return dataSave;
+    }
+
+    [Serializable]
+    public class RoomControllerSave
+    {
+        public int indexInList;
+
+        public int neighborPassI;
+        public int neighborPassJ;
+
+        public RoomControllerSave(int indexInList)
+        {
+            this.indexInList = indexInList;
+            neighborPassI = -1;
+            neighborPassJ = -1;
+        }
+
+        public void SetNeighborPass(int i, int j)
+        {
+            neighborPassI = i;
+            neighborPassJ = j;
         }
     }
 }

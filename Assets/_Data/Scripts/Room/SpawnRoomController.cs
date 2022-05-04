@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+
 using System.Linq;
 using UnityEngine;
 
@@ -12,9 +12,7 @@ public class SpawnRoomController : MonoBehaviour
     public List<RoomController> typesRooms;             // доступные типы комнат для спавна
     public int roomLength;                          // длина комнаты
     public int roomHeight;                          // высота комнаты
-    private RoomController[,] spawnedRooms;         // матрица заспавленных комнат
-
-    private SaveGeneratedLevel save = new SaveGeneratedLevel(11);
+    private RoomController[,] spawnedRooms;         // матрица заспавленных комнат    
 
     /// <summary>
     /// Генерация уровня с нуля
@@ -170,52 +168,17 @@ public class SpawnRoomController : MonoBehaviour
         Debug.Log("Уровень очищен");
     }
 
-    public void SaveLevel()
+
+    /// <summary>
+    /// Перестроение уровня 
+    /// </summary>
+    /// <param name="transformedMatrixArrangement">Массив индексов typesRooms, -1 - если spawnedRooms эл. равен null</param>
+    public void LevelRebuilding(int[] transformedMatrixArrangement)
     {
-        // проверка директории
-        if (!Directory.Exists(Application.persistentDataPath + "/Save"))
-        {
-            Directory.CreateDirectory((Application.persistentDataPath + "/Save"));
-        }
-
-        // присваивание значений
-        int[] transformedMatrixArrangement = new int[spawnedRooms.Length];
-        int k = 0;
-        for (int i = 0; i < spawnedRooms.GetLength(0); i++)
-        {
-            for (int j = 0; j < spawnedRooms.GetLength(1); j++)
-            {
-                if (spawnedRooms[i, j] != null)
-                {
-                    transformedMatrixArrangement[k] = spawnedRooms[i, j].indexInList;
-                }
-                else
-                {
-                    transformedMatrixArrangement[k] = -1;
-                }                
-                k++;
-            }
-        }
-        save.SetData(transformedMatrixArrangement);
-        // сохранение
-        File.WriteAllText(Application.persistentDataPath + "/Save" + "/SaveLevel.json", JsonUtility.ToJson(save));
-
-        Debug.Log("Сохранение выполнено");
-    }
-
-    public void LoadLevel()
-    {
-        if (!File.Exists(Application.persistentDataPath + "/Save" + "/SaveLevel.json"))
-        {
-            Debug.Log("Сохранение не найдено");
-            return;
-        }
-
-        // загрузка
-        save = JsonUtility.FromJson<SaveGeneratedLevel>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/SaveLevel.json"));
-        // восстановление значений
+        // очистка от старых данных
         ClearGeneratedLevel();
-        int[] transformedMatrixArrangement = save.GetTransformedMatrixArrangement();
+
+        // преобразование int[] -> RoomController[,] и построение уровня
         int k = 0;
         for (int i = 0; i < spawnedRooms.GetLength(0); i++)
         {
@@ -232,37 +195,9 @@ public class SpawnRoomController : MonoBehaviour
                 k++;
             }
         }
-
-        Debug.Log("Загрузка выполнена");
     }
-
-
-    public class SaveGeneratedLevel
+    public RoomController[,] GetSpawnedRooms()
     {
-        /// <summary>
-        /// Размер массивов (берется как spawnedRooms.GetLength(0))
-        /// </summary>
-        public int size;
-        /// <summary>
-        /// Преобразованное сохранение матрицы (квадратной) spawnedRooms (-1 если null)
-        /// </summary>
-        public int[] transformedMatrixArrangement;
-
-
-        public SaveGeneratedLevel(int size)
-        {
-            this.size = size;
-            transformedMatrixArrangement = new int[size * size];
-        }
-
-        public void SetData(int[] transformedMatrixArrangement)
-        {
-            this.transformedMatrixArrangement = transformedMatrixArrangement;
-        }
-
-        public int[] GetTransformedMatrixArrangement()
-        {
-            return transformedMatrixArrangement;
-        }
+        return spawnedRooms;
     }
 }
