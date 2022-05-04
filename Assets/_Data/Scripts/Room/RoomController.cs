@@ -16,6 +16,9 @@ public class RoomController : MonoBehaviour
     public GameObject parentPlugs;
     public GameObject prefabPlug;
 
+    [Header("Metadata")]
+    [HideInInspector] public int indexInList; // индекс в списке, где необходимо (например, при генерации для save)
+
     /// <summary>
     /// Закрыть проходы дверями, а вместо дверей болванок повесить заглушки
     /// </summary>

@@ -9,10 +9,12 @@ public class SpawnRoomController : MonoBehaviour
     [Header("Room generation")]
     [Range(2, 50)]
     public int countGeneratedRooms;                 // сколько комнат нужно заспавнить
-    public RoomController[] typesRooms;             // доступные типы комнат для спавна
+    public List<RoomController> typesRooms;             // доступные типы комнат для спавна
     public int roomLength;                          // длина комнаты
     public int roomHeight;                          // высота комнаты
     private RoomController[,] spawnedRooms;         // матрица заспавленных комнат
+
+    private SaveGeneratedLevel save = new SaveGeneratedLevel(11);
 
     /// <summary>
     /// Генерация уровня с нуля
@@ -20,7 +22,9 @@ public class SpawnRoomController : MonoBehaviour
     public void LevelGeneration()
     {
         // создание и расположение стартовой комнаты
-        RoomController startingRoom = Instantiate(typesRooms[Random.Range(0, typesRooms.Length)], Vector3.zero, Quaternion.identity);
+        int indexSelectedType = Random.Range(0, typesRooms.Count);
+        RoomController startingRoom = Instantiate(typesRooms[indexSelectedType], Vector3.zero, Quaternion.identity);
+        startingRoom.indexInList = indexSelectedType;   // metadata для save
         spawnedRooms = new RoomController[11, 11];  // работаем с матрицей 11х11, где 11 - СЧ
         spawnedRooms[5, 5] = startingRoom;  // помещаем стартовую комнату в центр
 
@@ -66,7 +70,9 @@ public class SpawnRoomController : MonoBehaviour
         }
 
         // создаем непосредственно комнату
-        RoomController newRoom = Instantiate(typesRooms[Random.Range(0, typesRooms.Length)]);
+        int indexSelectedType = Random.Range(0, typesRooms.Count);
+        RoomController newRoom = Instantiate(typesRooms[indexSelectedType]);
+        newRoom.indexInList = indexSelectedType;   // metadata для save
 
         int limit = 1000;
         while (limit-- > 0)
@@ -162,5 +168,101 @@ public class SpawnRoomController : MonoBehaviour
 
         }
         Debug.Log("Уровень очищен");
+    }
+
+    public void SaveLevel()
+    {
+        // проверка директории
+        if (!Directory.Exists(Application.persistentDataPath + "/Save"))
+        {
+            Directory.CreateDirectory((Application.persistentDataPath + "/Save"));
+        }
+
+        // присваивание значений
+        int[] transformedMatrixArrangement = new int[spawnedRooms.Length];
+        int k = 0;
+        for (int i = 0; i < spawnedRooms.GetLength(0); i++)
+        {
+            for (int j = 0; j < spawnedRooms.GetLength(1); j++)
+            {
+                if (spawnedRooms[i, j] != null)
+                {
+                    transformedMatrixArrangement[k] = spawnedRooms[i, j].indexInList;
+                }
+                else
+                {
+                    transformedMatrixArrangement[k] = -1;
+                }                
+                k++;
+            }
+        }
+        save.SetData(transformedMatrixArrangement);
+        // сохранение
+        File.WriteAllText(Application.persistentDataPath + "/Save" + "/SaveLevel.json", JsonUtility.ToJson(save));
+
+        Debug.Log("Сохранение выполнено");
+    }
+
+    public void LoadLevel()
+    {
+        if (!File.Exists(Application.persistentDataPath + "/Save" + "/SaveLevel.json"))
+        {
+            Debug.Log("Сохранение не найдено");
+            return;
+        }
+
+        // загрузка
+        save = JsonUtility.FromJson<SaveGeneratedLevel>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/SaveLevel.json"));
+        // восстановление значений
+        ClearGeneratedLevel();
+        int[] transformedMatrixArrangement = save.GetTransformedMatrixArrangement();
+        int k = 0;
+        for (int i = 0; i < spawnedRooms.GetLength(0); i++)
+        {
+            for (int j = 0; j < spawnedRooms.GetLength(1); j++)
+            {
+                if (transformedMatrixArrangement[k] != -1)
+                {
+                    // создаем непосредственно комнату
+                    RoomController newRoom = Instantiate(typesRooms[transformedMatrixArrangement[k]]);
+                    newRoom.transform.position = new Vector3((i - 5) * roomLength, (j - 5) * roomHeight, 0);   //5 - положение startingRoom
+                    // не забываем про матрциу
+                    spawnedRooms[i, j] = newRoom;
+                }
+                k++;
+            }
+        }
+
+        Debug.Log("Загрузка выполнена");
+    }
+
+
+    public class SaveGeneratedLevel
+    {
+        /// <summary>
+        /// Размер массивов (берется как spawnedRooms.GetLength(0))
+        /// </summary>
+        public int size;
+        /// <summary>
+        /// Преобразованное сохранение матрицы (квадратной) spawnedRooms (-1 если null)
+        /// </summary>
+        public int[] transformedMatrixArrangement;
+
+
+        public SaveGeneratedLevel(int size)
+        {
+            this.size = size;
+            transformedMatrixArrangement = new int[size * size];
+        }
+
+        public void SetData(int[] transformedMatrixArrangement)
+        {
+            this.transformedMatrixArrangement = transformedMatrixArrangement;
+        }
+
+        public int[] GetTransformedMatrixArrangement()
+        {
+            return transformedMatrixArrangement;
+        }
     }
 }
