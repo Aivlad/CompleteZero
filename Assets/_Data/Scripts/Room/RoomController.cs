@@ -18,13 +18,8 @@ public class RoomController : MonoBehaviour
     public GameObject prefabPlug;
 
     [Header("Metadata")]
-    public int indexInList; // индекс в списке, где необходимо (например, при генерации для save)
-    private RoomControllerSave dataSave;
+    private RoomControllerSave dataSave = new RoomControllerSave();
 
-    private void Start()
-    {
-        dataSave = new RoomControllerSave(indexInList);
-    }
 
     /// <summary>
     /// Закрыть проходы дверями, а вместо дверей болванок повесить заглушки
@@ -44,9 +39,7 @@ public class RoomController : MonoBehaviour
             // уничтожаем неактивами и вешаем заглушки
             if (door.activeInHierarchy)
             {
-                var inst = Instantiate(prefabPlug, door.transform.position, door.transform.rotation);
-                inst.transform.parent = parentPlugs.transform;
-                Destroy(door);
+                CloseDoorWithPlug(door);
                 continue;
             }
             // неактивы (т.е. проходы) закрываем дверьми
@@ -54,30 +47,115 @@ public class RoomController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Уничтожить дверь и повесить заглушку на ее место
+    /// </summary>
+    public void CloseDoorWithPlug(GameObject door)
+    {
+        var inst = Instantiate(prefabPlug, door.transform.position, door.transform.rotation);
+        inst.transform.parent = parentPlugs.transform;
+        Destroy(door);
+    }
+
+    /// <summary>
+    /// Установить первичные данные генерации
+    /// </summary>
+    public void SetPrimaryData(int indexTypeRoom, int indexInMatrixI, int indexInMatrixJ)
+    {
+        dataSave.SetPrimaryData(indexTypeRoom, indexInMatrixI, indexInMatrixJ);
+    }
+
+    /// <summary>
+    /// Установить активацию дверей (true - оставить, false - destroy)
+    /// </summary>
+    public void SetDoorsActivation(bool isDoorT, bool isDoorR, bool isDoorB, bool isDoorL)
+    {
+        if (!isDoorT)
+        {
+            CloseDoorWithPlug(DoorT);
+        }
+        else
+        {
+            DoorT.SetActive(true);
+        }
+        if (!isDoorR)
+        {
+            CloseDoorWithPlug(DoorR);
+        }
+        else
+        {
+            DoorR.SetActive(true);
+        }
+        if (!isDoorB)
+        {
+            CloseDoorWithPlug(DoorB);
+        }
+        else
+        {
+            DoorB.SetActive(true);
+        }
+        if (!isDoorL)
+        {
+            CloseDoorWithPlug(DoorL);
+        }
+        else
+        {
+            DoorL.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Получить объект для сохранения
+    /// </summary>
+    /// <returns>Объект сохранения</returns>
     public RoomControllerSave GetDataSave()
     {
+        dataSave.SetPresenceDoors(this);
         return dataSave;
     }
 
     [Serializable]
     public class RoomControllerSave
     {
-        public int indexInList;
+        public bool isNull; // для JSON, чтобы удобнее понимать наличие объекта
 
-        public int neighborPassI;
-        public int neighborPassJ;
+        public int indexTypeRoom; // индекс в списке типов (от сцены к сцене может меняться)
 
-        public RoomControllerSave(int indexInList)
+        public int indexInMatrixI;  // индекс i в матрице при генерации  (от сцены к сцене меняtся)
+        public int indexInMatrixJ;  // индекс j в матрице при генерации  (от сцены к сцене меняtся)
+
+
+        // наличие дверей
+        public bool isDoorT;
+        public bool isDoorR;
+        public bool isDoorB;
+        public bool isDoorL;
+
+        public RoomControllerSave()
         {
-            this.indexInList = indexInList;
-            neighborPassI = -1;
-            neighborPassJ = -1;
+            isNull = true;
         }
 
-        public void SetNeighborPass(int i, int j)
+        /// <summary>
+        /// Установить первичные данные
+        /// </summary
+        public void SetPrimaryData(int indexTypeRoom, int indexInMatrixI, int indexInMatrixJ)
         {
-            neighborPassI = i;
-            neighborPassJ = j;
+            this.indexTypeRoom = indexTypeRoom;
+            this.indexInMatrixI = indexInMatrixI;
+            this.indexInMatrixJ = indexInMatrixJ;
+            isNull = false;
+        }
+
+        /// <summary>
+        /// Установить наличие дверей
+        /// </summary>
+        public void SetPresenceDoors(RoomController roomController)
+        {
+            isDoorT = roomController.DoorT != null;
+            isDoorR = roomController.DoorR != null;
+            isDoorB = roomController.DoorB != null;
+            isDoorL = roomController.DoorL != null;
         }
     }
 }

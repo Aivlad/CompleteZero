@@ -8,8 +8,7 @@ public class SpawnRoomControllerSaveData : MonoBehaviour
     public string nameSaveFile;
 
     private SpawnRoomController spawnRoomController;
-    private SaveGeneratedLevel save = new SaveGeneratedLevel(11);
-    //private RoomController[,] spawnedRooms;
+    private SaveGeneratedLevel save = new SaveGeneratedLevel();
 
     private void Start()
     {
@@ -25,28 +24,21 @@ public class SpawnRoomControllerSaveData : MonoBehaviour
         }
 
         // присваивание значений
-        RoomController[,] spawnedRooms = spawnRoomController.GetSpawnedRooms();
-        int[] transformedMatrixArrangement = new int[spawnedRooms.Length];
+        RoomController[,] spawnedRooms = spawnRoomController.GetSpawnedRooms(); // источник для сохранения
+        RoomController.RoomControllerSave[] savesData = new RoomController.RoomControllerSave[spawnedRooms.Length];
         int k = 0;
         for (int i = 0; i < spawnedRooms.GetLength(0); i++)
         {
             for (int j = 0; j < spawnedRooms.GetLength(1); j++)
             {
-                if (spawnedRooms[i, j] != null)
-                {
-                    transformedMatrixArrangement[k] = spawnedRooms[i, j].indexInList;
-                }
-                else
-                {
-                    transformedMatrixArrangement[k] = -1;
-                }
+                savesData[k] = spawnedRooms[i, j]?.GetDataSave();
                 k++;
             }
         }
-        save.SetData(transformedMatrixArrangement);
+        save.SetData(savesData);
 
-        // сохранение
-        File.WriteAllText(Application.persistentDataPath + "/Save" + "/"+ nameSaveFile +".json", JsonUtility.ToJson(save));
+        //сохранение
+        File.WriteAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json", JsonUtility.ToJson(save));
 
         Debug.Log("Сохранение выполнено");
     }
@@ -60,10 +52,10 @@ public class SpawnRoomControllerSaveData : MonoBehaviour
         }
 
         // загрузка
-        save = JsonUtility.FromJson<SaveGeneratedLevel>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"));
+        save = JsonUtility.FromJson<SaveGeneratedLevel>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/"+ nameSaveFile +".json"));
 
         // восстановление значений
-        spawnRoomController.LevelRebuilding(save.GetTransformedMatrixArrangement());
+        spawnRoomController.LevelRebuilding(save.GetGeneratedRooms());
 
         Debug.Log("Загрузка выполнена");
     }
@@ -74,33 +66,16 @@ public class SpawnRoomControllerSaveData : MonoBehaviour
     /// </summary>
     public class SaveGeneratedLevel
     {
-        /// <summary>
-        /// Размер массивов (берется как spawnedRooms.GetLength(0))
-        /// </summary>
-        public int size;
-        /// <summary>
-        /// Преобразованное сохранение матрицы (квадратной) spawnedRooms (-1 если null)
-        /// </summary>
-        public int[] transformedMatrixArrangement;
+        public RoomController.RoomControllerSave[] generatedRooms;
 
-        // todo: сделать save для отключения ненужных дверей (а-ля save комнаты входа в текущ. комнату)
-        // todo: сделать save открытых дверей
-
-
-        public SaveGeneratedLevel(int size)
+        public void SetData(RoomController.RoomControllerSave[] generatedRooms)
         {
-            this.size = size;
-            transformedMatrixArrangement = new int[size * size];
+            this.generatedRooms = generatedRooms;
         }
 
-        public void SetData(int[] transformedMatrixArrangement)
+        public RoomController.RoomControllerSave[] GetGeneratedRooms()
         {
-            this.transformedMatrixArrangement = transformedMatrixArrangement;
-        }
-
-        public int[] GetTransformedMatrixArrangement()
-        {
-            return transformedMatrixArrangement;
+            return generatedRooms;
         }
     }
 }

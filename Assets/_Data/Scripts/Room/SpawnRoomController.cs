@@ -22,9 +22,9 @@ public class SpawnRoomController : MonoBehaviour
         // создание и расположение стартовой комнаты
         int indexSelectedType = Random.Range(0, typesRooms.Count);
         RoomController startingRoom = Instantiate(typesRooms[indexSelectedType], Vector3.zero, Quaternion.identity);
-        startingRoom.indexInList = indexSelectedType;   // metadata дл€ save
         spawnedRooms = new RoomController[11, 11];  // работаем с матрицей 11х11, где 11 - —„
         spawnedRooms[5, 5] = startingRoom;  // помещаем стартовую комнату в центр
+        startingRoom.SetPrimaryData(indexSelectedType, 5, 5);   // metadata дл€ save
 
         // генераци€ еще countGeneratedRooms - 1 комнат (-1 т.к. startingRoom уже есть)
         for (int i = 0; i < countGeneratedRooms - 1; i++)
@@ -70,7 +70,6 @@ public class SpawnRoomController : MonoBehaviour
         // создаем непосредственно комнату
         int indexSelectedType = Random.Range(0, typesRooms.Count);
         RoomController newRoom = Instantiate(typesRooms[indexSelectedType]);
-        newRoom.indexInList = indexSelectedType;   // metadata дл€ save
 
         int limit = 1000;
         while (limit-- > 0)
@@ -80,6 +79,7 @@ public class SpawnRoomController : MonoBehaviour
             {
                 newRoom.transform.position = new Vector3((position.x - 5) * roomLength, (position.y - 5) * roomHeight, 0);   //5 - положение startingRoom
                 spawnedRooms[position.x, position.y] = newRoom;
+                newRoom.SetPrimaryData(indexSelectedType, position.x, position.y);  // metadata дл€ save
                 return;
             }
         }
@@ -170,32 +170,34 @@ public class SpawnRoomController : MonoBehaviour
 
 
     /// <summary>
-    /// ѕерестроение уровн€ 
+    /// ѕерестроение уровн€ по указанным правилам
     /// </summary>
-    /// <param name="transformedMatrixArrangement">ћассив индексов typesRooms, -1 - если spawnedRooms эл. равен null</param>
-    public void LevelRebuilding(int[] transformedMatrixArrangement)
+    /// <param name="rooms">"ѕравила" перестроени€</param>
+    public void LevelRebuilding(RoomController.RoomControllerSave[] rooms)
     {
         // очистка от старых данных
         ClearGeneratedLevel();
 
-        // преобразование int[] -> RoomController[,] и построение уровн€
-        int k = 0;
-        for (int i = 0; i < spawnedRooms.GetLength(0); i++)
+        // генераци€ новых данных
+        foreach (RoomController.RoomControllerSave room in rooms)
         {
-            for (int j = 0; j < spawnedRooms.GetLength(1); j++)
+            if (room.isNull)
             {
-                if (transformedMatrixArrangement[k] != -1)
-                {
-                    // создаем непосредственно комнату
-                    RoomController newRoom = Instantiate(typesRooms[transformedMatrixArrangement[k]]);
-                    newRoom.transform.position = new Vector3((i - 5) * roomLength, (j - 5) * roomHeight, 0);   //5 - положение startingRoom
-                    // не забываем про матрциу
-                    spawnedRooms[i, j] = newRoom;
-                }
-                k++;
+                continue;
             }
+            // создаем непосредственно комнату
+            RoomController newRoom = Instantiate(typesRooms[room.indexTypeRoom]);
+            newRoom.transform.position = new Vector3((room.indexInMatrixI - 5) * roomLength, (room.indexInMatrixJ - 5) * roomHeight, 0);
+            newRoom.SetDoorsActivation(room.isDoorT, room.isDoorR, room.isDoorB, room.isDoorL);
+            // не забываем про матрциу
+            spawnedRooms[room.indexInMatrixI, room.indexInMatrixJ] = newRoom;
         }
     }
+
+    /// <summary>
+    /// ѕоучить матрицу созданных комнат
+    /// </summary>
+    /// <returns>ћатрица созданных комнат</returns>
     public RoomController[,] GetSpawnedRooms()
     {
         return spawnedRooms;
