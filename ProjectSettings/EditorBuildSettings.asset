@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dawn/_Scene/10003_StartingGameRoom.unity
     guid: f3308609450aba943ab42114afe92290
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/10004_Screensaver.unity
+    guid: 3d2d1052ca15e024fa01c03f7a79dd43
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/10005_Leve_Labyrinth_1.unity
+    guid: 75ef0ec80f37df541aac0863e214c8dc
   m_configObjects: {}
