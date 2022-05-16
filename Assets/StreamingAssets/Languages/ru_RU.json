@@ -35,6 +35,18 @@
     {
       "key" : "10001_MainMenu_SoundSettings",
       "value" : "Звук"
-    }	
+    },
+    {
+      "key" : "10001_MainMenu_NewGameButton",
+      "value" : "Новая игра"
+    },
+    {
+      "key" : "10001_MainMenu_LoadGameButton",
+      "value" : "Загрузить игру"
+    },
+    {
+      "key" : "10001_MainMenu_StubSorryText",
+      "value" : "Извините, но область все еще находится в разработке"
+    }
   ]
 }

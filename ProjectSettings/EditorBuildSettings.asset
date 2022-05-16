@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dawn/_Scene/10001_MainMenu.unity
     guid: 176880c9f29c4cb43933180c4241abb9
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/10002_Screensaver.unity
+    guid: 983177606ee2ddb47972639690c1cfa1
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/10003_StartingGameRoom.unity
+    guid: f3308609450aba943ab42114afe92290
   m_configObjects: {}

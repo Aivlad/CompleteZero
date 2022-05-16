@@ -1,6 +1,12 @@
-00000001: 10001_MainMenu
-	
-
+00000001: 
+	10001_MainMenu
+		KeysPlayerPrefs				- скрипт с ключами playerprefs
+		AudioToggle					- работа со звуком
+	10002_Screensaver				- сцена с демо видео
+		VideoDemonstrationInSeparateScene	- скрипт управления показываемым видео
+	10003_StartingGameRoom
+		RoomMovingCamera			- перемещение камеры между комнатами
+		WeaponPickUp				- "активация оружия с земли"
 
 00000002: Локализация	
 	[
@@ -24,6 +30,10 @@
 	скрипт ActivationCreditsPanel мини-помощь и напоминание: видео стоит тормозить и запускать
 
 00000004: Audio
+	[+\- расчет: создается манагер звука, на которого вешаем AudioSource + AudioToggle(в параметрах указываем дополнительно image)]
 	активация звука через AudioSource
 	для слушанья нужен хотябы один AudioListener (обычно он есть на камере сразу)
 	логика вкл\выкл и всего со звуком в AudioToggle
+
+00000005: Animation
+	на анимируемы предмет Animator, ему нужен AnimatorController, которому нужна Animation

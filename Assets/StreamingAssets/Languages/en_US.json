@@ -35,6 +35,18 @@
     {
       "key" : "10001_MainMenu_SoundSettings",
       "value" : "Sound"
-    }	
+    },
+    {
+      "key" : "10001_MainMenu_NewGameButton",
+      "value" : "New game"
+    },
+    {
+      "key" : "10001_MainMenu_LoadGameButton",
+      "value" : "Load game"
+    },
+    {
+      "key" : "10001_MainMenu_StubSorryText",
+      "value" : "Sorry, but the area is still under development"
+    }
   ]
 }

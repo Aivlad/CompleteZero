@@ -4,26 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioToggle : MonoBehaviour
-{
-    private static readonly string SOUND_KEY_PLAYER_PREFS = "SOUND_KEY_PLAYER_PREFS";
-
-    private Image componentImage;
+{  
+    public Image imageSource;
     public Sprite soundOn;
     public Sprite soundOff;
 
     private void Start()
     {
-        componentImage = GetComponent<Image>();
-
         // если сейва нет, то запускаем музыку и делаемсейв
-        if (!PlayerPrefs.HasKey(SOUND_KEY_PLAYER_PREFS))
+        if (!PlayerPrefs.HasKey(KeysPlayerPrefs.SOUND_KEY_PLAYER_PREFS))
         {
             AudioListener.pause = false;
-            PlayerPrefs.SetInt(SOUND_KEY_PLAYER_PREFS, AudioListener.pause ? 1 : 0);
+            PlayerPrefs.SetInt(KeysPlayerPrefs.SOUND_KEY_PLAYER_PREFS, AudioListener.pause ? 1 : 0);
         }
 
         // определяем сейв
-        AudioListener.pause = PlayerPrefs.GetInt(SOUND_KEY_PLAYER_PREFS) == 1;
+        AudioListener.pause = PlayerPrefs.GetInt(KeysPlayerPrefs.SOUND_KEY_PLAYER_PREFS) == 1;
 
         IconChange();
     }
@@ -32,20 +28,22 @@ public class AudioToggle : MonoBehaviour
     public void ActivatedSound()
     {        
         AudioListener.pause = !AudioListener.pause; // меняем состояние
-        PlayerPrefs.SetInt(SOUND_KEY_PLAYER_PREFS, AudioListener.pause ? 1 : 0); //делаем сейв
+        PlayerPrefs.SetInt(KeysPlayerPrefs.SOUND_KEY_PLAYER_PREFS, AudioListener.pause ? 1 : 0); //делаем сейв
         IconChange();
     }
 
     // смена изображения (иконки)
     private void IconChange()
     {
-        if (componentImage == null) // ситуация: кнопка без Image
+        if (imageSource == null) // ситуация: кнопка без Image
             return;
 
         if (AudioListener.pause)
-            componentImage.sprite = soundOff;
+            imageSource.sprite = soundOff;
         else
-            componentImage.sprite = soundOn;
+            imageSource.sprite = soundOn;
     }
-
+    /*
+     AudioListener.pause = true (1) -> пауза в звуке, т.е. он выключен     
+     */
 }
