@@ -31,13 +31,19 @@ public class MechanicScatterAroundWave : MonoBehaviour
     {
         if (Input.GetKeyDown(action) && isReadyAttack)
         {
-            isReadyAttack = false;
-            angle = Random.Range(0, 360);
-            angleRotation = 360 / countObjects;
-            center = transform.position;
-            StartCoroutine(RunWave(1, scatteringRadiusFirstWave));
-            StartCoroutine(Recharge());
+            LaunchingAction();
         }
+    }
+
+    // запуск самого действия (полезно, если запуск не по кнопке)
+    public void LaunchingAction()
+    {
+        isReadyAttack = false;
+        angle = Random.Range(0, 360);
+        angleRotation = 360 / countObjects;
+        center = transform.position;
+        StartCoroutine(RunWave(1, scatteringRadiusFirstWave));
+        StartCoroutine(Recharge());
     }
 
     // равномерный разброс по контуру круга

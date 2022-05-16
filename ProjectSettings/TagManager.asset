@@ -8,6 +8,8 @@ TagManager:
   - Splash
   - TargetMovementNPC
   - Wall
+  - InventoryManager
+  - InventoryItem
   layers:
   - Default
   - TransparentFX
