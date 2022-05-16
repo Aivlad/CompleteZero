@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - InventoryManager
   - InventoryItem
+  - LocalizationManager
   layers:
   - Default
   - TransparentFX

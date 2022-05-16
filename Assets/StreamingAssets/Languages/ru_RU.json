@@ -1,0 +1,40 @@
+﻿{
+  "items": [
+    {
+      "key" : "10001_MainMenu_PlayButton",
+      "value" : "Играть"
+    },
+    {
+      "key" : "10001_MainMenu_SettingsButton",
+      "value" : "Настройки"
+    },
+    {
+      "key" : "10001_MainMenu_CreditsButton",
+      "value" : "Титры"
+    },
+    {
+      "key" : "10001_MainMenu_ExitButton",
+      "value" : "Выход"
+    },
+    {
+      "key" : "10001_MainMenu_GraphicSettings",
+      "value" : "Графика"
+    },
+    {
+      "key" : "10001_MainMenu_ResolutionSettings",
+      "value" : "Разрешение"
+    },
+    {
+      "key" : "10001_MainMenu_LocalizationSettings",
+      "value" : "Язык"
+    },
+    {
+      "key" : "10001_MainMenu_BackButton",
+      "value" : "Назад"
+    },
+    {
+      "key" : "10001_MainMenu_SoundSettings",
+      "value" : "Звук"
+    }	
+  ]
+}

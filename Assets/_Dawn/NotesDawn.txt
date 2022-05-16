@@ -1,0 +1,29 @@
+00000001: 10001_MainMenu
+	
+
+
+00000002: Локализация	
+	[
+		1
+		для добавления локализации добавляем LocalizedText на объекты с комп.Text ->
+		вписать ключ ->
+		для каждого json добавить этот ключ и значение
+
+		2
+		на кнопки-перевод вешаем событие LocalizationManager->OnButtonClickSwitchLanguage с параметром имя json
+
+		3
+		json по пути "\Assets\StreamingAssets\Languages\[name_your_file].json", замена пути через LoadLocalizedText (перем. path) в  LocalizationManager
+	]
+	LocalizationData			- основной класс-структура сохранения [написал-забыл]
+	LocalizationManager			- основной класс управления	[ в Awake при поддержке новых языков нужно добавить системное определение]
+	LocalizedText				- скрипт локализации (вешается на объекты локализации) [смена по ключу через json]
+
+00000003:  Работа с VideoPlayer на Canvas obj
+	связка RenderTexture + RawImage (пар-р Texture -> RenderTexture) + EmptyObject (комп-т VideoPlayer: пар-р TargetTexture -> RenderTexture + пар-р VideoClip -> uour_video)
+	скрипт ActivationCreditsPanel мини-помощь и напоминание: видео стоит тормозить и запускать
+
+00000004: Audio
+	активация звука через AudioSource
+	для слушанья нужен хотябы один AudioListener (обычно он есть на камере сразу)
+	логика вкл\выкл и всего со звуком в AudioToggle

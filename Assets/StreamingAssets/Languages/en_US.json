@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "key" : "10001_MainMenu_PlayButton",
+      "value" : "Play"
+    },
+    {
+      "key" : "10001_MainMenu_SettingsButton",
+      "value" : "Settings"
+    },
+    {
+      "key" : "10001_MainMenu_CreditsButton",
+      "value" : "Credits"
+    },
+    {
+      "key" : "10001_MainMenu_ExitButton",
+      "value" : "Exit"
+    },
+    {
+      "key" : "10001_MainMenu_GraphicSettings",
+      "value" : "Graphic"
+    },
+    {
+      "key" : "10001_MainMenu_ResolutionSettings",
+      "value" : "Resolution"
+    },
+    {
+      "key" : "10001_MainMenu_LocalizationSettings",
+      "value" : "Language"
+    },
+    {
+      "key" : "10001_MainMenu_BackButton",
+      "value" : "Back"
+    },
+    {
+      "key" : "10001_MainMenu_SoundSettings",
+      "value" : "Sound"
+    }	
+  ]
+}
