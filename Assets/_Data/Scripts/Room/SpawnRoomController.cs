@@ -16,6 +16,7 @@ public class SpawnRoomController : MonoBehaviour
 
     [Space]
     public List<RoomController> lastRooms;
+    public GameObject prefabHole;
 
     /// <summary>
     /// Генерация уровня с нуля
@@ -45,6 +46,9 @@ public class SpawnRoomController : MonoBehaviour
 
         // заносим крайнии комнаты в отдельный список
         CompleteListLastRooms();
+
+        // случайное размещение Hole в одной из крайних комнат
+        Instantiate(prefabHole, lastRooms[Random.Range(0, lastRooms.Count)].centerRoom.position, Quaternion.identity);
 
         Debug.Log("Уровень сгенерирован");
     }

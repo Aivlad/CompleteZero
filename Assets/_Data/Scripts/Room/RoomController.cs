@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+    public Transform centerRoom;
     [Header("Doors")]
     public GameObject DoorT;
     public GameObject DoorR;

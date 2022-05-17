@@ -14,6 +14,8 @@
 		RoomOpenPassages			- открытие дверей после уничтожения врагов в комнате
 		RoomJumpOut					- прыжок из текущей комнаты в новую (на переходе)
 		SpawnEnemyController		- данные и методы заспавленных врагов
+		RoomSoundAccompanimentDoor	- скрипт звукового сопровождения дверей
+		RoomSoundAccompanimentDoorActivated	- скрипт-активация RoomSoundAccompanimentDoorActivated
 
 00000002: Локализация	
 	[

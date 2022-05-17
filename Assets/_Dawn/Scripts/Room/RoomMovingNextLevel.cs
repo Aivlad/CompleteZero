@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class RoomMovingNextLevel : MonoBehaviour
 {
-    public MenuController menuController;
+    private MenuController menuController;
     public string nameLoadingScene;
+
+    private void Start()
+    {
+        menuController = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuController>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

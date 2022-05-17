@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dawn/_Scene/10005_Level_Labyrinth_1.unity
     guid: 75ef0ec80f37df541aac0863e214c8dc
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/10006_Stub_End.unity
+    guid: 0bbda749a0ea1e04a83da26325f1e61f
   m_configObjects: {}
