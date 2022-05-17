@@ -14,6 +14,9 @@ public class SpawnRoomController : MonoBehaviour
     public int roomHeight;                          // высота комнаты
     private RoomController[,] spawnedRooms;         // матрица заспавленных комнат    
 
+    [Space]
+    public List<RoomController> lastRooms;
+
     /// <summary>
     /// √енераци€ уровн€ с нул€
     /// </summary>
@@ -25,6 +28,7 @@ public class SpawnRoomController : MonoBehaviour
         spawnedRooms = new RoomController[11, 11];  // работаем с матрицей 11х11, где 11 - —„
         spawnedRooms[5, 5] = startingRoom;  // помещаем стартовую комнату в центр
         startingRoom.SetPrimaryData(indexSelectedType, 5, 5);   // metadata дл€ save
+        startingRoom.SetIsLastRoom(); // стартова€ комната не €вл€етс€ крайней дл€ посещени€
 
         // генераци€ еще countGeneratedRooms - 1 комнат (-1 т.к. startingRoom уже есть)
         for (int i = 0; i < countGeneratedRooms - 1; i++)
@@ -38,6 +42,9 @@ public class SpawnRoomController : MonoBehaviour
             if (room == null) continue;
             room.ClosePassagesAndOpenPlugs();
         }
+
+        // заносим крайнии комнаты в отдельный список
+        CompleteListLastRooms();
 
         Debug.Log("”ровень сгенерирован");
     }
@@ -145,6 +152,7 @@ public class SpawnRoomController : MonoBehaviour
         // помечаем, что из текущей комнады есть проход, она не крайн€€ (имеет неск. выходов)
         // + заспавнена€ комната - теперь крайн€€
         room.neighborExitRoom = selectedRoom;
+        selectedRoom.SetIsLastRoom();
 
         return true;
     }
@@ -189,9 +197,13 @@ public class SpawnRoomController : MonoBehaviour
             RoomController newRoom = Instantiate(typesRooms[room.indexTypeRoom]);
             newRoom.transform.position = new Vector3((room.indexInMatrixI - 5) * roomLength, (room.indexInMatrixJ - 5) * roomHeight, 0);
             newRoom.SetDoorsActivation(room.isDoorT, room.isDoorR, room.isDoorB, room.isDoorL);
+            newRoom.SetIsLastRoom(room.isLastRoom);
             // не забываем про матрциу
             spawnedRooms[room.indexInMatrixI, room.indexInMatrixJ] = newRoom;
         }
+
+        // заносим крайнии комнаты в отдельный список
+        CompleteListLastRooms();
     }
 
     /// <summary>
@@ -201,5 +213,19 @@ public class SpawnRoomController : MonoBehaviour
     public RoomController[,] GetSpawnedRooms()
     {
         return spawnedRooms;
+    }
+
+    /// <summary>
+    /// «аполнение списка lastRooms
+    /// </summary>
+    private void CompleteListLastRooms()
+    {
+        foreach (var room in spawnedRooms)
+        {
+            if (room != null && room.GetIsLastRoom())
+            {
+                lastRooms.Add(room);
+            }
+        }
     }
 }

@@ -7,6 +7,13 @@
 	10003_StartingGameRoom
 		RoomMovingCamera			- перемещение камеры между комнатами
 		WeaponPickUp				- "активация оружия с земли"
+	10004_Screensaver				- аналог 10002_Screensaver
+	10005_Level_Labyrinth_1			- первый уровень с генерацией
+		SceneMainManager			- общий контроллер сцены
+		RoomSpawnEnemies			- скрипт на комнату для спавна врагов
+		RoomOpenPassages			- открытие дверей после уничтожения врагов в комнате
+		RoomJumpOut					- прыжок из текущей комнаты в новую (на переходе)
+		SpawnEnemyController		- данные и методы заспавленных врагов
 
 00000002: Локализация	
 	[

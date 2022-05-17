@@ -15,7 +15,8 @@ public class RoomMovingCamera : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
+            if (mainCamera != null)
+                mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
         }
     }
 }

@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonScip: 32
   menuController: {fileID: 1194901077}
-  nameLoadingScene: 10005_Leve_Labyrinth_1
+  nameLoadingScene: 10005_Level_Labyrinth_1
 --- !u!1 &1194901076
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,22 @@ public class RoomController : MonoBehaviour
 
     [Header("Metadata")]
     private RoomControllerSave dataSave = new RoomControllerSave();
+    private bool isLastRoom = true;
 
+    /// <summary>
+    /// Откыть все двери
+    /// </summary>
+    public void OpenAllDoors()
+    {
+        if (DoorT != null)
+            DoorT.SetActive(false);
+        if (DoorR != null)
+            DoorR.SetActive(false);
+        if (DoorB != null)
+            DoorB.SetActive(false);
+        if (DoorL != null)
+            DoorL.SetActive(false);
+    }
 
     /// <summary>
     /// Закрыть проходы дверями, а вместо дверей болванок повесить заглушки
@@ -105,12 +120,29 @@ public class RoomController : MonoBehaviour
     }
 
     /// <summary>
+    /// Является ли комнтата крайней
+    /// </summary>
+    public void SetIsLastRoom(bool isLast = false)
+    {
+        isLastRoom = isLast;
+    }
+
+    /// <summary>
+    /// Получить isLastRoom
+    /// </summary>
+    public bool GetIsLastRoom()
+    {
+        return isLastRoom;
+    }
+
+    /// <summary>
     /// Получить объект для сохранения
     /// </summary>
     /// <returns>Объект сохранения</returns>
     public RoomControllerSave GetDataSave()
     {
         dataSave.SetPresenceDoors(this);
+        dataSave.SetIsLastRoom(isLastRoom);
         return dataSave;
     }
 
@@ -130,6 +162,9 @@ public class RoomController : MonoBehaviour
         public bool isDoorR;
         public bool isDoorB;
         public bool isDoorL;
+
+        // последняя комната или нет
+        public bool isLastRoom;
 
         public RoomControllerSave()
         {
@@ -156,6 +191,14 @@ public class RoomController : MonoBehaviour
             isDoorR = roomController.DoorR != null;
             isDoorB = roomController.DoorB != null;
             isDoorL = roomController.DoorL != null;
+        }
+
+        /// <summary>
+        /// Установка флага: комната скраю или нет
+        /// </summary>
+        public void SetIsLastRoom(bool isLastRoom)
+        {
+            this.isLastRoom = isLastRoom;
         }
     }
 }
