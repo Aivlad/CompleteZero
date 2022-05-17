@@ -28,24 +28,28 @@ public class WeaponPickUp : MonoBehaviour
                     was.enabled = false;
                     ptkas.enabled = false;
                     mas.enabled = false;
+                    PlayerPrefs.SetString(KeysPlayerPrefs.WEAPON_KEY_PLAYER_PREFS, "SwordOfLightAttackSysten");
                     break;
                 case 1:
                     solas.enabled = false;
                     was.enabled = true;
                     ptkas.enabled = false;
                     mas.enabled = false;
+                    PlayerPrefs.SetString(KeysPlayerPrefs.WEAPON_KEY_PLAYER_PREFS, "WandAttackSystem");
                     break;
                 case 2:
                     solas.enabled = false;
                     was.enabled = false;
                     ptkas.enabled = true;
                     mas.enabled = false;
+                    PlayerPrefs.SetString(KeysPlayerPrefs.WEAPON_KEY_PLAYER_PREFS, "PoisonedThrowingKnivesAttackSystem");
                     break;
                 case 3:
                     solas.enabled = false;
                     was.enabled = false;
                     ptkas.enabled = false;
                     mas.enabled = true;
+                    PlayerPrefs.SetString(KeysPlayerPrefs.WEAPON_KEY_PLAYER_PREFS, "MorgenshternAttackSysten");
                     break;
             }
             ActivationObjectsUnderYourFeet();

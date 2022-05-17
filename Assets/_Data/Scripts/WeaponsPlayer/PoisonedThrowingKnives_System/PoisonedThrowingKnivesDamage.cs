@@ -47,7 +47,13 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        if (collision.transform.CompareTag("Wall"))
+        {
+            Debug.Log("Стена колайдер");
+            Destroy(gameObject);
+        }
     }
+
 
     private void ActivateAttackEffect(GameObject target)
     {
