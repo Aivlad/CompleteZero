@@ -9197,6 +9197,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1593424572}
     m_Modifications:
+    - target: {fileID: 9061785700336506134, guid: 955e58b2f675ab343bddfaf2748f758a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dcaa8cd688298c74f8cc0e1f83f6fbf8, type: 3}
     - target: {fileID: 9061785700336506136, guid: 955e58b2f675ab343bddfaf2748f758a, type: 3}
       propertyPath: menuController
       value: 
