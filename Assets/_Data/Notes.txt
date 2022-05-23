@@ -7,6 +7,7 @@
 сцена 00004_Room_Labyrinth	- отработка вопросов генерации лабиринта (в т.ч. сохранения генерации)
 сцена 00005_Menu	- отработка вопросов настроек (а-ля старт меню)
 сцена 00006_Boss	- отработка боссов
+сцена 00008_Files	- отработка сохранения баланса
 
 
 0000002: Меч света 
@@ -40,11 +41,16 @@
 	PoisonedThrowingKnivesAttackSystem			- вешается на игрока
 	EffectPoisoning								- вешается на того, кто подвержен эффекту (работа через скрипт EffectActivator)
 
-0000006: движение npc
+0000006: npc
 Скрипты: 
 	MovementTowardsGoal			- прямое движение к цели
 	MovementPointsFeed			- дополнение к MovementTowardsGoal, циклично подает позиции движения
 	MovementPassiveActivation	- дополнение к MovementTowardsGoal, вешается на триггер "активация приследования"
+	NPCTargetingPlayer			- наведение на игрока (слежка за ним)
+	NPCSimpleTriggerAttack		- простая атака по триггеру
+	NPCSimpleRangedAttackSpawn	- простая атака без остановки для ренжевика
+	NPCInflictDamageOnPlayer	- нанесение урона по тегу Player
+	FlightOfConventionalProjectile	- полет обычного снаряда (с уроном по тегу Player)
 
 0000007: мелкие механики
 Скрипты: 
@@ -72,6 +78,7 @@
 	RoomController					- скрипт работы с текущей комнатой (содержит методы и классы для сохранения комнаты)
 	SpawnRoomControllerSaveData		- скрипт-дополнение к SpawnRoomController. Работает с вопросами сохранения генерации (методы Save и Load, а также класс для JSON сохранения) (тесно связан с предыдущими 2мя скриптами)
 	SaveDataTest					- класс для отработки вопросов сохранения (а-ля шаблон через JSON)
+	SaveDataToPlainTextFile			- сохранение в текст док. теста (для баланса отработка)
 
 0000010: меню
 	MenuController				- функции для кнопок (переходы между сценами, скрытие\активация панелей и т.п.)
@@ -88,3 +95,6 @@
 	InventoryCurrentCell		- скрипт управления подобранным предметом (в UI инвентаря)
 	InventoryCellHighlight		- а-ля подсведка UI элемента (клетки) инвентаря при наведении
 	TestActionInventory			- тестовое событие использования инвентаря
+
+0000013: игрок
+	PlayerCharacteristics		- статы игрока

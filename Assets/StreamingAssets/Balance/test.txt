@@ -1,0 +1,8 @@
+new text \r\n text
+append \n
+append \n
+append \n
+append \n
+append \n
+append \n
+append \n
