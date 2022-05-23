@@ -49,7 +49,7 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
         }
         if (collision.transform.CompareTag("Wall"))
         {
-            Debug.Log("Стена колайдер");
+            //Debug.Log("Стена колайдер");
             Destroy(gameObject);
         }
     }

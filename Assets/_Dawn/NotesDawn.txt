@@ -7,6 +7,7 @@
 	10003_StartingGameRoom
 		RoomMovingCamera			- перемещение камеры между комнатами
 		WeaponPickUp				- "активация оружия с земли"
+		RoomMandatoryActivationObjects		- скрипт-помощник: позволяет активировать обязательные объекты во время запуска сцены (напрмер, UI)
 	10004_Screensaver				- аналог 10002_Screensaver
 	10005_Level_Labyrinth_1			- первый уровень с генерацией
 		SceneMainManager			- общий контроллер сцены

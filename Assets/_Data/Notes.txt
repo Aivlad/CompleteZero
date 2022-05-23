@@ -15,6 +15,7 @@
 	SwordOfLightDamage			- вешается на коллайдер зоны удара
 	SwordOfLightAttackSysten	- вешается на игрока (имеет скрипт для удара в сторону взгляда MoveStrikeZoneSplash110)
 	SwordOfLightIncomingDamage	- вешается на того, кто подвержен эффекту (фиксирует от чего пришел урон, т.е. считает нужные киллы)
+	MoveStrikeZoneSplashBehindСursor	- наведение в сторону курсора
 
 0000003: Жезл
 Имеет объект удара (префаб) PlaceOfImpact, который появляется вместе нажания курсора (с учетом дистанции)
