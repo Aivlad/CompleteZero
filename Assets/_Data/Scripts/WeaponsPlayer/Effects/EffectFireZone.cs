@@ -40,12 +40,13 @@ public class EffectFireZone : MonoBehaviour
 
     private IEnumerator ToDamage()
     {
-        yield return new WaitForSeconds(damageDelay);
 
-        foreach (ObjectCharacteristics target in targets)
+        for (int i = 0; i < targets.Count; i++)
         {
-            target?.DealDamage(damage);
+            if (targets[i] != null)
+                targets[i].DealDamage(damage);
         }
+        yield return new WaitForSeconds(damageDelay);
 
         StartCoroutine(ToDamage());
     }

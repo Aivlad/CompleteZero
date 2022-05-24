@@ -23,9 +23,9 @@ public class ObjectCharacteristics : MonoBehaviour
 
     public void DealDamage(float damage)
     {
+        CallFlyingDamage(damage);
         health -= damage;
         CheckDeath();
-        CallFlyingDamage(damage);
     }
 
     private void CheckDeath()

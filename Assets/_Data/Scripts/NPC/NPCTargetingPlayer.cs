@@ -10,9 +10,9 @@ public class NPCTargetingPlayer : MonoBehaviour
 
     private void Start()
     {
-        transformPlayer = GameObject.FindGameObjectWithTag("Player").transform;
-        if (transformPlayer == null)
-            Debug.Log("Player not found");
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            transformPlayer = player.transform;
     }
 
     private void Update()

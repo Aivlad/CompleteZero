@@ -22,10 +22,15 @@ public class MovementTowardsGoal : MonoBehaviour
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
         speed = sceneManager.GetSpeed(type);
         stopDistance = sceneManager.GetMeleeDistance(type);
+        if (stopDistance == 0)
+            stopDistance = sceneManager.GetRangerDistance(type);
 
         if (target == null)
-            target = GameObject.FindGameObjectWithTag("Player").transform;
-
+        {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+                target = player.transform;
+        }
         isMovement = false;
     }
 

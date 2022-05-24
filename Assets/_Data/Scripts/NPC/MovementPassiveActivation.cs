@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MovementPassiveActivation : MonoBehaviour
 {
+    public SceneManagerNPCState.TypesOfEnemies type;
+    public SceneManagerNPCState sceneManager;
+    [Space]
     public MovementTowardsGoal source;  // скрипт самого движения
     public float radiusActivation;      // радиус активации движения
 
@@ -11,6 +14,9 @@ public class MovementPassiveActivation : MonoBehaviour
 
     private void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
+        radiusActivation = sceneManager.GetPassiveRange(type);
+
         cc2d = GetComponent<CircleCollider2D>();
         cc2d.radius = radiusActivation;
         source.enabled = false;
