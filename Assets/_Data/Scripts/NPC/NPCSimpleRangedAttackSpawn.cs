@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class NPCSimpleRangedAttackSpawn : MonoBehaviour
 {
+    public SceneManagerNPCState.TypesOfEnemies type;
+    public SceneManagerNPCState sceneManager;
+    [Space]
     public GameObject projectilePrefab;
     public Transform transformPlayer;
     [Space]
-    public float cooldown;
+    private float cooldown;
     public bool isReadyAttack;
+    [Space]
+    private float damage;
 
     private void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
+        cooldown = sceneManager.GetCooldownRanger(type);
+        damage = sceneManager.GetDamageRanger(type);
+
+
         transformPlayer = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(GetReadyForAttack());
     }
@@ -36,7 +46,8 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
         isReadyAttack = false;
 
         //сама атака
-        Instantiate(projectilePrefab, transform.position, transform.rotation);
+        var newObj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        newObj.GetComponent<FlightOfConventionalProjectile>().damage = damage;
 
         // ждем
         yield return new WaitForSeconds(cooldown);

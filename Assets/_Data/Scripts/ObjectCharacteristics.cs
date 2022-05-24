@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class ObjectCharacteristics : MonoBehaviour
 {
+    public SceneManagerNPCState.TypesOfEnemies type;
+    public SceneManagerNPCState sceneManager;
+    [Space]
     public float health;
-    public float healthMax;
+    private float healthMax;
     [Space]
     public GameObject flyingDamagePrefab;
     public Vector3 offset;
 
     private void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
+        healthMax = sceneManager.GetHealth(type);
+
         health = healthMax;
     }
 

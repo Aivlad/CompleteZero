@@ -11,16 +11,20 @@ public class EffectActivator : MonoBehaviour
 
     public void CallEffectBleeding()
     {
-        effectBleeding.SetActive(true);
+        if (effectBleeding != null)
+            effectBleeding.SetActive(true);
     }
 
     public void UpdateEffectBleeding()
     {
-        effectBleeding.GetComponent<EffectBleeding>().EffectUpdate();
+        if (effectBleeding != null)
+            effectBleeding.GetComponent<EffectBleeding>().EffectUpdate();
     }
 
     public bool IsEffectBleedingActicated()
     {
+        if (effectBleeding == null)
+            return false;
         return effectBleeding.activeInHierarchy;
     }
 
@@ -31,16 +35,20 @@ public class EffectActivator : MonoBehaviour
     public GameObject effectPoisoning;
     public void CallEffectPoisoning()
     {
-        effectPoisoning.SetActive(true);
+        if (effectPoisoning != null)
+            effectPoisoning.SetActive(true);
     }
 
     public void UpdateEffectPoisoning()
     {
-        effectPoisoning.GetComponent<EffectPoisoning>().EffectUpdate();
+        if (effectPoisoning != null)
+            effectPoisoning.GetComponent<EffectPoisoning>().EffectUpdate();
     }
 
     public bool IsEffectPoisoningActicated()
     {
+        if (effectPoisoning == null)
+            return false;
         return effectPoisoning.activeInHierarchy;
     }
     #endregion
@@ -51,16 +59,20 @@ public class EffectActivator : MonoBehaviour
 
     public void CallEffectFire()
     {
-        effectFire.SetActive(true);
+        if (effectFire != null)
+            effectFire.SetActive(true);
     }
 
     public void UpdateEffectFire()
     {
-        effectFire.GetComponent<EffectFire>().EffectUpdate();
+        if (effectFire != null)
+            effectFire.GetComponent<EffectFire>().EffectUpdate();
     }
 
     public bool IsEffectFireActivated()
     {
+        if (effectFire == null)
+            return false;
         return effectFire.activeInHierarchy;
     }
     #endregion

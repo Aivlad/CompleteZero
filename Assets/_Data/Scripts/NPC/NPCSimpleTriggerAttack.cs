@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class NPCSimpleTriggerAttack : MonoBehaviour
 {
+    public SceneManagerNPCState.TypesOfEnemies type;
+    public SceneManagerNPCState sceneManager;
+    [Space]
+    public Transform bodyParent;
+    [Space]
     public GameObject zoneAttack;
-    public float cooldown;
+    private float cooldown;
+    private float distance;
     public bool isReadyAttack;
 
     private void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
+        cooldown = sceneManager.GetCooldownMelee(type);
+        distance = sceneManager.GetMeleeDistance(type);
+
         zoneAttack.SetActive(false);
         isReadyAttack = true;
     }
@@ -18,7 +28,12 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
     {
         if (isReadyAttack && collision.CompareTag("Player"))
         {
-            StartCoroutine(ActionAttack());
+            var currentDistance = bodyParent.GetComponent<Collider2D>().Distance(collision).distance;
+            if (currentDistance <= distance)
+            {
+                StartCoroutine(ActionAttack());
+                //Debug.Log(currentDistance);
+            }
         }
     }
 
@@ -30,9 +45,9 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
         zoneAttack.SetActive(true);
 
         // ждем
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         zoneAttack.SetActive(false);
-        yield return new WaitForSeconds(cooldown - 1);
+        yield return new WaitForSeconds(cooldown - 0.1f);
 
         // снова готовы к бою
         isReadyAttack = true;

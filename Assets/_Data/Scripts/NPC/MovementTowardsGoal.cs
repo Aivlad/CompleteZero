@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class MovementTowardsGoal : MonoBehaviour
 {
+    public SceneManagerNPCState.TypesOfEnemies type;
+    public SceneManagerNPCState sceneManager;
+    [Space]
     public Transform target;
     [Space]
-    public float speed;
-    public float stopDistance;
+    private float speed;
+    private float stopDistance;
     public bool isMovement;    // флаг: объект движется или нет
 
     // взгляд движения
@@ -16,6 +19,13 @@ public class MovementTowardsGoal : MonoBehaviour
 
     private void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
+        speed = sceneManager.GetSpeed(type);
+        stopDistance = sceneManager.GetMeleeDistance(type);
+
+        if (target == null)
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+
         isMovement = false;
     }
 
@@ -23,7 +33,7 @@ public class MovementTowardsGoal : MonoBehaviour
     {
         if (target != null)
         {
-            var distanceToTarget = Vector2.Distance(target.position, transform.position);
+            var distanceToTarget = GetTargetDistance();
             if (distanceToTarget > stopDistance)
             {
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
@@ -35,6 +45,11 @@ public class MovementTowardsGoal : MonoBehaviour
             }
             DetermineDirectionView();
         }
+    }
+
+    public float GetTargetDistance()
+    {
+        return Vector2.Distance(target.position, transform.position);
     }
 
     private void DetermineDirectionView()

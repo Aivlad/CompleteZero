@@ -12,6 +12,7 @@ TagManager:
   - InventoryItem
   - LocalizationManager
   - MenuManager
+  - SceneManager
   layers:
   - Default
   - TransparentFX
