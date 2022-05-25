@@ -47,3 +47,12 @@
 
 00000005: Animation
 	на анимируемы предмет Animator, ему нужен AnimatorController, которому нужна Animation
+
+00000006: Minimap
+	[
+		создаем 2ю камеру с работой только по UI (слой как пример) -> вешаем на камеру CameraFollowTarget
+		в комнате создаем объекты на указанном слое -> RoomMinimapController указываем объеты
+	]
+	CameraFollowTarget			- направляет камеру на указанную цель с заданнйо высотой
+	RoomMinimapController		- активация комнаты на minimap (по триггеру подает цель на CameraFollowTarget)
+	MapController				- активация по зажатию кнопки одну из двух карт
