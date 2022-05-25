@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacteristics : MonoBehaviour
+public class PlayerCharacteristics : VitalCharacteristics
 {
-    public float health;
-    public float healthMax;
     [Space]
     public GameObject flyingDamagePrefab;
     public Vector3 offset;
@@ -42,7 +40,7 @@ public class PlayerCharacteristics : MonoBehaviour
         r2d.WakeUp();   // заставляем высегда быть активным (для моментов с StayTrigger)
     }
 
-    public void DealDamage(float damage)
+    public override void DealDamage(float damage)
     {
         health -= damage;
         CheckDeath();

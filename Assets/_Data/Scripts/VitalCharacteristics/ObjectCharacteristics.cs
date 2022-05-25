@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectCharacteristics : MonoBehaviour
+public class ObjectCharacteristics : VitalCharacteristics
 {
     public SceneManagerNPCState.TypesOfEnemies type;
     public SceneManagerNPCState sceneManager;
-    [Space]
-    public float health;
-    private float healthMax;
     [Space]
     public GameObject flyingDamagePrefab;
     public Vector3 offset;
@@ -21,7 +18,7 @@ public class ObjectCharacteristics : MonoBehaviour
         health = healthMax;
     }
 
-    public void DealDamage(float damage)
+    public override void DealDamage(float damage)
     {
         CallFlyingDamage(damage);
         health -= damage;

@@ -10,20 +10,32 @@ public class EffectFireZone : MonoBehaviour
     public float duration;
 
     [Space]
-    public List<ObjectCharacteristics> targets;
+    public List<VitalCharacteristics> targets;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ObjectCharacteristics target = collision.GetComponent<ObjectCharacteristics>();
+        VitalCharacteristics target = collision.GetComponent<ObjectCharacteristics>();
+        if (target != null && !targets.Contains(target))
+        {
+            targets.Add(target);
+            return;
+        }
+        target = collision.GetComponent<PlayerCharacteristics>();
         if (target != null && !targets.Contains(target))
         {
             targets.Add(target);
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ObjectCharacteristics target = collision.GetComponent<ObjectCharacteristics>();
+        VitalCharacteristics target = collision.GetComponent<ObjectCharacteristics>();
+        if (target != null)
+        {
+            targets.Remove(target);
+        }
+        target = collision.GetComponent<PlayerCharacteristics>();
         if (target != null)
         {
             targets.Remove(target);
