@@ -140,8 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c12fe7993d38942a90d01ea2761c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
+  sceneManager: {fileID: 0}
   health: 0
-  healthMax: 30
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &2504407991337469098

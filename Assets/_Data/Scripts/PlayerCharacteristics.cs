@@ -12,11 +12,29 @@ public class PlayerCharacteristics : MonoBehaviour
 
     private Rigidbody2D r2d;
 
+    [Header("Balance data")]
+    private SaveDataToPlainTextFile balanceManager;
+    private float totalDamage;
+    private int totalStrokes;
+
     private void Start()
     {
         health = healthMax;
 
         r2d = GetComponent<Rigidbody2D>();
+
+        //balance
+        var balanceManagerSource = GameObject.FindGameObjectWithTag("BalanceManager");
+        if (balanceManagerSource != null)
+        {
+            balanceManager = balanceManagerSource.GetComponent<SaveDataToPlainTextFile>();
+            totalDamage = 0;
+            totalStrokes = 0;
+        }
+        else
+        {
+            Debug.LogWarning("Balance manager = null");
+        }
     }
 
     private void Update()
@@ -29,6 +47,13 @@ public class PlayerCharacteristics : MonoBehaviour
         health -= damage;
         CheckDeath();
         CallFlyingDamage(damage);
+
+        //balance
+        if (balanceManager != null)
+        {
+            totalDamage += damage;
+            totalStrokes ++;
+        }
     }
 
     private void CheckDeath()
@@ -45,6 +70,24 @@ public class PlayerCharacteristics : MonoBehaviour
         inst.transform.parent = gameObject.transform;
         inst.transform.position = transform.position + offset;
         inst.GetComponent<FlyingDamage>().damage = damage;
+    }
 
+    //balance
+    public void ResetToatalDamageAndStrokes()
+    {
+        totalDamage = 0;
+        totalStrokes = 0;
+    }
+
+    //balance
+    public float GetTotalDamage()
+    {
+        return totalDamage;
+    }
+
+    //balance
+    public int GetTotalStrokes()
+    {
+        return totalStrokes;
     }
 }

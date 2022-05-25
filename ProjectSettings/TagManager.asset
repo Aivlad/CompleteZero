@@ -13,6 +13,7 @@ TagManager:
   - LocalizationManager
   - MenuManager
   - SceneManager
+  - BalanceManager
   layers:
   - Default
   - TransparentFX

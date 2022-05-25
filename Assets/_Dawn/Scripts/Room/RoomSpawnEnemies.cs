@@ -15,18 +15,79 @@ public class RoomSpawnEnemies : MonoBehaviour
     public List<GameObject> spawnedEnemies;
     public bool enemiesAlive;
 
+    [Header("Balance data")]
+    private SaveDataToPlainTextFile balanceManager;
+    private bool isReportSent;
+    public float pastTense;
+    public string totalText;
+
 
     private void Start()
     {
         isSpawned = true;
         enemiesAlive = true;
+
+        //balance
+        var balanceManagerSource = GameObject.FindGameObjectWithTag("BalanceManager");
+        if (balanceManagerSource != null)
+        {
+            balanceManager = balanceManagerSource.GetComponent<SaveDataToPlainTextFile>();
+        }
+        else
+        {
+            Debug.LogWarning("Balance manager = null");
+        }
+        isReportSent = true;    // true - чтобы раньше времени не отправить
     }
 
-    public void RemoveFromLiveList(GameObject enemy)
+    private void Update()
     {
-        spawnedEnemies.Remove(enemy);
-        enemiesAlive = spawnedEnemies.Count != 0;
+        //balance
+        if (!isReportSent && balanceManager != null)
+        {
+            pastTense += Time.deltaTime;
+
+            if (spawnedEnemies.Count == 0)
+            {
+                isReportSent = true;
+                string text = $"CombatDuration (from the last created enemy to the last destroyed enemy): {pastTense}";
+                //balanceManager.RoomSaveText(text);
+                totalText += text + "\n";
+            }
+        }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            //balance
+            if (balanceManager != null)
+            {
+                collision.GetComponent<PlayerCharacteristics>().ResetToatalDamageAndStrokes();
+                balanceManager.RoomSaveText("[Entered another room]");
+                totalText = "";
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            //balance
+            if (balanceManager != null)
+            {
+                var playerCharacteristics = collision.GetComponent<PlayerCharacteristics>();
+                var damage = playerCharacteristics.GetTotalDamage();
+                var count = playerCharacteristics.GetTotalStrokes();
+                //balanceManager.RoomSaveText($"DamageTaken:\t{damage}\nDamageTicks:\t{count}");
+                totalText += $"DamageTaken:\t{damage}\nDamageTicks:\t{count}\n";
+                balanceManager.RoomSaveText(totalText);
+            }
+        }
+    }
+
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -41,6 +102,11 @@ public class RoomSpawnEnemies : MonoBehaviour
             }
         }
     }
+    public void RemoveFromLiveList(GameObject enemy)
+    {
+        spawnedEnemies.Remove(enemy);
+        enemiesAlive = spawnedEnemies.Count != 0;
+    }
 
     private void RandomGenerationCount()
     {
@@ -50,6 +116,11 @@ public class RoomSpawnEnemies : MonoBehaviour
 
     private void SimpleGenerationEnemies()
     {
+        //balance
+        Dictionary<string, int> enemies = new Dictionary<string, int>();
+        float totalEnemyHealth = 0f;
+
+
         for (int i = 0; i < generationCount; i++)
         {
             // выбираем незанятую позицию
@@ -63,6 +134,35 @@ public class RoomSpawnEnemies : MonoBehaviour
             var newEnemy = Instantiate(type, tm.position, Quaternion.identity);
             newEnemy.GetComponent<SpawnEnemyController>().roomSpawnEnemies = this;
             spawnedEnemies.Add(newEnemy);
+
+            //balance
+            string key = type.name;
+            if (enemies.ContainsKey(key))
+            {
+                enemies[key] = enemies[key] + 1;
+            }
+            else
+            {
+                enemies.Add(key, 1);
+            }
+            totalEnemyHealth += type.GetComponent<ObjectCharacteristics>().GetHealthTotal();
+        }
+
+        //balance
+        if (balanceManager != null)
+        {
+            string text = "";
+            text += $"Total NPC: {generationCount}:\n";
+            foreach (var enemy in enemies)
+            {
+                text += $"- Type: {enemy.Key} \t Count: {enemy.Value}\n";
+            }
+            text += $"TotalEnemyHealth: {totalEnemyHealth}";
+            //balanceManager.RoomSaveText(text);
+            totalText += text + "\n";
+            
+            isReportSent = false;   // только сейчас даем отмашку на разрешение замера
+            pastTense = 0f;
         }
     }
 

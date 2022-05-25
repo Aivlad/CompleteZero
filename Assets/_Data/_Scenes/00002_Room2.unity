@@ -1300,105 +1300,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1726313328
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1726313330}
-  - component: {fileID: 1726313329}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: SceneManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1726313329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726313328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee0756723f30bd24aa4f32e2d4e05674, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthGhost: 9999
-  speedMovementGhost: 1
-  meleeDistanceAttackGhost: 0.5
-  cooldownMeleeAttackGhost: 1
-  damageMeleeAttackGhost: 13
-  healthSkeleton: 20
-  speedMovementSkeleton: 1
-  meleeDistanceAttackSkeleton: 0.4
-  cooldownMeleeAttackSkeleton: 0.5
-  damageMeleeAttackSkeleton: 6.7
-  healthLittleSpider: 1
-  speedMovementLittleSpider: 1
-  meleeDistanceAttackLittleSpider: 0.1
-  cooldownMeleeAttackLittleSpider: 1
-  damageMeleeAttackLittleSpider: 3.4
-  healthSpider: 20
-  speedMovementSpider: 1
-  meleeDistanceAttackSpider: 0.2
-  cooldownMeleeAttackSpider: 0.5
-  damageMeleeAttackSpider: 10
-  healthRedSpider: 40
-  speedMovementRedSpider: 1
-  meleeDistanceAttackRedSpider: 0.2
-  cooldownMeleeAttackRedSpider: 0.4
-  damageMeleeAttackRedSpider: 20.8
-  healthBlueSpider: 30
-  speedMovementBlueSpider: 1
-  meleeDistanceAttackBlueSpider: 0.2
-  cooldownMeleeAttackBlueSpider: 0.5
-  damageMeleeAttackBlueSpider: 16.7
-  healthCobra: 20
-  speedMovementCobra: 1
-  meleeDistanceAttackCobra: 0.4
-  rangerDistanceAttackCobra: 4
-  cooldownMeleeAttackCobra: 0.3
-  cooldownRangerAttackCobra: 0.25
-  damageMeleeAttackCobra: 12.1
-  damageRangerAttackCobra: 12
-  healthRedCobra: 30
-  speedMovementRedCobra: 1
-  rangerDistanceAttackRedCobra: 3
-  cooldownRangerAttackRedCobra: 0.25
-  damageRangerAttackRedCobra: 22.2
-  healthNest: 30
-  healthRat: 10
-  speedMovementRat: 1
-  meleeDistanceAttackRat: 0.5
-  cooldownMeleeAttackRat: 0.5
-  damageMeleeAttackRat: 6.7
-  passiveRangeRat: 4
-  healthGolem: 70
-  speedMovementGolem: 1
-  meleeDistanceAttackGolem: 0.7
-  cooldownMeleeAttackGolem: 0.2
-  damageMeleeAttackGolem: 26.7
-  passiveRangeGolem: 4
---- !u!4 &1726313330
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726313328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0688033, y: 0.31421405, z: -0.17501494}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1864263158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2199,6 +2100,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501a149118e03db4fbf476d1b204d381, type: 3}
+--- !u!1001 &4344318365185843240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4344318365704049496, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.0688033
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.31421405
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.17501494
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
 --- !u!1001 &4349184930001315931
 PrefabInstance:
   m_ObjectHideFlags: 0

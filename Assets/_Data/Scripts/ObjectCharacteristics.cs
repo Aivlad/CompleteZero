@@ -44,4 +44,9 @@ public class ObjectCharacteristics : MonoBehaviour
         inst.GetComponent<FlyingDamage>().damage = damage;
         
     }
+
+    public float GetHealthTotal()
+    {
+        return healthMax;
+    }
 }

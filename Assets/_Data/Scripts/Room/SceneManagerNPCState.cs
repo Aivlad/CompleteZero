@@ -7,7 +7,8 @@ public class SceneManagerNPCState : MonoBehaviour
     // доступные враги
     public enum TypesOfEnemies 
     { 
-        none, 
+        none,
+        Scarecrow,
         Ghost, 
         Skeleton, 
         LittleSpider, 
@@ -27,6 +28,8 @@ public class SceneManagerNPCState : MonoBehaviour
     public float meleeDistanceAttackGhost;
     public float cooldownMeleeAttackGhost;
     public float damageMeleeAttackGhost;
+    [Header("Scarecrow")]
+    public float healthScarecrow;
     [Header("Skeleton")]
     public float healthSkeleton;
     public float speedMovementSkeleton;
@@ -96,6 +99,8 @@ public class SceneManagerNPCState : MonoBehaviour
         {
             case TypesOfEnemies.Ghost:
                 return healthGhost;
+            case TypesOfEnemies.Scarecrow:
+                return healthScarecrow;
             case TypesOfEnemies.Skeleton:
                 return healthSkeleton;
             case TypesOfEnemies.LittleSpider:
