@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Balance manager = null");
+            //Debug.LogWarning("Balance manager = null");
         }
     }
 

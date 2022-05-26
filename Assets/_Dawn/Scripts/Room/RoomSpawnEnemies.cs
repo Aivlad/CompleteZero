@@ -35,7 +35,7 @@ public class RoomSpawnEnemies : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Balance manager = null");
+            //Debug.LogWarning("Balance manager = null");
         }
         isReportSent = true;    // true - чтобы раньше времени не отправить
     }

@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  healthMax: 300
+  healthMax: 113
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
   playerUILifeController: {fileID: 0}

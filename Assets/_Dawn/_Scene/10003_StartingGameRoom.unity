@@ -1621,6 +1621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 10000
+  type: 0
+  sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &245018212
@@ -2374,6 +2376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 10000
+  type: 0
+  sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &407277858
@@ -3891,6 +3895,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 10000
+  type: 0
+  sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &645017539
@@ -8014,6 +8020,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 10000
+  type: 0
+  sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &1426075423
@@ -8974,6 +8982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 10000
+  type: 0
+  sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
 --- !u!114 &1639215220
@@ -9900,7 +9910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1973641062
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,9 +12,14 @@ public class ObjectCharacteristics : VitalCharacteristics
 
     private void Start()
     {
-        sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
-        healthMax = sceneManager.GetHealth(type);
-
+        // если есть SceneManagerNPCState, то берем хп от туда
+        var sceneManagerObject = GameObject.FindGameObjectWithTag("SceneManager");
+        if (sceneManagerObject != null)
+        {
+            sceneManager = sceneManagerObject.GetComponent<SceneManagerNPCState>();
+            healthMax = sceneManager.GetHealth(type);
+        }
+        // если не было SceneManagerNPCState, то хп будут из инспектора (через VitalCharacteristics)
         health = healthMax;
     }
 

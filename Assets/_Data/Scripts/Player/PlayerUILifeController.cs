@@ -13,6 +13,11 @@ public class PlayerUILifeController : MonoBehaviour
     private PlayerCharacteristics player;
     public List<GameObject> cells;
 
+    private void Start()
+    {
+        cells = new List<GameObject>();
+    }
+
     /// <summary>
     /// »зменить количество €чеек в UI
     /// </summary>
@@ -71,23 +76,27 @@ public class PlayerUILifeController : MonoBehaviour
             int i = 0;
             for (; i < wholePart; i++)
             {
-                if (i > limitCountCell)
+                if (i >= limitCountCell)
                     return;
                 cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = 1f;
             }
             // неполна€ €чейка
-            cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = currentValue - wholePart;
-            i++;
-            if (i > limitCountCell)
-                return;
+            var remainderValue = currentValue - wholePart;
+            if (remainderValue > 0)
+            {
+                if (i >= limitCountCell)
+                    return;
+                cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = remainderValue;
+                i++;
+            }
             // оставшиес€ пустые
             for (; i < cells.Count; i++)
             {
-                cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = 0f;
-                if (i > limitCountCell)
+                if (i >= limitCountCell)
                     return;
+                cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = 0f;
             }
-            //Debug.Log($"currentValue = {currentValue}; wholePart = {wholePart}; i = {i}");
+            Debug.Log($"currentValue = {currentValue}; wholePart = {wholePart}; i = {i}; remainderValue = {remainderValue}");
 
         }
     }
