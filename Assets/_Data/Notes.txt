@@ -102,3 +102,4 @@
 
 0000013: игрок
 	PlayerCharacteristics		- статы игрока
+	PlayerUILifeController		- (вешается на SceneManager) Пассивная работа над визуальной частью хп игрока (PlayerCharacteristics посылает сигналы об изменении хп)

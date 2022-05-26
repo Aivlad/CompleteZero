@@ -15,9 +15,19 @@ public class PlayerCharacteristics : VitalCharacteristics
     private float totalDamage;
     private int totalStrokes;
 
+    [Header("UI health")]
+    public PlayerUILifeController playerUILifeController;
+
     private void Start()
     {
         health = healthMax;
+        // UI Change Cell Life
+        var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
+        if (sceneManager != null)
+        {
+            playerUILifeController = sceneManager.GetComponent<PlayerUILifeController>();
+            playerUILifeController.ChangeCountCell();
+        }
 
         r2d = GetComponent<Rigidbody2D>();
 
@@ -45,6 +55,12 @@ public class PlayerCharacteristics : VitalCharacteristics
         health -= damage;
         CheckDeath();
         CallFlyingDamage(damage);
+
+        // UI Change Cell Life
+        if (playerUILifeController != null)
+        {
+            playerUILifeController.ChangeValueCell();
+        }
 
         //balance
         if (balanceManager != null)
