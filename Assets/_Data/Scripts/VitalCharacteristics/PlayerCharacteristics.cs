@@ -26,7 +26,10 @@ public class PlayerCharacteristics : VitalCharacteristics
         if (sceneManager != null)
         {
             playerUILifeController = sceneManager.GetComponent<PlayerUILifeController>();
-            playerUILifeController.ChangeCountCell();
+            if (playerUILifeController != null)
+            {
+                playerUILifeController.ChangeCountCell();
+            }
         }
 
         r2d = GetComponent<Rigidbody2D>();
@@ -47,7 +50,8 @@ public class PlayerCharacteristics : VitalCharacteristics
 
     private void Update()
     {
-        r2d.WakeUp();   // заставляем высегда быть активным (для моментов с StayTrigger)
+        if (r2d != null)
+            r2d.WakeUp();   // заставляем высегда быть активным (для моментов с StayTrigger)
     }
 
     public override void DealDamage(float damage)

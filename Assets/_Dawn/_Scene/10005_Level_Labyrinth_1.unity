@@ -1044,6 +1044,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8373764551414004260, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
+      propertyPath: playerHealthZone
+      value: 
+      objectReference: {fileID: 915540164}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
 --- !u!1 &624407750
@@ -1175,7 +1179,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642721842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1188,7 +1192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 163c737a06e84bc4695f5d63cf768360, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1448,7 +1452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  healthMax: 750
+  healthMax: 300
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
   playerUILifeController: {fileID: 0}
@@ -1781,23 +1785,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
   m_PrefabInstance: {fileID: 541444588}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &833284197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833284192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627034267e3fc0a4b9e0b8d4362bd686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealthZone: {fileID: 915540164}
-  cellLifePlayerPrefab: {fileID: 5159089878701146820, guid: 8be9c5815e52de444be214d5e83ceb05, type: 3}
-  sizeCell: 100
-  limitCountCell: 8
-  cells: []
 --- !u!1 &872395067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,7 +1922,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -214.2, y: -141.1}
-  m_SizeDelta: {x: 300, y: 130}
+  m_SizeDelta: {x: 290, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915540166
 MonoBehaviour:
@@ -1950,11 +1937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
+    m_Left: 5
+    m_Right: 5
+    m_Top: 5
+    m_Bottom: 5
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 70, y: 50}
@@ -2123,8 +2110,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 011449051eeb3ea409d0a09c1376d51e, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 163c737a06e84bc4695f5d63cf768360, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2199,8 +2186,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 011449051eeb3ea409d0a09c1376d51e, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 163c737a06e84bc4695f5d63cf768360, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

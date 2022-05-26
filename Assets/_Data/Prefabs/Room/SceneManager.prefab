@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4344318365704049498}
   - component: {fileID: 4344318365704049497}
+  - component: {fileID: 8373764551414004260}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: SceneManager
@@ -100,3 +101,20 @@ MonoBehaviour:
   cooldownMeleeAttackGolem: 0.2
   damageMeleeAttackGolem: 26.7
   passiveRangeGolem: 4
+--- !u!114 &8373764551414004260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344318365704049496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627034267e3fc0a4b9e0b8d4362bd686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealthZone: {fileID: 0}
+  cellLifePlayerPrefab: {fileID: 5159089878701146820, guid: 8be9c5815e52de444be214d5e83ceb05, type: 3}
+  sizeCell: 100
+  limitCountCell: 8
+  cells: []

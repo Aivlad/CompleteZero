@@ -58,7 +58,9 @@ public class PlayerUILifeController : MonoBehaviour
         }
     }
 
-    // работаем с заполнением €чеек
+    /// <summary>
+    /// работаем с заполнением €чеек
+    /// </summary>
     public void ChangeValueCell()
     {
         if (player != null)
