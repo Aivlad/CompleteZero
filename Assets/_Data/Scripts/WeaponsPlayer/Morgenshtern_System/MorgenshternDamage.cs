@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class MorgenshternDamage : MonoBehaviour
 {
-    public float damage;
+    private float damage;
 
     [Space]
     [Range(0, 100)]
     public float chanceCauseBleeding;
 
+    private PlayerDamageController playerDamageController;
+
+    private void Start()
+    {
+        playerDamageController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>();
+        // назначаем урон
+        damage = playerDamageController.defaultDamageMorgenshtern;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
+            // назначаем урон
+            damage = playerDamageController.defaultDamageMorgenshtern;
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
 

@@ -90,6 +90,15 @@ public class PlayerCharacteristics : VitalCharacteristics
         inst.GetComponent<FlyingDamage>().damage = damage;
     }
 
+    public void IncreaseMaxHealth(int magnificationAmount)
+    {
+        healthMax += magnificationAmount;
+        if (playerUILifeController != null)
+        {
+            playerUILifeController.ChangeCountCell();
+        }
+    }
+
     //balance
     public void ResetToatalDamageAndStrokes()
     {

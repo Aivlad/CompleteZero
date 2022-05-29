@@ -96,7 +96,7 @@ public class PlayerUILifeController : MonoBehaviour
                     return;
                 cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = 0f;
             }
-            Debug.Log($"currentValue = {currentValue}; wholePart = {wholePart}; i = {i}; remainderValue = {remainderValue}");
+            //Debug.Log($"currentValue = {currentValue}; wholePart = {wholePart}; i = {i}; remainderValue = {remainderValue}");
 
         }
     }

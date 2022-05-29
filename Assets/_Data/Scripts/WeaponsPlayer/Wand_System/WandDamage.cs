@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WandDamage : MonoBehaviour
 {
-    public float damage;
+    private float damage;
 
     [Space]
     [Range(0, 100)]
@@ -18,6 +18,9 @@ public class WandDamage : MonoBehaviour
     {
         Destroy(gameObject, 0.3f);
         IsTargetHit = false;
+
+        // назначаем урон
+        damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>().defaultDamageWand;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoisonedThrowingKnivesDamage : MonoBehaviour
 {
-    public float damage;
+    private float damage;
     public float destroyDistance;
     [Space]
     public int countTargetsHit;
@@ -21,6 +21,9 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
     {
         spawnPosition = transform.position;
         countTargetsHit = 0;
+
+        // назначаем урон
+        damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>().defaultDamagePoisonedThrowingKnives;
     }
 
     private void Update()

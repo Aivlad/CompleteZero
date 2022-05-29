@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class SwordOfLightDamage : MonoBehaviour
 {
-    public float damage;
+    private float damage;
     private float defaultDamage;
     [Space]
     public int countWeaponKills;
     private bool isEffectActivated; // флаг: баф только первого удара после каждого 5 килла
 
+    private PlayerDamageController playerDamageController;
+
     private void Start()
     {
         countWeaponKills = 0;
 
+        playerDamageController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>();
+        // назначаем урон
+        damage = playerDamageController.defaultDamageSwordOfLight;
         defaultDamage = damage;
         isEffectActivated = true;
     }
@@ -27,6 +32,8 @@ public class SwordOfLightDamage : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            // назначаем урон
+            defaultDamage = playerDamageController.defaultDamageSwordOfLight;
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
             
