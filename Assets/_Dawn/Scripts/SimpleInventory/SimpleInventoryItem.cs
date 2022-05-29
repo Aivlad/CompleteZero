@@ -21,7 +21,10 @@ public class SimpleInventoryItem : MonoBehaviour
         boots,
         armor,
         pants,
-        blueСloak
+        blueСloak,
+        pike,
+        torch,
+        greenVial
     };
     public ItemType type;
 
@@ -52,9 +55,13 @@ public class SimpleInventoryItem : MonoBehaviour
     /// </summary>
     private void GoIntoInventory()
     {
-        var newItem = Instantiate(UITemplateItemPrefab);
-        newItem.transform.GetChild(0).GetComponent<Image>().sprite = UISpriteItem;
-        newItem.transform.SetParent(inventoryZone.transform);
+        // проверка на "есть ли место для визуализации"
+        if (inventoryZone.transform.childCount < 55)
+        {
+            var newItem = Instantiate(UITemplateItemPrefab);
+            newItem.transform.GetChild(0).GetComponent<Image>().sprite = UISpriteItem;
+            newItem.transform.SetParent(inventoryZone.transform);
+        }
         inventoryManager.ItemAction(type);
         Destroy(gameObject);
     }

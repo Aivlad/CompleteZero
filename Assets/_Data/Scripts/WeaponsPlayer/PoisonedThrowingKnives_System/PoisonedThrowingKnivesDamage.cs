@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonedThrowingKnivesDamage : MonoBehaviour
+public class PoisonedThrowingKnivesDamage : InfluenceOnAttack
 {
     private float damage;
     public float destroyDistance;
@@ -12,18 +12,15 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
 
     private Vector3 spawnPosition;
 
-    [Space]
-    [Range(0, 100)]
-    public float chanceCausePoisoning;
-
-
     private void Start()
     {
+        DataInitialization();
+
         spawnPosition = transform.position;
         countTargetsHit = 0;
 
         // назначаем урон
-        damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>().defaultDamagePoisonedThrowingKnives;
+        damage = playerDamageController.defaultDamagePoisonedThrowingKnives;
     }
 
     private void Update()
@@ -41,7 +38,12 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
 
-            ActivateAttackEffect(collision.gameObject);
+            // родной эффект атаки
+            ActivateAttackPoisoningEffect(collision.gameObject, IsApplyEffect());
+
+            // доп эффект атаки (наприм., при наличии итема)
+            CheckingAdditionalFlags();
+            CallAdditionalEffect(collision.gameObject);
 
             // уничтожение ножа после пролетачерез трех врагов
             countTargetsHit++;
@@ -55,29 +57,5 @@ public class PoisonedThrowingKnivesDamage : MonoBehaviour
             //Debug.Log("Стена колайдер");
             Destroy(gameObject);
         }
-    }
-
-
-    private void ActivateAttackEffect(GameObject target)
-    {
-        // вызов отравления 
-        EffectActivator effectActivator = target.GetComponent<EffectActivator>();
-        if (effectActivator != null)
-        {
-            bool isApplyEffect = IsApplyEffect();
-            if (isApplyEffect && effectActivator.IsEffectPoisoningActicated())   // с определенным шансом + если объект уже активирован, то просто обнуляем
-            {
-                effectActivator.UpdateEffectPoisoning();
-            }
-            else if (isApplyEffect)    // с определенным шансом
-            {
-                effectActivator.CallEffectPoisoning();
-            }
-        }
-    }
-
-    private bool IsApplyEffect()
-    {
-        return Random.Range(0, 100) <= chanceCausePoisoning;
     }
 }

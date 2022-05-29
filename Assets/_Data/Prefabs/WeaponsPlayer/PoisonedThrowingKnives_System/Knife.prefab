@@ -154,8 +154,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28333f5f3df6c0844b71da0e3fb68dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  chanceToInfluence: 80
+  isAdditionBleedingEffect: 0
+  isAdditionPoisoningEffect: 0
+  isAdditionFireEffect: 0
+  additionChanceToInfluence: 50
   destroyDistance: 8
   countTargetsHit: 0
   countTargetsHitMax: 3
-  chanceCausePoisoning: 62.1

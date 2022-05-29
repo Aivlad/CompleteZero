@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerDamageController : MonoBehaviour
 {
+    [Header("Attack Damage")]
     public float defaultDamageSwordOfLight = 15;
     public float defaultDamageMorgenshtern = 20;
     public float defaultDamageWand = 10;
     public float defaultDamagePoisonedThrowingKnives = 7;
+
+    [Header("Additional Effects Flags")]
+    public bool isAdditionBleedingEffect = false;
+    public bool isAdditionPoisoningEffect = false;
+    public bool isAdditionFireEffect = false;
 
     public void IncreaseDamage(float increasePercentage)
     {

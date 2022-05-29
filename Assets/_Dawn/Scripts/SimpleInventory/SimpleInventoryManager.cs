@@ -50,8 +50,17 @@ public class SimpleInventoryManager : MonoBehaviour
             case ItemType.blueСloak:
                 IncreaseDamagePlayer(25);
                 break;
+            case ItemType.pike:
+                ActicatedAdditionBleedingEffect();
+                break;
+            case ItemType.torch:
+                ActicatedAdditionFireEffect();
+                break;
+            case ItemType.greenVial:
+                ActicatedAdditionPoisoningEffect();
+                break;
             default:
-                Debug.LogWarning("Не газначено событие для предмета");
+                Debug.LogWarning("Не назначено событие для предмета");
                 break;
         }
     }
@@ -77,6 +86,39 @@ public class SimpleInventoryManager : MonoBehaviour
         if (playerDamageController != null)
         {
             playerDamageController.IncreaseDamage(15);
+        }
+    }
+
+    /// <summary>
+    /// Вызвать возможность активации доп. эффекта кровотечения
+    /// </summary>
+    private void ActicatedAdditionBleedingEffect()
+    {
+        if (playerDamageController != null)
+        {
+            playerDamageController.isAdditionBleedingEffect = true;
+        }
+    }
+
+    /// <summary>
+    /// Вызвать возможность активации доп. эффекта огня
+    /// </summary>
+    private void ActicatedAdditionFireEffect()
+    {
+        if (playerDamageController != null)
+        {
+            playerDamageController.isAdditionFireEffect = true;
+        }
+    }
+
+    /// <summary>
+    /// Вызвать возможность активации доп. эффекта отравление
+    /// </summary>
+    private void ActicatedAdditionPoisoningEffect()
+    {
+        if (playerDamageController != null)
+        {
+            playerDamageController.isAdditionPoisoningEffect = true;
         }
     }
 }

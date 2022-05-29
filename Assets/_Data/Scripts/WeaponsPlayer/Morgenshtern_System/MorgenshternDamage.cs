@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MorgenshternDamage : MonoBehaviour
+public class MorgenshternDamage : InfluenceOnAttack
 {
     private float damage;
 
-    [Space]
-    [Range(0, 100)]
-    public float chanceCauseBleeding;
-
-    private PlayerDamageController playerDamageController;
 
     private void Start()
     {
-        playerDamageController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>();
+        DataInitialization();
+
         // назначаем урон
         damage = playerDamageController.defaultDamageMorgenshtern;
+
+        Debug.Log("Start 2");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,30 +26,12 @@ public class MorgenshternDamage : MonoBehaviour
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
 
-            ActivateAttackEffect(collision.gameObject);
-        }
-    }
+            // родной эффект атаки
+            ActivateAttackBleedingEffect(collision.gameObject, IsApplyEffect());
 
-    private void ActivateAttackEffect(GameObject target)
-    {
-        // вызов кровотечения 
-        EffectActivator effectActivator = target.GetComponent<EffectActivator>();
-        if (effectActivator != null)
-        {
-            bool isApplyEffect = IsApplyEffect();
-            if (isApplyEffect && effectActivator.IsEffectBleedingActicated())   // с определенным шансом + если объект уже активирован, то просто обнуляем
-            {
-                effectActivator.UpdateEffectBleeding();
-            }
-            else if (isApplyEffect)    // с определенным шансом
-            {
-                effectActivator.CallEffectBleeding();
-            }
+            // доп эффект атаки (наприм., при наличии итема)
+            CheckingAdditionalFlags();
+            CallAdditionalEffect(collision.gameObject);
         }
-    }
-
-    private bool IsApplyEffect()
-    {
-        return Random.Range(0, 100) <= chanceCauseBleeding;
-    }
+    }    
 }

@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WandDamage : MonoBehaviour
+public class WandDamage : InfluenceOnAttack
 {
     private float damage;
-
-    [Space]
-    [Range(0, 100)]
-    public float chanceCauseFire;
 
     [Space]
     public GameObject fireZonePrefab;
     private bool IsTargetHit;   // флаг, что мы попали в цель
 
-    private void Start()
+    private void Start() 
     {
+        DataInitialization();
+
         Destroy(gameObject, 0.3f);
         IsTargetHit = false;
 
         // назначаем урон
-        damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDamageController>().defaultDamageWand;
+        damage = playerDamageController.defaultDamageWand;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +28,13 @@ public class WandDamage : MonoBehaviour
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
 
-            ActivateAttackEffect(collision.gameObject);
+            // родной эффект атаки
+            ActivateAttackFireEffect(collision.gameObject, IsApplyEffect());
+
+            // доп эффект атаки (наприм., при наличии итема)
+            CheckingAdditionalFlags();
+            CallAdditionalEffect(collision.gameObject);
+
             IsTargetHit = true;
         }
     }
@@ -43,28 +47,4 @@ public class WandDamage : MonoBehaviour
             Instantiate(fireZonePrefab, transform.position, Quaternion.identity);
         }
     }
-
-    private void ActivateAttackEffect(GameObject target)
-    {
-        // вызов огня
-        EffectActivator effectActivator = target.GetComponent<EffectActivator>();
-        if (effectActivator != null)
-        {
-            bool isApplyEffect = IsApplyEffect();
-            if (isApplyEffect && effectActivator.IsEffectFireActivated())   // с определенным шансом + если объект уже активирован, то просто обнуляем
-            {
-                effectActivator.UpdateEffectFire();
-            }
-            else if (isApplyEffect)    // с определенным шансом
-            {
-                effectActivator.CallEffectFire();
-            }
-        }
-    }
-
-    private bool IsApplyEffect()
-    {
-        return Random.Range(0, 100) <= chanceCauseFire;
-    }
-
 }

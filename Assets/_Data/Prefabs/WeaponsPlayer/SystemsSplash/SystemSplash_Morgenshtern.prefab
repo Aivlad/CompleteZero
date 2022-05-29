@@ -191,8 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1be8bb7fe5fc6a4a8907d0cc168912d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  chanceCauseBleeding: 80
+  chanceToInfluence: 80
+  isAdditionBleedingEffect: 0
+  isAdditionPoisoningEffect: 0
+  isAdditionFireEffect: 0
+  additionChanceToInfluence: 50
 --- !u!1 &6745822960888293223
 GameObject:
   m_ObjectHideFlags: 0
