@@ -14,7 +14,6 @@ public class MorgenshternDamage : InfluenceOnAttack
         // назначаем урон
         damage = playerDamageController.defaultDamageMorgenshtern;
 
-        Debug.Log("Start 2");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

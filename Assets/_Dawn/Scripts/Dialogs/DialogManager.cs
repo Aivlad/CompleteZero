@@ -13,9 +13,23 @@ public class DialogManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    [Header("Skip")]
+    public GameObject skipButton;
+    private readonly string SKIP_BUTTON_KEY = "SKIP_BUTTON_KEY";
+
     private void Start()
     {
         sentences = new Queue<string>();
+
+        // если есть запись, то диалог уже читался, можно скипать
+        if (PlayerPrefs.HasKey(SKIP_BUTTON_KEY))
+        {
+            skipButton.SetActive(true);
+        }
+        else
+        {
+            skipButton.SetActive(false);
+        }
     }
 
     public void StartDialog(Dialog dialog)
@@ -58,6 +72,16 @@ public class DialogManager : MonoBehaviour
 
     public void EndDialog()
     {
+        PlayerPrefs.SetInt(SKIP_BUTTON_KEY, 1);
         boxAnim.SetBool("boxOpen", false);
+    }
+
+    public void SkipDialog()
+    {
+        while (sentences.Count != 0)
+        {
+            sentences.Dequeue();
+        }
+        EndDialog();
     }
 }
