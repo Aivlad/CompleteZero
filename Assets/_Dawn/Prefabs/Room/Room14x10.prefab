@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 6853454158960574710}
   m_Layer: 7
   m_Name: CenterRoom
-  m_TagString: Untagged
+  m_TagString: CenterRoom
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,7 +753,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14, y: 10}
+  m_Size: {x: 12, y: 8}
   m_EdgeRadius: 0
 --- !u!114 &5232570554593434283
 MonoBehaviour:
@@ -831,7 +831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimapChildLocation: {fileID: 2034138715526488141}
   minimapChildWalls: {fileID: 9066045199255107309}
-  cameraController: {fileID: 0}
 --- !u!1 &3328261832747685569
 GameObject:
   m_ObjectHideFlags: 0

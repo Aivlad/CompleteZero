@@ -9,6 +9,9 @@ public class ObjectCharacteristics : VitalCharacteristics
     [Space]
     public GameObject flyingDamagePrefab;
     public Vector3 offset;
+    [Space]
+    public bool isInRoom = false;
+
 
     private void Start()
     {
@@ -21,6 +24,8 @@ public class ObjectCharacteristics : VitalCharacteristics
         }
         // если не было SceneManagerNPCState, то хп будут из инспектора (через VitalCharacteristics)
         health = healthMax;
+
+        StartCoroutine(CheckBeingInRoom());
     }
 
     public override void DealDamage(float damage)
@@ -50,5 +55,28 @@ public class ObjectCharacteristics : VitalCharacteristics
     public float GetHealthTotal()
     {
         return healthMax;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CenterRoom"))
+        {
+            isInRoom = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CenterRoom"))
+        {
+            DealDamage(999999);
+        }
+    }
+
+    private IEnumerator CheckBeingInRoom()
+    {
+        yield return new WaitForSeconds(1.1f);
+        if (!isInRoom)
+            DealDamage(999999);
     }
 }

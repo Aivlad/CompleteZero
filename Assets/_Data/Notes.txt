@@ -60,12 +60,14 @@
 	SceneManagerNPCState		- родительская настройка мобов (они статы берут от сюда)
 	NPCBlueSpiderController		- контроллер синего паука (логика спавна гнезд)
 	NPCHoleController			- яма, в которую проваливаются: игрок, монстры
+	LightningController			- контроллер молнии (пр появлении наносит урон с tag == Enemy)
 
 0000007: мелкие механики
 Скрипты: 
 	MechanicScatterAround			- разброс предметов по кругу с заданным радиусом (есть метод с заданием неравномерного распределения)
 	MechanicScatterAroundWave		- волновой разброс по гругу (расширение MechanicScatterAround, где идут исходящие из центра волны)
 	MechanicDash					- механика рывка (работает в сочетании с PlayerMovement (Facing))
+	MechanicLightningStrikeOnEnemyInRoom		- удар молнией случайного объекта с tag == Enemy
 
 0000008: простые скрипты
 	ObjectCharacteristics		- статы (такие как хп) объектов (пока что на не Player)

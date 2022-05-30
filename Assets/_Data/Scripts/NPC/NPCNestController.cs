@@ -10,9 +10,13 @@ public class NPCNestController : MonoBehaviour
     public float scatteringRadius;
     private float currentTime;
 
+    private ObjectCharacteristics characteristics;
+
     private void Start()
     {
         currentTime = 0;
+
+        characteristics = GetComponent<ObjectCharacteristics>();
     }
 
 
@@ -32,7 +36,6 @@ public class NPCNestController : MonoBehaviour
     private void ActionNPC()
     {
         Vector3 center = transform.position;
-        float angleRotation = 360 / countYoungSpawn;
         for (int i = 0; i < countYoungSpawn; i++)
         {
             Vector3 pos = RandomCircle(center, scatteringRadius);

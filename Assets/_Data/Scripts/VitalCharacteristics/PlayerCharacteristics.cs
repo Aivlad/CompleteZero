@@ -23,7 +23,7 @@ public class PlayerCharacteristics : VitalCharacteristics
 
     private void Start()
     {
-        health = healthMax;
+        health = 30;
         // UI Change Cell Life
         var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
         if (sceneManager != null)
@@ -82,6 +82,23 @@ public class PlayerCharacteristics : VitalCharacteristics
         {
             totalDamage += damage;
             totalStrokes++;
+        }
+    }
+
+    /// <summary>
+    /// ѕодлечить
+    /// </summary>
+    /// <param name="value">насколько увеличить текущее здоровье</param>
+    public void Treatment(float value)
+    {
+        health += value;
+        if (health > healthMax)
+            health = healthMax;
+
+        // UI Change Cell Life
+        if (playerUILifeController != null)
+        {
+            playerUILifeController.ChangeValueCell();
         }
     }
 

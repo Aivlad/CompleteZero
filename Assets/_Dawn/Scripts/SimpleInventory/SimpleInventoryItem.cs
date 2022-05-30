@@ -27,9 +27,18 @@ public class SimpleInventoryItem : MonoBehaviour
         greenVial,
         rabbitFoot,
         socks,
-        bootsWithWings
+        bootsWithWings,
+        folio,
+        soup
     };
     public ItemType type;
+
+    public enum WhatToDo
+    {
+        toInventory,
+        useImmediately
+    }
+    public WhatToDo action = WhatToDo.toInventory;
 
 
     private void Start()
@@ -49,7 +58,18 @@ public class SimpleInventoryItem : MonoBehaviour
             if (inventoryZone == null)
                 Debug.LogWarning("Система простого инвентаря отключена");
             else
-                GoIntoInventory();
+            {
+                switch(action)
+                {
+                    case WhatToDo.useImmediately:
+                        Eat();
+                        break;
+                    default:
+                        GoIntoInventory();
+                        break;
+                }
+            }
+                
         }
     }
 
@@ -65,6 +85,15 @@ public class SimpleInventoryItem : MonoBehaviour
             newItem.transform.GetChild(0).GetComponent<Image>().sprite = UISpriteItem;
             newItem.transform.SetParent(inventoryZone.transform);
         }
+        inventoryManager.ItemAction(type);
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Скушать предмет
+    /// </summary>
+    private void Eat()
+    {
         inventoryManager.ItemAction(type);
         Destroy(gameObject);
     }

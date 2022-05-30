@@ -5,6 +5,7 @@ using static SimpleInventoryItem;
 
 public class SimpleInventoryManager : MonoBehaviour
 {
+    private GameObject player;
     private PlayerCharacteristics playerCharacteristics;
     private PlayerDamageController playerDamageController;
     private PlayerMovement playerMovement;
@@ -18,7 +19,7 @@ public class SimpleInventoryManager : MonoBehaviour
 
 
         // игрок
-        var player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerCharacteristics = player.GetComponent<PlayerCharacteristics>();
@@ -70,9 +71,26 @@ public class SimpleInventoryManager : MonoBehaviour
             case ItemType.bootsWithWings:
                 EnableLevitationOverPits();
                 break;
+            case ItemType.folio:
+                CallLightning();
+                break;
+            case ItemType.soup:
+                TreatmentPlayer(15);
+                break;
             default:
                 Debug.LogWarning("Не назначено событие для предмета");
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Отхилить игрока
+    /// </summary>
+    private void TreatmentPlayer(float value)
+    {
+        if (playerCharacteristics != null)
+        {
+            playerCharacteristics.Treatment(value);
         }
     }
 
@@ -165,6 +183,17 @@ public class SimpleInventoryManager : MonoBehaviour
         if (playerMovement != null)
         {
             playerMovement.isLevitationOverPits = true;
+        }
+    }
+
+    /// <summary>
+    /// Активировать призыв молний
+    /// </summary>
+    private void CallLightning()
+    {
+        if (player != null)
+        {
+            player.GetComponent<MechanicLightningStrikeOnEnemyInRoom>().enabled = true;
         }
     }
 }

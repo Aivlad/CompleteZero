@@ -17,6 +17,7 @@ TagManager:
   - MinimapCamera
   - SimpleInventoryZone
   - SimpleInventoryManager
+  - CenterRoom
   layers:
   - Default
   - TransparentFX
