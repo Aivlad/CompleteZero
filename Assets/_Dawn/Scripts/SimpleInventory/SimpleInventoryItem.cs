@@ -24,7 +24,10 @@ public class SimpleInventoryItem : MonoBehaviour
         blue—loak,
         pike,
         torch,
-        greenVial
+        greenVial,
+        rabbitFoot,
+        socks,
+        bootsWithWings
     };
     public ItemType type;
 

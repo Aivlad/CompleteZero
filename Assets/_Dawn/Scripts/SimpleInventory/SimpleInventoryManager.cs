@@ -7,6 +7,7 @@ public class SimpleInventoryManager : MonoBehaviour
 {
     private PlayerCharacteristics playerCharacteristics;
     private PlayerDamageController playerDamageController;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class SimpleInventoryManager : MonoBehaviour
         {
             playerCharacteristics = player.GetComponent<PlayerCharacteristics>();
             playerDamageController = player.GetComponent<PlayerDamageController>();
+            playerMovement = player.GetComponent<PlayerMovement>();
         }
     }
 
@@ -58,6 +60,15 @@ public class SimpleInventoryManager : MonoBehaviour
                 break;
             case ItemType.greenVial:
                 ActicatedAdditionPoisoningEffect();
+                break;
+            case ItemType.rabbitFoot:
+                ActivateEvasion(20);
+                break;
+            case ItemType.socks:
+                IncreaseMovementSpeedPlayer(5);
+                break;
+            case ItemType.bootsWithWings:
+                EnableLevitationOverPits();
                 break;
             default:
                 Debug.LogWarning("Не назначено событие для предмета");
@@ -119,6 +130,41 @@ public class SimpleInventoryManager : MonoBehaviour
         if (playerDamageController != null)
         {
             playerDamageController.isAdditionPoisoningEffect = true;
+        }
+    }
+
+    /// <summary>
+    /// Активация уклонение
+    /// </summary>
+    /// <param name="evasionPercentage">какой шанс уклонения поставить</param>
+    private void ActivateEvasion(float evasionPercentage)
+    {
+        if (playerCharacteristics != null)
+        {
+            playerCharacteristics.dodgeСhance = evasionPercentage;
+        }
+    }
+
+    /// <summary>
+    /// Увеличить скорость перемещения игрока
+    /// </summary>
+    /// <param name="percentageIncreaseValue">на сколько процентов увеличить</param>
+    public void IncreaseMovementSpeedPlayer(float percentageIncreaseValue)
+    {
+        if (playerMovement != null)
+        {
+            playerMovement.IncreaseMovementSpeed(percentageIncreaseValue);
+        }
+    }
+
+    /// <summary>
+    /// Включить парение над ямами
+    /// </summary>
+    public void EnableLevitationOverPits()
+    {
+        if (playerMovement != null)
+        {
+            playerMovement.isLevitationOverPits = true;
         }
     }
 }

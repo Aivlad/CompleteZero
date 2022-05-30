@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private float currentTime;
     private float sendTimeSecond = 60;
 
+    [Header("Levitation over the pits")]
+    public bool isLevitationOverPits = false;
+
 
     private void Start()
     {
@@ -120,5 +123,14 @@ public class PlayerMovement : MonoBehaviour
     public Facing GetFacing()
     {
         return facingDir;
+    }
+
+    /// <summary>
+    /// Увеличить скорость перемещения
+    /// </summary>
+    /// <param name="percentageIncreaseValue">на сколько процентов увеличить</param>
+    public void IncreaseMovementSpeed(float percentageIncreaseValue)
+    {
+        speed += (speed * percentageIncreaseValue) / 100;
     }
 }

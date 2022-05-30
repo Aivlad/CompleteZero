@@ -18,6 +18,9 @@ public class PlayerCharacteristics : VitalCharacteristics
     [Header("UI health")]
     public PlayerUILifeController playerUILifeController;
 
+    [Header("Damage evasion")]
+    public float dodgeСhance = 0f;
+
     private void Start()
     {
         health = healthMax;
@@ -56,21 +59,29 @@ public class PlayerCharacteristics : VitalCharacteristics
 
     public override void DealDamage(float damage)
     {
-        health -= damage;
-        CheckDeath();
-        CallFlyingDamage(damage);
-
-        // UI Change Cell Life
-        if (playerUILifeController != null)
+        if (!IsDodgeChance())   // если не уклонились, то получили урон
         {
-            playerUILifeController.ChangeValueCell();
+            health -= damage;
+            CheckDeath();
+            CallFlyingDamage(damage);
+
+            // UI Change Cell Life
+            if (playerUILifeController != null)
+            {
+                playerUILifeController.ChangeValueCell();
+            }
+        }
+        else // если уклонились, то урон не прошел
+        {
+            CallFlyingDamage("evasion");
+            damage = 0; // for balance
         }
 
         //balance
         if (balanceManager != null)
         {
             totalDamage += damage;
-            totalStrokes ++;
+            totalStrokes++;
         }
     }
 
@@ -90,6 +101,15 @@ public class PlayerCharacteristics : VitalCharacteristics
         inst.GetComponent<FlyingDamage>().damage = damage;
     }
 
+    private void CallFlyingDamage(string damageText)
+    {
+        var inst = Instantiate(flyingDamagePrefab);
+        inst.transform.parent = gameObject.transform;
+        inst.transform.position = transform.position + offset;
+        inst.GetComponent<FlyingDamage>().damage = 0;
+        inst.GetComponent<FlyingDamage>().damageText = damageText;
+    }
+
     public void IncreaseMaxHealth(int magnificationAmount)
     {
         healthMax += magnificationAmount;
@@ -97,6 +117,11 @@ public class PlayerCharacteristics : VitalCharacteristics
         {
             playerUILifeController.ChangeCountCell();
         }
+    }
+
+    private bool IsDodgeChance()
+    {
+        return Random.Range(0, 100) <= dodgeСhance;
     }
 
     //balance
