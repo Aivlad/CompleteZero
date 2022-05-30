@@ -36,6 +36,8 @@ public class SwordOfLightDamage : InfluenceOnAttack
             defaultDamage = playerDamageController.defaultDamageSwordOfLight;
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
+            //balance
+            playerDamageController.AddOutingDamage(damage);
 
             // доп эффект атаки (наприм., при наличии итема)
             CheckingAdditionalFlags();

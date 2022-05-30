@@ -50,7 +50,7 @@ public class RoomSpawnEnemies : MonoBehaviour
             if (spawnedEnemies.Count == 0)
             {
                 isReportSent = true;
-                string text = $"CombatDuration (from the last created enemy to the last destroyed enemy): {pastTense}";
+                string text = $"CombatDuration (from the last created enemy to the last destroyed enemy):\t{pastTense}";
                 //balanceManager.RoomSaveText(text);
                 totalText += text + "\n";
             }
@@ -81,8 +81,19 @@ public class RoomSpawnEnemies : MonoBehaviour
                 var playerCharacteristics = collision.GetComponent<PlayerCharacteristics>();
                 var damage = playerCharacteristics.GetTotalDamage();
                 var count = playerCharacteristics.GetTotalStrokes();
-                //balanceManager.RoomSaveText($"DamageTaken:\t{damage}\nDamageTicks:\t{count}");
-                totalText += $"DamageTaken:\t{damage}\nDamageTicks:\t{count}\n";
+                totalText += $"DamageTaken:\t\t\t\t\t\t\t\t\t{damage}\nDamageTicks:\t\t\t\t\t\t\t\t\t{count}\n";
+
+                var playerMovement = collision.GetComponent<PlayerMovement>();
+                var actionsPerRoom = playerMovement.GetActionsPerRoomAndZeroing();
+                totalText += $"ActionsPerRoom (old name: ActionsPerMinute):\t\t\t\t\t{actionsPerRoom}\n";
+
+                var playerDamageController = collision.GetComponent<PlayerDamageController>();
+                var outgoingDamage = playerDamageController.GetOutingDamageAndZeroing();
+                totalText += $"OutgoingDamage (net damage):\t\t\t\t\t\t\t{outgoingDamage}\n";
+
+                if (pastTense != 0)
+                    totalText += $"DamagePerSecond (OutgoingDamage/CombatDuration*60):\t\t\t\t{outgoingDamage/pastTense*60}\n";
+
                 balanceManager.RoomSaveText(totalText);
             }
         }
@@ -157,7 +168,7 @@ public class RoomSpawnEnemies : MonoBehaviour
             {
                 text += $"- Type: {enemy.Key} \t Count: {enemy.Value}\n";
             }
-            text += $"TotalEnemyHealth: {totalEnemyHealth}";
+            text += $"TotalEnemyHealth:\t\t\t\t\t\t\t\t{totalEnemyHealth}";
             //balanceManager.RoomSaveText(text);
             totalText += text + "\n";
             

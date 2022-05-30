@@ -15,6 +15,9 @@ public class PlayerDamageController : MonoBehaviour
     public bool isAdditionPoisoningEffect = false;
     public bool isAdditionFireEffect = false;
 
+    [Header("Balance data")]
+    public float outgoingDamage = 0;
+
     public void IncreaseDamage(float increasePercentage)
     {
         defaultDamageSwordOfLight += ConvertFromPercentToValue(defaultDamageSwordOfLight, increasePercentage);
@@ -26,5 +29,17 @@ public class PlayerDamageController : MonoBehaviour
     private float ConvertFromPercentToValue(float value, float percent)
     {
         return (value * percent) / 100;
+    }
+
+    public void AddOutingDamage(float valueAdd)
+    {
+        outgoingDamage += valueAdd;
+    }
+
+    public float GetOutingDamageAndZeroing()
+    {
+        var ret = outgoingDamage;
+        outgoingDamage = 0;
+        return ret;
     }
 }

@@ -37,6 +37,8 @@ public class PoisonedThrowingKnivesDamage : InfluenceOnAttack
         {
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
+            //balance
+            playerDamageController.AddOutingDamage(damage);
 
             // родной эффект атаки
             ActivateAttackPoisoningEffect(collision.gameObject, IsApplyEffect());

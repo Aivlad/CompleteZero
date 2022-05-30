@@ -25,6 +25,8 @@ public class MorgenshternDamage : InfluenceOnAttack
             damage = playerDamageController.defaultDamageMorgenshtern;
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
+            //balance
+            playerDamageController.AddOutingDamage(damage);
 
             // родной эффект атаки
             ActivateAttackBleedingEffect(collision.gameObject, IsApplyEffect());

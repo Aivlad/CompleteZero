@@ -27,6 +27,8 @@ public class WandDamage : InfluenceOnAttack
         {
             // нанесение чистого урона
             collision.GetComponent<ObjectCharacteristics>().DealDamage(damage);
+            //balance
+            playerDamageController.AddOutingDamage(damage);
 
             // родной эффект атаки
             ActivateAttackFireEffect(collision.gameObject, IsApplyEffect());
@@ -45,6 +47,6 @@ public class WandDamage : InfluenceOnAttack
         if (!IsTargetHit && IsApplyEffect())
         {
             Instantiate(fireZonePrefab, transform.position, Quaternion.identity);
-        }
+        }        
     }
 }

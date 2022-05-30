@@ -20,10 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Facing facingDir = Facing.DOWN;
 
     [Header("Balance data")]
-    private SaveDataToPlainTextFile balanceManager;
-    private int actionsPerMinute;
-    private float currentTime;
-    private float sendTimeSecond = 60;
+    private int actionsPerRoom;
 
     [Header("Levitation over the pits")]
     public bool isLevitationOverPits = false;
@@ -32,16 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //balance
-        var balanceManagerSource = GameObject.FindGameObjectWithTag("BalanceManager");
-        if (balanceManagerSource != null)
-        {
-            balanceManager = balanceManagerSource.GetComponent<SaveDataToPlainTextFile>();
-            actionsPerMinute = 0;
-        }
-        else
-        {
-            //Debug.LogWarning("Balance manager = null");
-        }
+        actionsPerRoom = 0;
     }
 
     private void Update()
@@ -51,19 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
         //balance
         TakeInputBalance();
-        if (balanceManager != null)
-        {
-            if (currentTime >= sendTimeSecond)
-            {
-                balanceManager.OtherSaveText($"ActionsPerMinute (approximately): \t{actionsPerMinute}");
-                actionsPerMinute = 0;
-                currentTime = 0;
-            }
-            else
-            {
-                currentTime += Time.deltaTime;
-            }
-        }
     }
 
     private void Move()
@@ -104,20 +79,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(upwardMovement))
         {
-            actionsPerMinute++;
+            actionsPerRoom++;
         }
         if (Input.GetKeyDown(leftwardMovement))
         {
-            actionsPerMinute++;
+            actionsPerRoom++;
         }
         if (Input.GetKeyDown(rightwardMovement))
         {
-            actionsPerMinute++;
+            actionsPerRoom++;
         }
         if (Input.GetKeyDown(downwardMovement))
         {
-            actionsPerMinute++;
+            actionsPerRoom++;
         }
+    }
+
+    //balance
+    public int GetActionsPerRoomAndZeroing()
+    {
+        var ret = actionsPerRoom;
+        actionsPerRoom = 0;
+        return ret;
     }
 
     public Facing GetFacing()

@@ -1523,6 +1523,7 @@ MonoBehaviour:
   isAdditionBleedingEffect: 0
   isAdditionPoisoningEffect: 0
   isAdditionFireEffect: 0
+  outgoingDamage: 0
 --- !u!114 &643861060
 MonoBehaviour:
   m_ObjectHideFlags: 0
