@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 983177606ee2ddb47972639690c1cfa1
   - enabled: 1
     path: Assets/_Dawn/_Scene/10003_StartingGameRoom.unity
-    guid: f3308609450aba943ab42114afe92290
+    guid: cca73824f53d2404599241bd7017bba4
   - enabled: 1
     path: Assets/_Dawn/_Scene/10004_Screensaver.unity
     guid: 3d2d1052ca15e024fa01c03f7a79dd43

@@ -25,9 +25,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Levitation over the pits")]
     public bool isLevitationOverPits = false;
 
+    [Header("Animation")]
+    public Animator playerAnimator;
+
 
     private void Start()
     {
+        playerAnimator = GetComponent<Animator>();
+
         //balance
         actionsPerRoom = 0;
     }
@@ -44,34 +49,44 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         transform.Translate(direction * speed * Time.deltaTime);
-
-        // animation #stub
-        // ...
     }
 
     private void TakeInput()
     {
         direction = Vector2.zero;
+
+        bool isRun = false;
         if (Input.GetKey(upwardMovement))
         {
             direction += Vector2.up;
             facingDir = Facing.UP;
+
+            isRun = true;
         }
         if (Input.GetKey(leftwardMovement))
         {
             direction += Vector2.left;
             facingDir = Facing.LEFT;
+
+            isRun = true;
         }
         if (Input.GetKey(rightwardMovement))
         {
             direction += Vector2.right;
             facingDir = Facing.RIGHT;
+
+            isRun = true;
         }
         if (Input.GetKey(downwardMovement))
         {
             direction += Vector2.down;
             facingDir = Facing.DOWN;
+
+            isRun = true;
         }
+
+        if (playerAnimator != null)
+            playerAnimator.SetBool("isRun", isRun);
     }
 
     //balance

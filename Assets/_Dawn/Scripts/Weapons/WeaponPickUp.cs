@@ -16,6 +16,11 @@ public class WeaponPickUp : MonoBehaviour
     [Space]
     public List<GameObject> doors; // ссылка на дверь, которая откроется когда в руках будет оружие
 
+    [Space]
+    public List<GameObject> bodyParts;  // части тела, которые надо активировать
+    public Transform leftHand;
+    public Transform rightHand;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -55,6 +60,10 @@ public class WeaponPickUp : MonoBehaviour
             ActivationObjectsUnderYourFeet();
             DeactivationDoors();    // достаточно 1го вызова поднятия оружия
             gameObject.SetActive(false);
+
+            // деактивация ненужного и активация нужного
+            DeactivationСontentsInArms();
+            ActivationBodyParts();
         }
     }
 
@@ -74,6 +83,33 @@ public class WeaponPickUp : MonoBehaviour
         {
             door.SetActive(false);
         }
+    }
+
+    /// <summary>
+    ///  Активация частей тела (объектов из bodyParts)
+    /// </summary>
+    private void ActivationBodyParts()
+    {
+        for (int i = 0; i < bodyParts.Count; i++)
+        {
+            bodyParts[i].SetActive(true);
+        }
+    }
+
+    /// <summary>
+    ///  Деактивация дочерних объектов в левой и правой руках
+    /// </summary>
+    private void DeactivationСontentsInArms()
+    {
+        foreach (Transform obj in leftHand)
+        {
+            obj.gameObject.SetActive(false);
+        }
+        foreach (Transform obj in rightHand)
+        {
+            obj.gameObject.SetActive(false);
+        }
+
     }
 
 
