@@ -17,6 +17,10 @@ public class SpawnRoomController : MonoBehaviour
     [Space]
     public List<RoomController> lastRooms;
     public GameObject prefabHole;
+    public string nameNextScene;
+
+    [Space]
+    public List<GameObject> typeItems;
 
     /// <summary>
     /// Генерация уровня с нуля
@@ -26,9 +30,9 @@ public class SpawnRoomController : MonoBehaviour
         // создание и расположение стартовой комнаты
         int indexSelectedType = Random.Range(0, typesRooms.Count);
         RoomController startingRoom = Instantiate(typesRooms[indexSelectedType], Vector3.zero, Quaternion.identity);
-        spawnedRooms = new RoomController[11, 11];  // работаем с матрицей 11х11, где 11 - СЧ
+        spawnedRooms = new RoomController[31, 31];  // работаем с матрицей 31x31, где 31 - СЧ
         spawnedRooms[5, 5] = startingRoom;  // помещаем стартовую комнату в центр
-        startingRoom.SetPrimaryData(indexSelectedType, 5, 5);   // metadata для save
+        startingRoom.SetPrimaryData(indexSelectedType, 15, 15);   // metadata для save
         startingRoom.SetIsLastRoom(); // стартовая комната не является крайней для посещения
 
         // генерация еще countGeneratedRooms - 1 комнат (-1 т.к. startingRoom уже есть)
@@ -48,7 +52,26 @@ public class SpawnRoomController : MonoBehaviour
         CompleteListLastRooms();
 
         // случайное размещение Hole в одной из крайних комнат
-        Instantiate(prefabHole, lastRooms[Random.Range(0, lastRooms.Count)].centerRoom.position, Quaternion.identity);
+        int incdex = Random.Range(0, lastRooms.Count);
+        var hole = Instantiate(prefabHole, lastRooms[incdex].centerRoom.position, Quaternion.identity);
+        hole.GetComponent<RoomMovingNextLevel>().nameLoadingScene = nameNextScene;
+        lastRooms[incdex].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
+        lastRooms[incdex].GetComponent<RoomController>().OpenAllDoors();
+        lastRooms.RemoveAt(incdex);
+
+        // случайное размещение предмета
+        if (typeItems.Count > 0 && lastRooms.Count > 0)
+        {
+            incdex = Random.Range(0, lastRooms.Count);
+            Instantiate(typeItems[Random.Range(0, typeItems.Count)], lastRooms[incdex].centerRoom.position, Quaternion.identity);
+            lastRooms[incdex].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
+            lastRooms[incdex].GetComponent<RoomController>().OpenAllDoors();
+            lastRooms.RemoveAt(incdex);
+        }
+        else
+        {
+            Debug.Log("Предмета на данном уровне нет");
+        }
 
         Debug.Log("Уровень сгенерирован");
     }

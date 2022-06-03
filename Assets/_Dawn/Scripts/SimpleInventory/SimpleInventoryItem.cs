@@ -9,8 +9,7 @@ public class SimpleInventoryItem : MonoBehaviour
     public GameObject UITemplateItemPrefab;
     public Sprite UISpriteItem;
     private GameObject inventoryZone;
-    private SimpleInventoryManager inventoryManager;
-    
+    private SimpleInventoryManager inventoryManager;    
 
     public enum ItemType
     {
@@ -76,7 +75,7 @@ public class SimpleInventoryItem : MonoBehaviour
     /// <summary>
     /// Объект влезает в инвентарь
     /// </summary>
-    private void GoIntoInventory()
+    public void GoIntoInventory()
     {
         // проверка на "есть ли место для визуализации"
         if (inventoryZone.transform.childCount < 55)

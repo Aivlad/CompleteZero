@@ -18,6 +18,7 @@ TagManager:
   - SimpleInventoryZone
   - SimpleInventoryManager
   - CenterRoom
+  - SpawnRoomController
   layers:
   - Default
   - TransparentFX

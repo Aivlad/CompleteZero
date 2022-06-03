@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using static SimpleInventoryItem;
+using static SimpleInventorySave;
 
 public class SimpleInventoryManager : MonoBehaviour
 {
@@ -9,6 +11,11 @@ public class SimpleInventoryManager : MonoBehaviour
     private PlayerCharacteristics playerCharacteristics;
     private PlayerDamageController playerDamageController;
     private PlayerMovement playerMovement;
+
+    [Space]
+    private SaveItemsSimpleInvemtory saveData = new SaveItemsSimpleInvemtory();
+    public string nameSaveFile = "SimpleInventory";
+    private SpawnRoomController spawnRoomController;
 
     private void Start()
     {
@@ -25,6 +32,12 @@ public class SimpleInventoryManager : MonoBehaviour
             playerCharacteristics = player.GetComponent<PlayerCharacteristics>();
             playerDamageController = player.GetComponent<PlayerDamageController>();
             playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
+        var spawnRoomControllerObj = GameObject.FindGameObjectWithTag("SpawnRoomController");
+        if (spawnRoomControllerObj != null)
+        {
+            spawnRoomController = spawnRoomControllerObj.GetComponent<SpawnRoomController>();
         }
     }
 
@@ -195,5 +208,35 @@ public class SimpleInventoryManager : MonoBehaviour
         {
             player.GetComponent<MechanicLightningStrikeOnEnemyInRoom>().enabled = true;
         }
+    }
+
+    public void SaveInventory()
+    {
+        //// проверка директории
+        //if (!Directory.Exists(Application.persistentDataPath + "/Save"))
+        //{
+        //    Directory.CreateDirectory((Application.persistentDataPath + "/Save"));
+        //}
+
+        ////test
+        //saveData.isArmor = true;
+
+        ////сохранение
+        //File.WriteAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json", JsonUtility.ToJson(saveData));
+
+    }
+
+    public void LoadInventory()
+    {
+        //if (!File.Exists(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"))
+        //{
+        //    Debug.Log("—охранение не найдено");
+        //    return;
+        //}
+
+        //saveData = JsonUtility.FromJson<SaveItemsSimpleInvemtory>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"));
+        //Debug.Log("«агрузка выполнена");
+
+        //var typesItems = spawnRoomController.typeItems;
     }
 }

@@ -22,6 +22,7 @@ public class RoomController : MonoBehaviour
     private RoomControllerSave dataSave = new RoomControllerSave();
     private bool isLastRoom = true;
 
+
     /// <summary>
     /// Откыть все двери
     /// </summary>

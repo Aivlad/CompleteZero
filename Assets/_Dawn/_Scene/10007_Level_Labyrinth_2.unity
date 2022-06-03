@@ -1101,7 +1101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 570580891}
   - component: {fileID: 570580892}
-  - component: {fileID: 570580893}
   m_Layer: 0
   m_Name: SimpleInventoryManager
   m_TagString: SimpleInventoryManager
@@ -1133,19 +1132,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42bd578c763082840bce4dd902d272fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameSaveFile: SimpleInventory
---- !u!114 &570580893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570580890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185bfd66dbcee2c48bb61c5aa467270f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &624407750
@@ -2457,7 +2443,7 @@ GameObject:
   - component: {fileID: 1200701136}
   m_Layer: 0
   m_Name: SpawnRoomController
-  m_TagString: SpawnRoomController
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2488,14 +2474,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273cd458224c06b489cd29995db1cc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countGeneratedRooms: 9
+  countGeneratedRooms: 11
   typesRooms:
   - {fileID: 7804805939763399234, guid: 43326315be3420346b42f95e79ad5bfb, type: 3}
   roomLength: 14
   roomHeight: 10
   lastRooms: []
   prefabHole: {fileID: 955861023594140634, guid: d2467689c8453234ea27885ee95bea6b, type: 3}
-  nameNextScene: 10007_Level_Labyrinth_2
+  nameNextScene: 11000_Stub_End
   typeItems:
   - {fileID: 1112391646898169920, guid: ee15a83b5db9e6a43bc1a2afe15d421d, type: 3}
   - {fileID: 7829134893024656938, guid: 6229db3cb76f49e47a746255d9c43715, type: 3}

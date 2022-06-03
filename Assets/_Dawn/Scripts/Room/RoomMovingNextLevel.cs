@@ -9,16 +9,24 @@ public class RoomMovingNextLevel : MonoBehaviour
     [Space]
     public bool isStepOver = false;
     public string nameSceneConductor;
+    [Space]
+    public SimpleInventoryManager inventorySaveManager;
 
     private void Start()
     {
         menuController = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuController>();
+        inventorySaveManager = GameObject.FindGameObjectWithTag("SimpleInventoryManager").GetComponent<SimpleInventoryManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            if (inventorySaveManager != null)
+            {
+                inventorySaveManager.SaveInventory();
+            }
+
             if (!isStepOver)
             {
                 menuController.StartScene(nameLoadingScene);

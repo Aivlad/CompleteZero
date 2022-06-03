@@ -24,7 +24,6 @@ public class RoomSpawnEnemies : MonoBehaviour
 
     private void Start()
     {
-        isSpawned = true;
         enemiesAlive = true;
 
         //balance

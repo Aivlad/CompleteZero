@@ -44,62 +44,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0756723f30bd24aa4f32e2d4e05674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorNumber: 0
+  floorRatio: 0
+  healthGGStart: 0
+  healthGGEnd: 0
+  killingTime: 
+  dps: []
+  complexityGhost: 1
+  dpsDebaffGhost: 0
   healthGhost: 9999
   speedMovementGhost: 1
   meleeDistanceAttackGhost: 0.5
   cooldownMeleeAttackGhost: 1
-  damageMeleeAttackGhost: 13
-  healthScarecrow: 30
+  damageMeleeAttackGhost: 0
+  complexityScarecrow: 1
+  dpsDebaffScarecrow: 0
+  healthScarecrow: 0
+  complexitySkeleton: 1
+  dpsDebaffSkeleton: 0
   healthSkeleton: 20
-  speedMovementSkeleton: 1
+  speedMovementSkeleton: 0.5
   meleeDistanceAttackSkeleton: 0.4
   cooldownMeleeAttackSkeleton: 0.5
-  damageMeleeAttackSkeleton: 6.7
+  damageMeleeAttackSkeleton: 0
+  complexityLittleSpider: 1
+  dpsDebaffLittleSpider: 0
   healthLittleSpider: 1
   speedMovementLittleSpider: 1
   meleeDistanceAttackLittleSpider: 0.1
   cooldownMeleeAttackLittleSpider: 1
-  damageMeleeAttackLittleSpider: 3.4
+  damageMeleeAttackLittleSpider: 0
+  complexitySpider: 2
+  dpsDebaffSpider: 0
   healthSpider: 20
   speedMovementSpider: 1
   meleeDistanceAttackSpider: 0.2
   cooldownMeleeAttackSpider: 0.5
-  damageMeleeAttackSpider: 10
+  damageMeleeAttackSpider: 0
+  complexityRedSpider: 3
+  dpsDebaffRedSpider: 0
   healthRedSpider: 40
   speedMovementRedSpider: 1
   meleeDistanceAttackRedSpider: 0.2
   cooldownMeleeAttackRedSpider: 0.4
-  damageMeleeAttackRedSpider: 20.8
+  damageMeleeAttackRedSpider: 0
+  complexityBlueSpider: 3
+  dpsDebaffBlueSpider: 0
   healthBlueSpider: 30
   speedMovementBlueSpider: 1
   meleeDistanceAttackBlueSpider: 0.2
   cooldownMeleeAttackBlueSpider: 0.5
-  damageMeleeAttackBlueSpider: 16.7
+  damageMeleeAttackBlueSpider: 0
+  complexityCobra: 2
+  dpsDebaffCobra: 1
   healthCobra: 20
   speedMovementCobra: 1
   meleeDistanceAttackCobra: 0.4
   rangerDistanceAttackCobra: 4
-  cooldownMeleeAttackCobra: 0.3
+  cooldownMeleeAttackCobra: 0.33
   cooldownRangerAttackCobra: 0.25
-  damageMeleeAttackCobra: 12.1
-  damageRangerAttackCobra: 12
+  damageMeleeAttackCobra: 0
+  damageRangerAttackCobra: 0
+  complexityRedCobra: 3
+  dpsDebaffRedCobra: 1
   healthRedCobra: 30
   speedMovementRedCobra: 1
   rangerDistanceAttackRedCobra: 3
   cooldownRangerAttackRedCobra: 0.25
-  damageRangerAttackRedCobra: 22.2
+  damageRangerAttackRedCobra: 0
+  complexityNest: 2
+  dpsDebaffNest: 0
   healthNest: 30
+  complexityRat: 1
+  dpsDebaffRat: 0
   healthRat: 10
   speedMovementRat: 1
   meleeDistanceAttackRat: 0.5
   cooldownMeleeAttackRat: 0.5
-  damageMeleeAttackRat: 6.7
+  damageMeleeAttackRat: 0
   passiveRangeRat: 4
+  complexityGolem: 3
+  dpsDebaffGolem: 3
   healthGolem: 70
   speedMovementGolem: 1
   meleeDistanceAttackGolem: 0.7
   cooldownMeleeAttackGolem: 0.2
-  damageMeleeAttackGolem: 26.7
+  damageMeleeAttackGolem: 0
   passiveRangeGolem: 4
 --- !u!114 &8373764551414004260
 MonoBehaviour:

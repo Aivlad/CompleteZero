@@ -15,15 +15,16 @@ public class PlayerCharacteristics : VitalCharacteristics
     private float totalDamage;
     private int totalStrokes;
 
-    [Header("UI health")]
+    [Header("health")]
     public PlayerUILifeController playerUILifeController;
+    public SceneManagerNPCState sceneManagerNPCState;
 
     [Header("Damage evasion")]
     public float dodge—hance = 0f;
 
     private void Start()
     {
-        health = healthMax;
+        
         // UI Change Cell Life
         var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
         if (sceneManager != null)
@@ -33,7 +34,17 @@ public class PlayerCharacteristics : VitalCharacteristics
             {
                 playerUILifeController.ChangeCountCell();
             }
+            sceneManagerNPCState = sceneManager.GetComponent<SceneManagerNPCState>();
+            if (sceneManagerNPCState != null)
+            {
+                healthMax = sceneManagerNPCState.healthGGStart + (sceneManagerNPCState.healthGGEnd * (sceneManagerNPCState.floorNumber - 1));
+            }
         }
+        else
+        {
+            healthMax = 7;
+        }
+        health = healthMax;
 
         r2d = GetComponent<Rigidbody2D>();
 
