@@ -23,7 +23,7 @@ public class PlayerCharacteristics : VitalCharacteristics
 
     private void Start()
     {
-        health = 30;
+        health = healthMax;
         // UI Change Cell Life
         var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
         if (sceneManager != null)

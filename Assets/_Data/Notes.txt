@@ -16,7 +16,7 @@
 	SwordOfLightDamage			- вешается на коллайдер зоны удара
 	SwordOfLightAttackSysten	- вешается на игрока (имеет скрипт для удара в сторону взгляда MoveStrikeZoneSplash110)
 	SwordOfLightIncomingDamage	- вешается на того, кто подвержен эффекту (фиксирует от чего пришел урон, т.е. считает нужные киллы)
-	MoveStrikeZoneSplashBehindСursor	- наведение в сторону курсора
+	MoveStrikeZoneSplashBehindCursor	- наведение в сторону курсора
 
 0000003-0: дополнение к оружию
 	EffectActivator				- содержит методы и ссылки на эффекты, которые могут наложиться на объект

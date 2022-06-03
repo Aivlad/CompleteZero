@@ -10,6 +10,8 @@ public class VideoDemonstrationInSeparateScene : MonoBehaviour
     [Space]
     public MenuController menuController;
     public string nameLoadingScene;
+    [Space]
+    public bool isGetNameFromSave = false;
 
     private void Start()
     {
@@ -42,7 +44,19 @@ public class VideoDemonstrationInSeparateScene : MonoBehaviour
     //Ќужный вам код, который будет выполн€тьс€, когда видео закончитс€
     void OnVideoEnd(VideoPlayer causedVideoPlayer)
     {
-        menuController.StartScene(nameLoadingScene);
+        if (!isGetNameFromSave)
+            menuController.StartScene(nameLoadingScene);
+        else
+        {
+            if (PlayerPrefs.HasKey(KeysPlayerPrefs.SCENE_NAME_AFTER_VIDEO_DISPLAY))
+            {
+                menuController.StartScene(PlayerPrefs.GetString(KeysPlayerPrefs.SCENE_NAME_AFTER_VIDEO_DISPLAY));
+            }
+            else
+            {
+                Debug.LogError("ќтсутсвует параметр перехода");
+            }
+        }    
     }
 
 }

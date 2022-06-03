@@ -123,7 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 654a3cca65d770e459b7ef32173fddca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameLoadingScene: 10006_Stub_End
+  nameLoadingScene: 10001_MainMenu
+  isStepOver: 1
+  nameSceneConductor: 10006_Screensaver
 --- !u!95 &7131177199690692311
 Animator:
   serializedVersion: 3

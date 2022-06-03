@@ -1,0 +1,11 @@
+Total NPC: 3:
+- Type: Scarecrow 	 Count: 3
+TotalEnemyHealth:								0
+CombatDuration (from the last created enemy to the last destroyed enemy):	16,50048
+DamageTaken:									0
+DamageTicks:									0
+ActionsPerRoom (old name: ActionsPerMinute):					12
+OutgoingDamage (net damage):							120
+DamagePerSecond (OutgoingDamage/CombatDuration*60):				436,351
+
+[Entered another room]

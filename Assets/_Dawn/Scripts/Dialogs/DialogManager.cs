@@ -22,14 +22,15 @@ public class DialogManager : MonoBehaviour
         sentences = new Queue<string>();
 
         // если есть запись, то диалог уже читался, можно скипать
-        if (PlayerPrefs.HasKey(SKIP_BUTTON_KEY))
-        {
-            skipButton.SetActive(true);
-        }
-        else
-        {
-            skipButton.SetActive(false);
-        }
+        if (skipButton != null)
+            if (PlayerPrefs.HasKey(SKIP_BUTTON_KEY))
+            {
+                skipButton.SetActive(true);
+            }
+            else
+            {
+                skipButton.SetActive(false);
+            }
     }
 
     public void StartDialog(Dialog dialog)
