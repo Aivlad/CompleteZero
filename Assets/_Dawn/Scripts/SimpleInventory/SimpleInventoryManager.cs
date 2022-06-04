@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using static SimpleInventoryItem;
 using static SimpleInventorySave;
+using System.Linq;
 
 public class SimpleInventoryManager : MonoBehaviour
 {
@@ -13,9 +14,10 @@ public class SimpleInventoryManager : MonoBehaviour
     private PlayerMovement playerMovement;
 
     [Space]
-    private SaveItemsSimpleInvemtory saveData = new SaveItemsSimpleInvemtory();
     public string nameSaveFile = "SimpleInventory";
     private SpawnRoomController spawnRoomController;
+    private Transform transformPlayer;
+    private List<SaveItemsSimpleInvemtory> pickedUpItems;
 
     private void Start()
     {
@@ -34,15 +36,55 @@ public class SimpleInventoryManager : MonoBehaviour
             playerMovement = player.GetComponent<PlayerMovement>();
         }
 
-        var spawnRoomControllerObj = GameObject.FindGameObjectWithTag("SpawnRoomController");
-        if (spawnRoomControllerObj != null)
+        //for save
+        if (player != null)
         {
-            spawnRoomController = spawnRoomControllerObj.GetComponent<SpawnRoomController>();
-        }
+            var spawnRoomControllerObj = GameObject.FindGameObjectWithTag("SpawnRoomController");
+            if (spawnRoomControllerObj != null)
+            {
+                spawnRoomController = spawnRoomControllerObj.GetComponent<SpawnRoomController>();
+            }
+            pickedUpItems = new List<SaveItemsSimpleInvemtory>();
+            transformPlayer = player.transform;
+            StartCoroutine(LateSatrt());
+        }        
     }
+
+    private IEnumerator LateSatrt()
+    {
+        yield return new WaitForSeconds(0.7f);
+        LoadInventory();
+    }
+
 
     public void ItemAction(ItemType type)
     {
+        //save
+        int countPicked = (
+                from pui in pickedUpItems
+                where pui.type == type
+                select pui
+            ).Count();
+        if (countPicked == 0)
+        {
+            pickedUpItems.Add(new SaveItemsSimpleInvemtory(type));
+        }
+        else if (countPicked == 1)
+        {
+            foreach (var item in pickedUpItems)
+            {
+                if (item.type == type)
+                {
+                    item.countItem++;
+                    break;
+                }
+            }
+        }
+        else
+            Debug.LogError("Что-то пошло не так");
+
+
+        //action
         switch (type)
         {
             case ItemType.question:
@@ -212,31 +254,52 @@ public class SimpleInventoryManager : MonoBehaviour
 
     public void SaveInventory()
     {
-        //// проверка директории
-        //if (!Directory.Exists(Application.persistentDataPath + "/Save"))
-        //{
-        //    Directory.CreateDirectory((Application.persistentDataPath + "/Save"));
-        //}
+        // проверка директории
+        if (!Directory.Exists(Application.persistentDataPath + "/Save"))
+        {
+            Directory.CreateDirectory((Application.persistentDataPath + "/Save"));
+        }
 
-        ////test
-        //saveData.isArmor = true;
+        //set data
+        SimpleInventorySave saveData = new SimpleInventorySave();
+        saveData.SetData(pickedUpItems.ToArray());
 
-        ////сохранение
-        //File.WriteAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json", JsonUtility.ToJson(saveData));
-
+        //сохранение
+        File.WriteAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json", JsonUtility.ToJson(saveData));
     }
 
     public void LoadInventory()
     {
-        //if (!File.Exists(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"))
+        if (!File.Exists(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"))
+        {
+            Debug.Log("Сохранение не найдено");
+            return;
+        }
+
+        SimpleInventorySave saveData = new SimpleInventorySave();
+        saveData = JsonUtility.FromJson<SimpleInventorySave>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"));
+
+        var typesItems = spawnRoomController.typeItems;
+        pickedUpItems.Clear();
+        var saveItems = saveData.GetData();
+        for (int i = 0; i < saveItems.Length; i++)
+        {
+            foreach (var type in typesItems)
+            {
+                var availableType = type.GetComponent<SimpleInventoryItem>().type;
+                if (saveItems[i].type == availableType)
+                {
+                    for (int j = 0; j < saveItems[i].countItem; j++)
+                    {
+                        Instantiate(type, transformPlayer.position, Quaternion.identity);
+                    }
+                }
+            }
+        }
+        //foreach (var type in typesItems)
         //{
-        //    Debug.Log("Сохранение не найдено");
-        //    return;
+        //    Debug.Log(type.GetComponent<SimpleInventoryItem>().type);
+        //    Instantiate(type, transformPlayer.position, Quaternion.identity);
         //}
-
-        //saveData = JsonUtility.FromJson<SaveItemsSimpleInvemtory>(File.ReadAllText(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json"));
-        //Debug.Log("Загрузка выполнена");
-
-        //var typesItems = spawnRoomController.typeItems;
     }
 }

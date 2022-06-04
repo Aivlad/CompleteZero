@@ -26,14 +26,10 @@ public class PlayerCharacteristics : VitalCharacteristics
     {
         
         // UI Change Cell Life
+        //fact hp
         var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
         if (sceneManager != null)
         {
-            playerUILifeController = sceneManager.GetComponent<PlayerUILifeController>();
-            if (playerUILifeController != null)
-            {
-                playerUILifeController.ChangeCountCell();
-            }
             sceneManagerNPCState = sceneManager.GetComponent<SceneManagerNPCState>();
             if (sceneManagerNPCState != null)
             {
@@ -45,7 +41,16 @@ public class PlayerCharacteristics : VitalCharacteristics
             healthMax = 7;
         }
         health = healthMax;
-
+        //ui
+        if (sceneManager != null)
+        {
+            playerUILifeController = sceneManager.GetComponent<PlayerUILifeController>();
+            if (playerUILifeController != null)
+            {
+                playerUILifeController.ChangeCountCell();
+            }
+        }    
+     
         r2d = GetComponent<Rigidbody2D>();
 
         //balance

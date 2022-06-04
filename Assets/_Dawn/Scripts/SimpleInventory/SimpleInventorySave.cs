@@ -2,30 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SimpleInventoryItem;
 
-public class SimpleInventorySave : MonoBehaviour
+public class SimpleInventorySave
 {
+    public SaveItemsSimpleInvemtory[] pickedUpItems;
 
+    public void SetData(SaveItemsSimpleInvemtory[] pickedUpItems)
+    {
+        this.pickedUpItems = pickedUpItems;
+    }
+
+    public SaveItemsSimpleInvemtory[] GetData()
+    {
+        return pickedUpItems;
+    }
 
 
 
     [Serializable]
     public class SaveItemsSimpleInvemtory
     {
-        public bool isQuestion;
-        public bool isRed—loak;
-        public bool isHelmet;
-        public bool isBoots;
-        public bool isArmor;
-        public bool isPants;
-        public bool isBlue—loak;
-        public bool isPike;
-        public bool isTorch;
-        public bool isGreenVial;
-        public bool isRabbitFoot;
-        public bool isSocks;
-        public bool isBootsWithWings;
-        public bool isFolio;
-        public bool isSoup;
+        public ItemType type;
+        public int countItem;
+
+        public SaveItemsSimpleInvemtory(ItemType type)
+        {
+            this.type = type;
+            countItem = 1;
+        }
     }
 }

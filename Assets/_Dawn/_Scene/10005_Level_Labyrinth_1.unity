@@ -1101,7 +1101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 570580891}
   - component: {fileID: 570580892}
-  - component: {fileID: 570580893}
   m_Layer: 0
   m_Name: SimpleInventoryManager
   m_TagString: SimpleInventoryManager
@@ -1136,18 +1135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameSaveFile: SimpleInventory
---- !u!114 &570580893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570580890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 185bfd66dbcee2c48bb61c5aa467270f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &624407750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,14 +2491,13 @@ MonoBehaviour:
   - {fileID: 5172166475576846351, guid: 265323cba1f06d842a94050c079b96d4, type: 3}
   - {fileID: 7898105945146852207, guid: 5e277c20fae13e64b90ae656739fa8c4, type: 3}
   - {fileID: 710323810382943832, guid: 92469882aa86145408444fab9bc5d4b9, type: 3}
-  - {fileID: 1130915481513459726, guid: 0d17f70e1f1205c45a5105bf26a90caf, type: 3}
+  - {fileID: 6425524993620002684, guid: bdf600ce909f8ce46a36dd2e363c07e5, type: 3}
   - {fileID: 8996416480691052287, guid: 37797a87ddd991d4e917da19bec79fea, type: 3}
   - {fileID: 4361833274839827649, guid: a1d471a1afba6d04c956eafb469e3243, type: 3}
   - {fileID: 8277253538540477313, guid: a312059b0a907264a94ff58f63a71bee, type: 3}
   - {fileID: 5648726021006212409, guid: f549c52b1868a8142ab96d11ce3e027a, type: 3}
   - {fileID: 4702393653453571958, guid: 34c2464fa565f8946a45206aaa562af6, type: 3}
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
-  - {fileID: 6425524993620002684, guid: bdf600ce909f8ce46a36dd2e363c07e5, type: 3}
 --- !u!114 &1200701136
 MonoBehaviour:
   m_ObjectHideFlags: 0
