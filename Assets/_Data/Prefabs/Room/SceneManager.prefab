@@ -59,7 +59,7 @@ MonoBehaviour:
   damageMeleeAttackGhost: 0
   complexityScarecrow: 1
   dpsDebaffScarecrow: 0
-  healthScarecrow: 0
+  healthScarecrow: 1
   complexitySkeleton: 1
   dpsDebaffSkeleton: 0
   healthSkeleton: 20

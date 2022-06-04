@@ -139,6 +139,7 @@ public class SceneManagerNPCState : MonoBehaviour
         }
 
         LocalCalculateDamage();
+        LocalCalculateHealth();
     }
 
     private void LocalCalculateDamage()
@@ -157,6 +158,23 @@ public class SceneManagerNPCState : MonoBehaviour
         damageMeleeAttackBlueSpider = ÑalculateDamage(dps[complexityBlueSpider - 1], dpsDebaffBlueSpider, cooldownMeleeAttackBlueSpider);
         damageRangerAttackRedCobra = ÑalculateDamage(dps[complexityRedCobra - 1], dpsDebaffRedCobra, cooldownRangerAttackRedCobra, coeffAttackSpeed: 2);
         damageMeleeAttackGolem = ÑalculateDamage(dps[complexityGolem - 1], dpsDebaffGolem, cooldownMeleeAttackGolem);
+    }
+
+    private void LocalCalculateHealth()
+    {
+        healthGhost = CalulateHealth(healthGhost);
+
+        healthSkeleton = CalulateHealth(healthSkeleton);
+        healthLittleSpider = CalulateHealth(healthLittleSpider);
+        healthRat = CalulateHealth(healthRat);
+
+        healthSpider = CalulateHealth(healthSpider);
+        healthCobra = CalulateHealth(healthCobra);
+
+        healthRedSpider = CalulateHealth(healthRedSpider);
+        healthBlueSpider = CalulateHealth(healthBlueSpider);
+        healthRedCobra = CalulateHealth(healthRedCobra);
+        healthGolem = CalulateHealth(healthGolem);
     }
 
 
@@ -343,6 +361,11 @@ public class SceneManagerNPCState : MonoBehaviour
     private float ÑalculateDamage(float generalDps, float individualDps, float attackSpeed, int coeffGeneralDps = 1, int coeffIndividualDps = 1, int coeffAttackSpeed = 1)
     {
         return Mathf.Round((coeffGeneralDps * generalDps - coeffIndividualDps * individualDps) / (coeffAttackSpeed * attackSpeed));
+    }
+
+    private float CalulateHealth(float baseHealth)
+    {
+        return (baseHealth + (baseHealth * (floorRatio - 1) / 2));
     }
 
     public float GetDamageRanger(TypesOfEnemies type)
