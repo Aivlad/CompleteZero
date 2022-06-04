@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0756723f30bd24aa4f32e2d4e05674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorNumber: 0
-  floorRatio: 0
-  healthGGStart: 0
-  healthGGEnd: 0
-  killingTime: 
+  floorNumber: 1
+  floorRatio: 4
+  healthGGStart: 50
+  healthGGEnd: 25
+  killingTime: 0f0000000a00000006000000
   dps: []
   complexityGhost: 1
   dpsDebaffGhost: 0

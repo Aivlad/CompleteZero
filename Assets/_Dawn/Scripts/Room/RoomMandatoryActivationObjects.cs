@@ -5,6 +5,9 @@ using UnityEngine;
 public class RoomMandatoryActivationObjects : MonoBehaviour
 {
     public List<GameObject> objectsWithMandatoryActivation;
+    [Space]
+    public Camera camerad;
+    public Color color;
 
     private void Start()
     {
@@ -12,5 +15,7 @@ public class RoomMandatoryActivationObjects : MonoBehaviour
         {
             item.SetActive(true);
         }
+
+        camerad.backgroundColor = color;
     }
 }

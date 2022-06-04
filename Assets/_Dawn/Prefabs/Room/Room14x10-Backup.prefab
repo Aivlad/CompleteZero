@@ -793,12 +793,22 @@ MonoBehaviour:
   - {fileID: 7732573082173608109}
   - {fileID: 8482647607235339457}
   - {fileID: 4694981772632292113}
-  prefabsEnemies:
-  - {fileID: 2504407991337469110, guid: 03180f5b4faa3ab4aa090d185943a09f, type: 3}
+  prefabsEnemies: []
   generationCount: 0
   generationCountMin: 3
   generationCountMax: 5
-  spawnedEnemies: []
+  spawnedEnemies:
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
+  - {fileID: 4780056017308188765, guid: 26494bb3a121d4c4cb99588c6d51b441, type: 3}
+  - {fileID: 7314847404924293421, guid: 6e3506bf36bf60040937cd384abede6b, type: 3}
+  - {fileID: 6083248749008921694, guid: 0a8bb48784545e8409e1ba0d4a861a43, type: 3}
+  - {fileID: 5222474488144025979, guid: bf382dd357fb410418c131b373e6cadd, type: 3}
+  - {fileID: 9177091791458032776, guid: fa1132a0d3338934691a67858443e323, type: 3}
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
+  - {fileID: 5199914486228261674, guid: f1211ee13118f7647a7ba20a39c49b29, type: 3}
   enemiesAlive: 0
   pastTense: 0
   totalText: 

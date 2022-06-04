@@ -1002,16 +1002,8 @@ PrefabInstance:
       value: SceneManager
       objectReference: {fileID: 0}
     - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: floorRatio
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
       propertyPath: floorNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: healthGGEnd
-      value: 25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
       propertyPath: killingTime1
@@ -1020,26 +1012,6 @@ PrefabInstance:
     - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
       propertyPath: killingTime2
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: healthGGStart
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: killingTime.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: killingTime.Array.data[0]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: killingTime.Array.data[1]
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344318365704049497, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
-      propertyPath: killingTime.Array.data[2]
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4344318365704049498, guid: 2c16fd1d6464e114aa86d680c0b05c75, type: 3}
       propertyPath: m_RootOrder
@@ -1134,6 +1106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42bd578c763082840bce4dd902d272fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameSaveFile: SimpleInventory
 --- !u!1 &624407750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1541,6 +1514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 140
+  isShakeDamage: 1
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
   playerUILifeController: {fileID: 0}
@@ -1992,6 +1966,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectsWithMandatoryActivation:
   - {fileID: 292716507}
+  camerad: {fileID: 624407752}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &833284194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2443,7 +2419,7 @@ GameObject:
   - component: {fileID: 1200701136}
   m_Layer: 0
   m_Name: SpawnRoomController
-  m_TagString: Untagged
+  m_TagString: SpawnRoomController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2481,7 +2457,7 @@ MonoBehaviour:
   roomHeight: 10
   lastRooms: []
   prefabHole: {fileID: 955861023594140634, guid: d2467689c8453234ea27885ee95bea6b, type: 3}
-  nameNextScene: 11000_Stub_End
+  nameNextScene: 10008_Level_Labyrinth_3
   typeItems:
   - {fileID: 1112391646898169920, guid: ee15a83b5db9e6a43bc1a2afe15d421d, type: 3}
   - {fileID: 7829134893024656938, guid: 6229db3cb76f49e47a746255d9c43715, type: 3}
@@ -2490,14 +2466,13 @@ MonoBehaviour:
   - {fileID: 5172166475576846351, guid: 265323cba1f06d842a94050c079b96d4, type: 3}
   - {fileID: 7898105945146852207, guid: 5e277c20fae13e64b90ae656739fa8c4, type: 3}
   - {fileID: 710323810382943832, guid: 92469882aa86145408444fab9bc5d4b9, type: 3}
-  - {fileID: 1130915481513459726, guid: 0d17f70e1f1205c45a5105bf26a90caf, type: 3}
+  - {fileID: 6425524993620002684, guid: bdf600ce909f8ce46a36dd2e363c07e5, type: 3}
   - {fileID: 8996416480691052287, guid: 37797a87ddd991d4e917da19bec79fea, type: 3}
   - {fileID: 4361833274839827649, guid: a1d471a1afba6d04c956eafb469e3243, type: 3}
   - {fileID: 8277253538540477313, guid: a312059b0a907264a94ff58f63a71bee, type: 3}
   - {fileID: 5648726021006212409, guid: f549c52b1868a8142ab96d11ce3e027a, type: 3}
   - {fileID: 4702393653453571958, guid: 34c2464fa565f8946a45206aaa562af6, type: 3}
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
-  - {fileID: 6425524993620002684, guid: bdf600ce909f8ce46a36dd2e363c07e5, type: 3}
 --- !u!114 &1200701136
 MonoBehaviour:
   m_ObjectHideFlags: 0

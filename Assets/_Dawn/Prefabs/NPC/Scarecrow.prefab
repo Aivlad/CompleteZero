@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2504407991337469098}
   - component: {fileID: 2504407991337469109}
   - component: {fileID: 77724385416852184}
+  - component: {fileID: 7872723773254027395}
   m_Layer: 0
   m_Name: Scarecrow
   m_TagString: Enemy
@@ -140,11 +141,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c12fe7993d38942a90d01ea2761c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  healthMax: 0
+  isShakeDamage: 1
   type: 1
   sceneManager: {fileID: 0}
-  health: 0
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: -0.3, y: 0.55, z: 0}
+  isInRoom: 0
 --- !u!114 &2504407991337469098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +177,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &77724385416852184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2504407991337469110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae120568ea1b4540a94eed1107f3605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomSpawnEnemies: {fileID: 0}
+--- !u!114 &7872723773254027395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -12,13 +12,13 @@ public class NPCInflictDamageOnPlayer : MonoBehaviour
     private void Start()
     {
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
-        damage = sceneManager.GetDamageMelee(type);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            damage = sceneManager.GetDamageMelee(type);
             collision.GetComponent<PlayerCharacteristics>()?.DealDamage(damage);
         }
     }

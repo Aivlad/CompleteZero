@@ -214,6 +214,8 @@ GameObject:
   - component: {fileID: 4780056017308188752}
   - component: {fileID: 7583946907107070937}
   - component: {fileID: 6034087765397411452}
+  - component: {fileID: 85827327828716496}
+  - component: {fileID: 5568570229291318515}
   m_Layer: 0
   m_Name: NPC Red Spider
   m_TagString: Enemy
@@ -339,10 +341,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 0
+  isShakeDamage: 1
   type: 9
   sceneManager: {fileID: 0}
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: 0, y: 1, z: 0}
+  isInRoom: 0
 --- !u!114 &4780056017308188752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +390,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd4b4974c231a849b3fae288f9707f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &85827327828716496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780056017308188765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae120568ea1b4540a94eed1107f3605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomSpawnEnemies: {fileID: 0}
+--- !u!114 &5568570229291318515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4780056017308188765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ee3542f4d41344db031d76173cf02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsTypes:
+  - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
+  chance: 70
 --- !u!1 &4780056017329767109
 GameObject:
   m_ObjectHideFlags: 0

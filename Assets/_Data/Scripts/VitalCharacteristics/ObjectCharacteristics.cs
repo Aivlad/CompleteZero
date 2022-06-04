@@ -39,6 +39,7 @@ public class ObjectCharacteristics : VitalCharacteristics
     {
         if (health <= 0)
         {
+            //Debug.Log("NPC death");
             Destroy(gameObject);
         }
     }
@@ -67,10 +68,10 @@ public class ObjectCharacteristics : VitalCharacteristics
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("CenterRoom"))
-        {
-            DealDamage(999999);
-        }
+        //if (collision.CompareTag("CenterRoom"))
+        //{
+        //    DealDamage(999999);
+        //}
     }
 
     private IEnumerator CheckBeingInRoom()

@@ -54,6 +54,8 @@ public class MovementTowardsGoal : MonoBehaviour
 
     public float GetTargetDistance()
     {
+        if (target == null)
+            return 0;
         return Vector2.Distance(target.position, transform.position);
     }
 

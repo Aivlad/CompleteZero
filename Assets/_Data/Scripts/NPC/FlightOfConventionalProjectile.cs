@@ -30,8 +30,14 @@ public class FlightOfConventionalProjectile : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerCharacteristics>()?.DealDamage(damage);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        if (collision.CompareTag("Wall"))
+        {
+            //Debug.Log("Стена колайдер");
+            Destroy(gameObject);
+        }
+
     }
 
 }
