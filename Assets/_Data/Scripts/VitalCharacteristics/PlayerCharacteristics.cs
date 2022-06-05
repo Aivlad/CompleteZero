@@ -22,6 +22,14 @@ public class PlayerCharacteristics : VitalCharacteristics
     [Header("Damage evasion")]
     public float dodgeСhance = 0f;
 
+    [Header("PlayerEnemiesSpeedIncreaseSpecification")]
+    public bool isDamage = false;
+    public int CountRoomNoDamage = 0;
+    private PlayerEnemiesSpeedIncreaseSpecification playerEnemiesSpeedIncreaseSpecification;
+    private PlayerMovement playerMovement;
+    private RoomSpawnEnemies currentRoomsSpawnEnemies;
+
+
     private void Start()
     {
         
@@ -73,10 +81,56 @@ public class PlayerCharacteristics : VitalCharacteristics
             r2d.WakeUp();   // заставляем высегда быть активным (для моментов с StayTrigger)
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CenterRoom"))
+        {
+            if (playerEnemiesSpeedIncreaseSpecification == null)
+                playerEnemiesSpeedIncreaseSpecification = GetComponent<PlayerEnemiesSpeedIncreaseSpecification>();
+
+            if (playerMovement == null)
+                playerMovement = GetComponent<PlayerMovement>();
+
+            currentRoomsSpawnEnemies = collision.GetComponent<RoomSpawnEnemies>();
+            ChangeSpeed();
+        }
+    }
+
+    private void ChangeSpeed()
+    {
+        if (!isDamage)
+        {
+            CountRoomNoDamage++;
+            if (CountRoomNoDamage > 2)
+            {
+                for (int i = 0; i < CountRoomNoDamage - 2; i++)
+                {
+                    playerEnemiesSpeedIncreaseSpecification.IncreaseSpeed(sceneManagerNPCState, currentRoomsSpawnEnemies, playerMovement, this);
+                }
+            }
+        }
+        else
+        {
+            //CountRoomNoDamage--;
+            //if (CountRoomNoDamage > 2)
+            //{
+            //    for (int i = 0; i < CountRoomNoDamage - 2; i++)
+            //    {
+            //        playerEnemiesSpeedIncreaseSpecification.IncreaseSpeed(sceneManagerNPCState, currentRoomsSpawnEnemies, playerMovement, this);
+            //    }
+            //}
+            CountRoomNoDamage = 0;
+            isDamage = false;
+        }
+    }
+
+
     public override void DealDamage(float damage)
     {
         if (!IsDodgeChance())   // если не уклонились, то получили урон
         {
+            isDamage = true;
+            ChangeSpeed();
             health -= damage;
             CheckDeath();
             CallFlyingDamage(damage);

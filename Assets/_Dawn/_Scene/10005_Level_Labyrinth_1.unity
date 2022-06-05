@@ -1284,6 +1284,7 @@ GameObject:
   - component: {fileID: 643861058}
   - component: {fileID: 643861059}
   - component: {fileID: 643861060}
+  - component: {fileID: 643861061}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1516,6 +1517,8 @@ MonoBehaviour:
   playerUILifeController: {fileID: 0}
   sceneManagerNPCState: {fileID: 0}
   "dodge\u0421hance": 0
+  isDamage: 0
+  CountRoomNoDamage: 0
 --- !u!114 &643861059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,6 +1554,18 @@ MonoBehaviour:
   cooldownAction: 10
   currentTime: 0
   spawnObjectPrefab: {fileID: 1130915481513459726, guid: 0d17f70e1f1205c45a5105bf26a90caf, type: 3}
+--- !u!114 &643861061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643861047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c6dd97b9c9091d498822751b1a8840a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &644662282
 GameObject:
   m_ObjectHideFlags: 0

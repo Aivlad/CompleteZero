@@ -9,9 +9,10 @@ public class MovementTowardsGoal : MonoBehaviour
     [Space]
     public Transform target;
     [Space]
-    private float speed;
+    [HideInInspector] public float speed;
     private float stopDistance;
     public bool isMovement;    // флаг: объект движется или нет
+
 
     // взгляд движения
     public enum Facing { UP, DOWN, LEFT, RIGHT };
