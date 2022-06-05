@@ -13,16 +13,13 @@ public class PlayerUILifeController : MonoBehaviour
     private PlayerCharacteristics player;
     public List<GameObject> cells;
 
-    private void Start()
-    {
-        cells = new List<GameObject>();
-    }
-
     /// <summary>
     /// Изменить количество ячеек в UI
     /// </summary>
-    public void ChangeCountCell()
+    public void ChangeCountCell(PlayerCharacteristics player)
     {
+        cells = new List<GameObject>();
+        this.player = player;
         if (player != null)
         {
             // чистка зоны
@@ -43,23 +40,6 @@ public class PlayerUILifeController : MonoBehaviour
 
             //сразу заполним
             ChangeValueCell();
-        }
-        else
-        {
-            // делаем поиск объекта player
-            var playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject != null)
-            {
-                player = playerObject.GetComponent<PlayerCharacteristics>();
-                if (player != null)
-                {
-                    ChangeCountCell();
-                }
-                else
-                    Debug.LogError("На игроке нет PlayerCharacteristics");
-            }
-            else
-                Debug.LogError("Не виден игрок на сцене");
         }
     }
 
@@ -82,22 +62,13 @@ public class PlayerUILifeController : MonoBehaviour
             }
             // неполная ячейка
             var remainderValue = currentValue - wholePart;
+            //Debug.Log($"count = {cells.Count} ; i = {i}");
             if (remainderValue > 0)
             {
                 if (i >= limitCountCell)
                     return;
                 cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = remainderValue;
-                i++;
             }
-            // оставшиеся пустые
-            for (; i < cells.Count; i++)
-            {
-                if (i >= limitCountCell)
-                    return;
-                cells[i].transform.GetChild(0).GetComponent<Image>().fillAmount = 0f;
-            }
-            //Debug.Log($"currentValue = {currentValue}; wholePart = {wholePart}; i = {i}; remainderValue = {remainderValue}");
-
         }
     }
 }

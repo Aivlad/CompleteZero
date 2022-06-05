@@ -10,8 +10,8 @@ public class ShakeCameraEffect : MonoBehaviour
 
     void Start()
     {
-        var camera = Camera.main;
-        cameraTransform = camera.gameObject.GetComponent<Transform>();        
+        var camera = GameObject.FindGameObjectWithTag("MainCamera");
+        cameraTransform = camera.GetComponent<Transform>();        
     }
 
     //private void OnEnable()
@@ -21,12 +21,12 @@ public class ShakeCameraEffect : MonoBehaviour
 
     public void Shake()
     {
-        originalPosition = cameraTransform.transform.position;
         StartCoroutine(_Shake());
     }
 
     IEnumerator _Shake()
     {
+        originalPosition = cameraTransform.transform.position;
 
         float x;
         float y;
@@ -37,7 +37,7 @@ public class ShakeCameraEffect : MonoBehaviour
             x = Random.Range(-0.3f, 0.3f);
             y = Random.Range(-0.3f, 0.3f);
 
-            cameraTransform.position = new Vector3(x, y, originalPosition.z); 
+            cameraTransform.position = new Vector3(x + originalPosition.x, y + originalPosition.y, originalPosition.z); 
             yield return new WaitForSeconds(0.025f);
         }
 

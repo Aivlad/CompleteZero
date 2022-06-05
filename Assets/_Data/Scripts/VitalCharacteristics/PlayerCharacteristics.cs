@@ -47,7 +47,7 @@ public class PlayerCharacteristics : VitalCharacteristics
             playerUILifeController = sceneManager.GetComponent<PlayerUILifeController>();
             if (playerUILifeController != null)
             {
-                playerUILifeController.ChangeCountCell();
+                playerUILifeController.ChangeCountCell(this);
             }
         }    
      
@@ -84,7 +84,7 @@ public class PlayerCharacteristics : VitalCharacteristics
             // UI Change Cell Life
             if (playerUILifeController != null)
             {
-                playerUILifeController.ChangeValueCell();
+                playerUILifeController.ChangeCountCell(this);
             }
         }
         else // если уклонились, то урон не прошел
@@ -114,7 +114,7 @@ public class PlayerCharacteristics : VitalCharacteristics
         // UI Change Cell Life
         if (playerUILifeController != null)
         {
-            playerUILifeController.ChangeValueCell();
+            playerUILifeController.ChangeCountCell(this);
         }
     }
 
@@ -148,7 +148,7 @@ public class PlayerCharacteristics : VitalCharacteristics
         healthMax += magnificationAmount;
         if (playerUILifeController != null)
         {
-            playerUILifeController.ChangeCountCell();
+            playerUILifeController.ChangeCountCell(this);
         }
     }
 

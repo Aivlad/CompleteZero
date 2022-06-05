@@ -74,6 +74,9 @@ public class SpawnRoomController : MonoBehaviour
         }
 
         Debug.Log("Уровень сгенерирован");
+
+        startingRoom.centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
+        startingRoom.GetComponent<RoomController>().OpenAllDoors();
     }
 
     /// <summary>
