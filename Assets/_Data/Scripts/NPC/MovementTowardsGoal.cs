@@ -9,7 +9,7 @@ public class MovementTowardsGoal : MonoBehaviour
     [Space]
     public Transform target;
     [Space]
-    [HideInInspector] public float speed;
+    public float speed;
     private float stopDistance;
     public bool isMovement;    // флаг: объект движется или нет
 

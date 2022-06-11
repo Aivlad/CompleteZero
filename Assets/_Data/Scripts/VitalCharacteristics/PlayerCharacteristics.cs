@@ -23,16 +23,17 @@ public class PlayerCharacteristics : VitalCharacteristics
     public float dodgeСhance = 0f;
 
     [Header("PlayerEnemiesSpeedIncreaseSpecification")]
-    public bool isDamage = false;
-    public int CountRoomNoDamage = 0;
+    public int countRoomNoDamage = 0;
+    public float percent;
     private PlayerEnemiesSpeedIncreaseSpecification playerEnemiesSpeedIncreaseSpecification;
     private PlayerMovement playerMovement;
-    private RoomSpawnEnemies currentRoomsSpawnEnemies;
+    public RoomSpawnEnemies currentRoomsSpawnEnemies;
 
 
     private void Start()
     {
-        
+        percent = 0f;
+
         // UI Change Cell Life
         //fact hp
         var sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
@@ -92,36 +93,24 @@ public class PlayerCharacteristics : VitalCharacteristics
                 playerMovement = GetComponent<PlayerMovement>();
 
             currentRoomsSpawnEnemies = collision.GetComponent<RoomSpawnEnemies>();
-            ChangeSpeed();
+
+            if (currentRoomsSpawnEnemies.isSpawned)
+            {
+                countRoomNoDamage++;
+                Debug.Log($"Комната пошла в отсчет, ее номер: {countRoomNoDamage}");
+                if (countRoomNoDamage > 2)
+                {
+                    percent += 3;
+                    ChangeSpeed();
+                }
+            }
         }
     }
 
     private void ChangeSpeed()
     {
-        if (!isDamage)
-        {
-            CountRoomNoDamage++;
-            if (CountRoomNoDamage > 2)
-            {
-                for (int i = 0; i < CountRoomNoDamage - 2; i++)
-                {
-                    playerEnemiesSpeedIncreaseSpecification.IncreaseSpeed(sceneManagerNPCState, currentRoomsSpawnEnemies, playerMovement, this);
-                }
-            }
-        }
-        else
-        {
-            //CountRoomNoDamage--;
-            //if (CountRoomNoDamage > 2)
-            //{
-            //    for (int i = 0; i < CountRoomNoDamage - 2; i++)
-            //    {
-            //        playerEnemiesSpeedIncreaseSpecification.IncreaseSpeed(sceneManagerNPCState, currentRoomsSpawnEnemies, playerMovement, this);
-            //    }
-            //}
-            CountRoomNoDamage = 0;
-            isDamage = false;
-        }
+        if (percent > 0)
+            StartCoroutine(playerEnemiesSpeedIncreaseSpecification.IncreaseSpeed(sceneManagerNPCState, currentRoomsSpawnEnemies, playerMovement, percent));
     }
 
 
@@ -129,8 +118,17 @@ public class PlayerCharacteristics : VitalCharacteristics
     {
         if (!IsDodgeChance())   // если не уклонились, то получили урон
         {
-            isDamage = true;
+            // любой дамаг понижает скорость врагов
+            Debug.Log("Новый отсчет комнат");
+            countRoomNoDamage = 0;
+            percent -= 3;
+            if (percent < 0)
+            {
+                percent = 0;
+            }
             ChangeSpeed();
+            
+            //
             health -= damage;
             CheckDeath();
             CallFlyingDamage(damage);
