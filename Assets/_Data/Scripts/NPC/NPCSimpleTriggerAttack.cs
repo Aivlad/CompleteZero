@@ -42,12 +42,12 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
     {
         // атака была, делаем отдых
         isReadyAttack = false;
+        yield return new WaitForSeconds(1 / cooldown - 0.1f);
         zoneAttack.SetActive(true);
 
         // ждем
         yield return new WaitForSeconds(0.1f);
         zoneAttack.SetActive(false);
-        yield return new WaitForSeconds(cooldown - 0.1f);
 
         // снова готовы к бою
         isReadyAttack = true;

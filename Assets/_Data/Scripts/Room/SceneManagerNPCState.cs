@@ -6,7 +6,6 @@ public class SceneManagerNPCState : MonoBehaviour
 {
     [Header("Data for calculation")]
     public int floorNumber; // номер этажа
-    public int floorRatio;  // этаж(1-7)
     public int healthGGStart;   // хп ГГ на 1 этаже
     public int healthGGEnd;   // хп за этаж +
     public List<int> killingTime;   // время убсйисва, i = сложность
@@ -135,7 +134,7 @@ public class SceneManagerNPCState : MonoBehaviour
         dps = new List<float>(killingTime.Count);
         for (int i = 0; i < killingTime.Count; i++)
         {
-            dps.Add((healthGGStart + healthGGEnd * (floorRatio - 1)) / (float)killingTime[i]);
+            dps.Add((healthGGStart + healthGGEnd * (floorNumber - 1)) / (float)killingTime[i]);
         }
 
         LocalCalculateDamage();
@@ -365,7 +364,7 @@ public class SceneManagerNPCState : MonoBehaviour
 
     private float CalulateHealth(float baseHealth)
     {
-        return (baseHealth + (baseHealth * (floorRatio - 1) / 2));
+        return (baseHealth + (baseHealth * (floorNumber - 1) / 2));
     }
 
     public float GetDamageRanger(TypesOfEnemies type)

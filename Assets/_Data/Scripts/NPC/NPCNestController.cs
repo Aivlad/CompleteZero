@@ -10,13 +10,9 @@ public class NPCNestController : MonoBehaviour
     public float scatteringRadius;
     private float currentTime;
 
-    private ObjectCharacteristics characteristics;
-
     private void Start()
     {
         currentTime = 0;
-
-        characteristics = GetComponent<ObjectCharacteristics>();
     }
 
 
@@ -43,6 +39,13 @@ public class NPCNestController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CenterRoom"))
+        {
+            collision.GetComponent<RoomSpawnEnemies>().spawnedEnemies.Add(gameObject);
+        }
+    }
 
 
     // случайный разброс по контуру круга

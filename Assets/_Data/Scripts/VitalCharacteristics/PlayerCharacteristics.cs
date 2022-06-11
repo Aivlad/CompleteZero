@@ -27,7 +27,7 @@ public class PlayerCharacteristics : VitalCharacteristics
     public float percent;
     private PlayerEnemiesSpeedIncreaseSpecification playerEnemiesSpeedIncreaseSpecification;
     private PlayerMovement playerMovement;
-    public RoomSpawnEnemies currentRoomsSpawnEnemies;
+    private RoomSpawnEnemies currentRoomsSpawnEnemies;
 
 
     private void Start()

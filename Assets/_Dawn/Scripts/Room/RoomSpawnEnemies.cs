@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomSpawnEnemies : MonoBehaviour
 {
@@ -53,6 +54,11 @@ public class RoomSpawnEnemies : MonoBehaviour
                 //balanceManager.RoomSaveText(text);
                 totalText += text + "\n";
             }
+        }
+
+        if (spawnedEnemies.Count > 0)
+        {
+            spawnedEnemies = spawnedEnemies.Where(item => item != null).ToList();
         }
     }
 
@@ -110,6 +116,8 @@ public class RoomSpawnEnemies : MonoBehaviour
                 RandomGenerationCount();
                 SimpleGenerationEnemies();
             }
+
+            if (isSpawned = false && enemiesAlive) enemiesAlive = spawnedEnemies.Count != 0;
         }
     }
     public void RemoveFromLiveList(GameObject enemy)

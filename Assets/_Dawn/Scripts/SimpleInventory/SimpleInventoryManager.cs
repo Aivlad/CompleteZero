@@ -18,9 +18,12 @@ public class SimpleInventoryManager : MonoBehaviour
     private SpawnRoomController spawnRoomController;
     private Transform transformPlayer;
     private List<SaveItemsSimpleInvemtory> pickedUpItems;
+    public bool isDeleteFile = false;
 
     private void Start()
     {
+        if (isDeleteFile)
+            System.IO.File.Delete(Application.persistentDataPath + "/Save" + "/" + nameSaveFile + ".json");
         // зона инвентаря (чистка)
         var inventoryZone = GameObject.FindGameObjectWithTag("SimpleInventoryZone");
         foreach (Transform child in inventoryZone.transform)
@@ -60,28 +63,31 @@ public class SimpleInventoryManager : MonoBehaviour
     public void ItemAction(ItemType type)
     {
         //save
-        int countPicked = (
-                from pui in pickedUpItems
-                where pui.type == type
-                select pui
-            ).Count();
-        if (countPicked == 0)
+        if (type != ItemType.soup)
         {
-            pickedUpItems.Add(new SaveItemsSimpleInvemtory(type));
-        }
-        else if (countPicked == 1)
-        {
-            foreach (var item in pickedUpItems)
+            int countPicked = (
+                    from pui in pickedUpItems
+                    where pui.type == type
+                    select pui
+                ).Count();
+            if (countPicked == 0)
             {
-                if (item.type == type)
+                pickedUpItems.Add(new SaveItemsSimpleInvemtory(type));
+            }
+            else if (countPicked == 1)
+            {
+                foreach (var item in pickedUpItems)
                 {
-                    item.countItem++;
-                    break;
+                    if (item.type == type)
+                    {
+                        item.countItem++;
+                        break;
+                    }
                 }
             }
+            else
+                Debug.LogError("Что-то пошло не так");
         }
-        else
-            Debug.LogError("Что-то пошло не так");
 
 
         //action

@@ -52,21 +52,21 @@ public class SpawnRoomController : MonoBehaviour
         CompleteListLastRooms();
 
         // случайное размещение Hole в одной из крайних комнат
-        int incdex = Random.Range(0, lastRooms.Count);
-        var hole = Instantiate(prefabHole, lastRooms[incdex].centerRoom.position, Quaternion.identity);
+        int index = Random.Range(0, lastRooms.Count);
+        var hole = Instantiate(prefabHole, lastRooms[index].centerRoom.position, Quaternion.identity);
         hole.GetComponent<RoomMovingNextLevel>().nameLoadingScene = nameNextScene;
-        lastRooms[incdex].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
-        lastRooms[incdex].GetComponent<RoomController>().OpenAllDoors();
-        lastRooms.RemoveAt(incdex);
+        lastRooms[index].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
+        lastRooms[index].GetComponent<RoomController>().OpenAllDoors();
+        lastRooms.RemoveAt(index);
 
         // случайное размещение предмета
         if (typeItems.Count > 0 && lastRooms.Count > 0)
         {
-            incdex = Random.Range(0, lastRooms.Count);
-            Instantiate(typeItems[Random.Range(0, typeItems.Count)], lastRooms[incdex].centerRoom.position, Quaternion.identity);
-            lastRooms[incdex].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
-            lastRooms[incdex].GetComponent<RoomController>().OpenAllDoors();
-            lastRooms.RemoveAt(incdex);
+            index = Random.Range(0, lastRooms.Count);
+            Instantiate(typeItems[Random.Range(0, typeItems.Count)], lastRooms[index].centerRoom.position, Quaternion.identity);
+            lastRooms[index].centerRoom.GetComponent<RoomSpawnEnemies>().isSpawned = false;
+            lastRooms[index].GetComponent<RoomController>().OpenAllDoors();
+            lastRooms.RemoveAt(index);
         }
         else
         {

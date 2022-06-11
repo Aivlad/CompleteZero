@@ -737,6 +737,7 @@ GameObject:
   - component: {fileID: 3059504414154079704}
   - component: {fileID: -4376846106418223043}
   - component: {fileID: -2614355143114034464}
+  - component: {fileID: -6285965844115953006}
   m_Layer: 0
   m_Name: NPC Little spider
   m_TagString: Enemy
@@ -883,6 +884,7 @@ MonoBehaviour:
   type: 4
   sceneManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   isMovement: 0
 --- !u!114 &5934306426428165038
 MonoBehaviour:
@@ -939,3 +941,15 @@ MonoBehaviour:
   itemsTypes:
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
   chance: 70
+--- !u!114 &-6285965844115953006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502227009501595523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aebc5750618d2246b554cee58e717f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

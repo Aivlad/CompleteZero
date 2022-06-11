@@ -10,4 +10,12 @@ public class SpawnEnemyController : MonoBehaviour
     {
         roomSpawnEnemies.RemoveFromLiveList(gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CenterRoom"))
+        {
+            roomSpawnEnemies = collision.GetComponent<RoomSpawnEnemies>();
+        }
+    }
 }

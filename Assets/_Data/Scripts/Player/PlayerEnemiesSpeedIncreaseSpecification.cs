@@ -24,12 +24,12 @@ public class PlayerEnemiesSpeedIncreaseSpecification : MonoBehaviour
         float speedPlayer = playerMovement.speed ;
         float threshold = speedPlayer - СalculatePercentage(speedPlayer, 8f);   // верхний порог увеличения скорости врага
         var enemies = currentRoomsSpawnEnemies.spawnedEnemies;
-        Debug.Log($"Вызов увеличения для {enemies.Count} на {percent}");
+        //Debug.Log($"Вызов увеличения для {enemies.Count} на {percent}");
         foreach (var enemy in enemies)
         {
             if (enemy != null)
             {
-                Debug.Log($"- {enemy.name}");
+                //Debug.Log($"- {enemy.name}");
                 var currentMovementEnmeyController = enemy.GetComponent<MovementTowardsGoal>();
                 var typeEnemy = currentMovementEnmeyController.type;
                 var baseSpeed = stateControllerNPC.GetSpeed(typeEnemy);

@@ -50,7 +50,7 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
         newObj.GetComponent<FlightOfConventionalProjectile>().damage = damage;
 
         // ждем
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(1 / cooldown);
 
         // снова готовы к бою
         isReadyAttack = true;
