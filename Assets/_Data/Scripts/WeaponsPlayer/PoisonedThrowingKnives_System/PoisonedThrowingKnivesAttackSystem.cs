@@ -12,6 +12,9 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
     public bool isReadyAttack;
     public float cooldown;
 
+    [Header("Audio")]
+    public PlayerSoundtrack playerSoundtrack;
+
     private void Start()
     {
         isReadyAttack = true;
@@ -24,6 +27,10 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
         {
             if (isReadyAttack)
             {
+                //audio
+                if (playerSoundtrack != null)
+                    playerSoundtrack.PlaySound(false);
+
                 GameObject knife = Instantiate(knifePrefab, transform.position, Quaternion.identity);
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 myPosition = transform.position;

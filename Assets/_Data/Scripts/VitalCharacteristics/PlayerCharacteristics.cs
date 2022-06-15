@@ -29,6 +29,9 @@ public class PlayerCharacteristics : VitalCharacteristics
     private PlayerMovement playerMovement;
     private RoomSpawnEnemies currentRoomsSpawnEnemies;
 
+    [Header("Audio")]
+    public PlayerSoundtrack playerSoundtrack;
+
 
     private void Start()
     {
@@ -132,6 +135,10 @@ public class PlayerCharacteristics : VitalCharacteristics
             health -= damage;
             CheckDeath();
             CallFlyingDamage(damage);
+
+            //audio
+            if (playerSoundtrack != null)
+                playerSoundtrack.PlaySound(false);
 
             // UI Change Cell Life
             if (playerUILifeController != null)

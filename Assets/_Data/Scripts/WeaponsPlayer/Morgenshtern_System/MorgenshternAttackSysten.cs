@@ -11,6 +11,9 @@ public class MorgenshternAttackSysten : MonoBehaviour
     public bool isReadyAttack;
     public float cooldown;
 
+    [Header("Audio")]
+    public PlayerSoundtrack playerSoundtrack;
+
     private void Start()
     {
         isReadyAttack = true;
@@ -22,6 +25,10 @@ public class MorgenshternAttackSysten : MonoBehaviour
         {
             if (isReadyAttack)
             {
+                //audio
+                if (playerSoundtrack != null)
+                    playerSoundtrack.PlaySound(false);
+
                 morgenshternSystemSplash.SetActive(true);
                 StartCoroutine(StubAttackVisualization());
                 isReadyAttack = false;

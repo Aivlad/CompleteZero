@@ -17,6 +17,10 @@ public class MovementTowardsGoal : MonoBehaviour
     private Animator animatorController;
     private bool isViewLeft = true;
 
+    [Header("Audio")]
+    public NPCSimpleSoundtrack soundtrackController;
+    private bool isOnSound = false;
+
 
     // взгляд движения
     public enum Facing { UP, DOWN, LEFT, RIGHT };
@@ -51,10 +55,24 @@ public class MovementTowardsGoal : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
                 isMovement = true;
+
+                //audio
+                if (!isOnSound && soundtrackController != null)
+                {
+                    isOnSound = true;
+                    soundtrackController.PlaySound();
+                }
+
             }
             else
             {
                 isMovement = false;
+                //audio
+                if (isOnSound && soundtrackController != null)
+                {
+                    isOnSound = false;
+                    soundtrackController.StopSound();
+                }
             }
             DetermineDirectionView();
 

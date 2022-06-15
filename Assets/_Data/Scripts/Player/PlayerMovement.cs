@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animation")]
     public Animator playerAnimator;
 
+    [Header("Audio")]
+    public PlayerSoundtrack playerSoundtrack;
+    private bool isOnSound = false;
+
 
     private void Start()
     {
@@ -87,6 +91,21 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerAnimator != null)
             playerAnimator.SetBool("isRun", isRun);
+
+        //audio
+        if (playerSoundtrack != null)
+        {
+            if (isRun && !isOnSound)
+            {
+                isOnSound = true;
+                playerSoundtrack.PlaySound();
+            }
+            if (!isRun && isOnSound)
+            {
+                isOnSound = false;
+                playerSoundtrack.StopSound();
+            }
+        }
     }
 
     //balance
