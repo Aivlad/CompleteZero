@@ -15,6 +15,9 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
     [Space]
     private float damage;
 
+    [Header("Animation")]
+    public Animator parentAnimatorController;
+
     private void Start()
     {
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
@@ -42,6 +45,10 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
 
     private IEnumerator ActionAttack()
     {
+        //animation
+        if (parentAnimatorController != null)
+            parentAnimatorController.SetBool("isAttack", true);
+
         // атака была, делаем отдых
         isReadyAttack = false;
 
@@ -51,6 +58,10 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
 
         // ждем
         yield return new WaitForSeconds(1 / cooldown);
+
+        //animation
+        if (parentAnimatorController != null)
+            parentAnimatorController.SetBool("isAttack", false);
 
         // снова готовы к бою
         isReadyAttack = true;

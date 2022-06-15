@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 7036962676003488388}
   - component: {fileID: -8614189378137992422}
   - component: {fileID: -6164933325859662568}
+  - component: {fileID: 1507221571290007608}
   m_Layer: 0
   m_Name: NPC Cobra
   m_TagString: Enemy
@@ -458,7 +459,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 1155a85e7439e9849b0be1de2587c0bc, type: 3}
+  m_Sprite: {fileID: -720194884391711496, guid: 29142715c98f2dc4cbe0e10a580627b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -541,6 +542,7 @@ MonoBehaviour:
   type: 6
   sceneManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   isMovement: 0
 --- !u!114 &8240325558137933665
 MonoBehaviour:
@@ -614,6 +616,25 @@ MonoBehaviour:
   itemsTypes:
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
   chance: 70
+--- !u!95 &1507221571290007608
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177091791458032776}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 688cbebcbca177c4183fefe2b3748716, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9177091791896283481
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +846,7 @@ MonoBehaviour:
   bodyParent: {fileID: 9177091791458032777}
   zoneAttack: {fileID: 9177091791896283481}
   isReadyAttack: 0
+  parentAnimatorController: {fileID: 1507221571290007608}
 --- !u!1 &9177091792019405189
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,3 +979,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1421687736620165772, guid: a5812a60aa969c745a962a90dd3c7c8d, type: 3}
   transformPlayer: {fileID: 0}
   isReadyAttack: 0
+  parentAnimatorController: {fileID: 1507221571290007608}

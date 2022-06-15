@@ -14,6 +14,9 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
     private float distance;
     public bool isReadyAttack;
 
+    [Header("Animation")]
+    public Animator parentAnimatorController;
+
     private void Start()
     {
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
@@ -22,6 +25,7 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
 
         zoneAttack.SetActive(false);
         isReadyAttack = true;
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -42,15 +46,30 @@ public class NPCSimpleTriggerAttack : MonoBehaviour
     {
         // атака была, делаем отдых
         isReadyAttack = false;
+        //animation
+        if (parentAnimatorController != null)
+            parentAnimatorController.SetBool("isAttack", true);
         yield return new WaitForSeconds(1 / cooldown - 0.1f);
         zoneAttack.SetActive(true);
 
         // ждем
         yield return new WaitForSeconds(0.1f);
         zoneAttack.SetActive(false);
+        //animation
+        if (parentAnimatorController != null)
+            parentAnimatorController.SetBool("isAttack", false);
 
         // снова готовы к бою
         isReadyAttack = true;
     }
-    
+
+    public void CallOnAttack()
+    {
+        zoneAttack.SetActive(true);
+    }
+
+    public void CallOffAttack()
+    {
+        zoneAttack.SetActive(false);
+    }
 }

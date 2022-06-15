@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 3283753077584778869}
   - component: {fileID: 4155893079061837908}
   - component: {fileID: 6284510974667069769}
+  - component: {fileID: 6164673490697114930}
   m_Layer: 0
   m_Name: NPC Golem
   m_TagString: Enemy
@@ -381,7 +382,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: f7a18519d3424624388a8d68447c4391, type: 3}
+  m_Sprite: {fileID: -2810012820416652573, guid: 8970f307e4a4560448995a8908ed9ff4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -464,6 +465,7 @@ MonoBehaviour:
   type: 12
   sceneManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   isMovement: 0
 --- !u!114 &499892392847212700
 MonoBehaviour:
@@ -548,6 +550,25 @@ MonoBehaviour:
   itemsTypes:
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
   chance: 70
+--- !u!95 &6164673490697114930
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5222474488144025979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 061d42ef99247a54894682c595bc0af9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5222474488157445091
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +958,7 @@ MonoBehaviour:
   bodyParent: {fileID: 5222474488144025978}
   zoneAttack: {fileID: 5222474489589042346}
   isReadyAttack: 0
+  parentAnimatorController: {fileID: 6164673490697114930}
 --- !u!1 &6024211312642900472
 GameObject:
   m_ObjectHideFlags: 0

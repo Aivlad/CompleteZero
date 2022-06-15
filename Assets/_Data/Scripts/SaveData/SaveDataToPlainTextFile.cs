@@ -10,6 +10,12 @@ public class SaveDataToPlainTextFile : MonoBehaviour
 
     private void Start()
     {
+        // проверка директории
+        if (!Directory.Exists(Application.streamingAssetsPath + "/Balance"))
+        {
+            Directory.CreateDirectory((Application.streamingAssetsPath + "/Balance"));
+        }
+
         // формируем имя файла
         nameFileForRooms = "Room"
             + "_" + SceneManager.GetActiveScene().name

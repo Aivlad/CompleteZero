@@ -605,6 +605,7 @@ MonoBehaviour:
   bodyParent: {fileID: 9146708833404504277}
   zoneAttack: {fileID: 9146708831628369157}
   isReadyAttack: 0
+  parentAnimatorController: {fileID: 7540271996184774660}
 --- !u!1 &9146708831751548377
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +802,7 @@ GameObject:
   - component: {fileID: 9155930573658994786}
   - component: {fileID: 8932047786869023480}
   - component: {fileID: 6846312325463893639}
+  - component: {fileID: 7540271996184774660}
   m_Layer: 0
   m_Name: NPC Rat
   m_TagString: Enemy
@@ -865,7 +867,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 79a6940edd9df7141ac7279657fc1ed9, type: 3}
+  m_Sprite: {fileID: -7935145425867140100, guid: 0142a338f961d1742936c6fee1497596, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -948,6 +950,7 @@ MonoBehaviour:
   type: 11
   sceneManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   isMovement: 0
 --- !u!114 &3493015004876738867
 MonoBehaviour:
@@ -1004,3 +1007,22 @@ MonoBehaviour:
   itemsTypes:
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
   chance: 70
+--- !u!95 &7540271996184774660
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146708833404504276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7e956fb2df377c4485b95623861d9d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

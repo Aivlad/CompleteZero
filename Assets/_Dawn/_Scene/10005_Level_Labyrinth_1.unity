@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameSaveFile: SimpleInventory
+  isDeleteFile: 0
 --- !u!1 &624407750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,8 +1518,8 @@ MonoBehaviour:
   playerUILifeController: {fileID: 0}
   sceneManagerNPCState: {fileID: 0}
   "dodge\u0421hance": 0
-  isDamage: 0
-  CountRoomNoDamage: 0
+  countRoomNoDamage: 0
+  percent: 0
 --- !u!114 &643861059
 MonoBehaviour:
   m_ObjectHideFlags: 0

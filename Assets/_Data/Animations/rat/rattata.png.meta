@@ -1,0 +1,408 @@
+fileFormatVersion: 2
+guid: 73458069cee27104eaa9566418e2ae03
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4999144336033626106
+    second: rattata_0
+  - first:
+      213: 3886055337005077341
+    second: rattata_1
+  - first:
+      213: -2754698186994008669
+    second: rattata_3
+  - first:
+      213: 5744467127555376925
+    second: rattata_4
+  - first:
+      213: -441723295414682786
+    second: rattata_6
+  - first:
+      213: -1039631046204583186
+    second: rattata_7
+  - first:
+      213: 6072469774124605191
+    second: rattata_8
+  - first:
+      213: 6649828626078897732
+    second: rattata_9
+  - first:
+      213: 4798570820081898885
+    second: rattata_10
+  - first:
+      213: -5503766750976602534
+    second: rattata_12
+  - first:
+      213: 7336620445691966629
+    second: rattata_14
+  - first:
+      213: 7275112327224160447
+    second: rattata_17
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 2000
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rattata_0
+      rect:
+        serializedVersion: 2
+        x: 5571
+        y: 9780
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6084fc586b87f9ab0800000000000000
+      internalID: -4999144336033626106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_1
+      rect:
+        serializedVersion: 2
+        x: 4373
+        y: 8167
+        width: 3042
+        height: 1599
+      alignment: 9
+      pivot: {x: 0.3228629, y: 0.8576234}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53d2b36dba0ee530800000000000000
+      internalID: 3886055337005077341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_3
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 6038
+        width: 3042
+        height: 1605
+      alignment: 9
+      pivot: {x: 0.38793358, y: 0.8562868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad3fcc089855c9d0800000000000000
+      internalID: -2754698186994008669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_4
+      rect:
+        serializedVersion: 2
+        x: 2458
+        y: 7659
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d17c8d1ca6278bf40800000000000000
+      internalID: 5744467127555376925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_6
+      rect:
+        serializedVersion: 2
+        x: 6223
+        y: 7531
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bfacfc00faed9f0800000000000000
+      internalID: -441723295414682786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_7
+      rect:
+        serializedVersion: 2
+        x: 6245
+        y: 7525
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee21289521d7291f0800000000000000
+      internalID: -1039631046204583186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_8
+      rect:
+        serializedVersion: 2
+        x: 4388
+        y: 5934
+        width: 3043
+        height: 1554
+      alignment: 9
+      pivot: {x: 0.27955458, y: 0.86797965}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70f5ef3161fb54450800000000000000
+      internalID: 6072469774124605191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_9
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 3519
+        width: 3042
+        height: 1988
+      alignment: 9
+      pivot: {x: 0.48192483, y: 0.89274734}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44618a237efe84c50800000000000000
+      internalID: 6649828626078897732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_10
+      rect:
+        serializedVersion: 2
+        x: 4275
+        y: 3633
+        width: 3084
+        height: 2150
+      alignment: 9
+      pivot: {x: 0.49286816, y: 0.8426953}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5855988acb2f79240800000000000000
+      internalID: 4798570820081898885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_12
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 758
+        width: 3042
+        height: 2494
+      alignment: 9
+      pivot: {x: 0.49638483, y: 0.7381054}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e0f69dc41be93b0800000000000000
+      internalID: -5503766750976602534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_14
+      rect:
+        serializedVersion: 2
+        x: 4748
+        y: 653
+        width: 3042
+        height: 2494
+      alignment: 9
+      pivot: {x: 0.46023428, y: 0.73369604}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a4765d9c69e0d560800000000000000
+      internalID: 7336620445691966629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rattata_17
+      rect:
+        serializedVersion: 2
+        x: 2119
+        y: 366
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0f24dcd1466f460800000000000000
+      internalID: 7275112327224160447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

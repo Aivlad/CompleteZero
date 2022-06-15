@@ -803,6 +803,8 @@ MonoBehaviour:
   downwardMovement: 115
   leftwardMovement: 97
   rightwardMovement: 100
+  isLevitationOverPits: 0
+  playerAnimator: {fileID: 0}
 --- !u!50 &1394053522
 Rigidbody2D:
   serializedVersion: 4
@@ -905,9 +907,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   healthMax: 500
+  isShakeDamage: 1
   flyingDamagePrefab: {fileID: 1727834036427700657, guid: cbb4c54d62942bb4d9e9159a51678a03, type: 3}
   offset: {x: 0, y: 0.5, z: 0}
   playerUILifeController: {fileID: 0}
+  sceneManagerNPCState: {fileID: 0}
+  "dodge\u0421hance": 0
+  countRoomNoDamage: 0
+  percent: 0
 --- !u!1 &1403482777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1066,7 @@ MonoBehaviour:
   type: 0
   sceneManager: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   isMovement: 0
 --- !u!212 &1514628908
 SpriteRenderer:

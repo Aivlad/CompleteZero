@@ -8,7 +8,8 @@ public class SpawnEnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        roomSpawnEnemies.RemoveFromLiveList(gameObject);
+        if (roomSpawnEnemies != null)
+            roomSpawnEnemies.RemoveFromLiveList(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

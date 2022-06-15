@@ -13,6 +13,10 @@ public class MovementTowardsGoal : MonoBehaviour
     private float stopDistance;
     public bool isMovement;    // флаг: объект движется или нет
 
+    [Header("Animation")]
+    private Animator animatorController;
+    private bool isViewLeft = true;
+
 
     // взгляд движения
     public enum Facing { UP, DOWN, LEFT, RIGHT };
@@ -33,6 +37,9 @@ public class MovementTowardsGoal : MonoBehaviour
                 target = player.transform;
         }
         isMovement = false;
+
+        //animation
+        animatorController = GetComponent<Animator>();
     }
 
     private void Update()
@@ -50,8 +57,13 @@ public class MovementTowardsGoal : MonoBehaviour
                 isMovement = false;
             }
             DetermineDirectionView();
+
+            //animation
+            if (animatorController != null)
+                animatorController.SetBool("isRun", isMovement);
         }
     }
+
 
     public float GetTargetDistance()
     {
@@ -68,10 +80,14 @@ public class MovementTowardsGoal : MonoBehaviour
             if (target.position.x < transform.position.x)
             {
                 facingDir = Facing.LEFT;
+                if (!isViewLeft)
+                    Flip();
             }
             else if (target.position.x > transform.position.x)
             {
                 facingDir = Facing.RIGHT;
+                if (isViewLeft)
+                    Flip();
             }
             else if (target.position.y < transform.position.y)
             {
@@ -107,4 +123,13 @@ public class MovementTowardsGoal : MonoBehaviour
     {
         target = null;
     }
+
+    private void Flip()
+    {
+        isViewLeft = !isViewLeft;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
+    }
+
 }
