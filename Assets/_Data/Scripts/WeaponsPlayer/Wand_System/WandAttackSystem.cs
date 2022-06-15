@@ -12,6 +12,8 @@ public class WandAttackSystem : MonoBehaviour
     public bool isReadyAttack;
     public float cooldown;
 
+    private bool isInvoke = true;
+
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
@@ -31,31 +33,42 @@ public class WandAttackSystem : MonoBehaviour
         {
             if (isReadyAttack)
             {
-                //audio
-                if (playerSoundtrack != null)
-                    playerSoundtrack.PlaySound(false);
-
-                //animation
-                if (playerAnimator != null)
-                    playerAnimator.SetBool("isWandAttack", true);
-
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 myPosition = transform.position;
-                if (Vector2.Distance(myPosition, mousePosition) <= maxDistanceAttack)
-                {
-                    Instantiate(placeOfImpactPrefab, mousePosition, Quaternion.identity);
-
-                    isReadyAttack = false;
-                    StartCoroutine(Recharge());
-                }
+                Invoke("CallAttack", 0.5f);
             }
         }
     }
+    private void CallAttack()
+    {
+        if (isInvoke)
+        {
+            isInvoke = false;
+            //audio
+            if (playerSoundtrack != null)
+                playerSoundtrack.PlaySound(false);
 
-    IEnumerator Recharge()
+            //animation
+            if (playerAnimator != null)
+                playerAnimator.SetBool("isWandAttack", true);
+
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPosition = transform.position;
+            if (Vector2.Distance(myPosition, mousePosition) <= maxDistanceAttack)
+            {
+                Instantiate(placeOfImpactPrefab, mousePosition, Quaternion.identity);
+
+                isReadyAttack = false;
+                StartCoroutine(Recharge());
+            }
+
+        }
+        
+    }
+
+        IEnumerator Recharge()
     {
         yield return new WaitForSeconds(cooldown);
         isReadyAttack = true;
+        isInvoke = true;
     }
 
 }

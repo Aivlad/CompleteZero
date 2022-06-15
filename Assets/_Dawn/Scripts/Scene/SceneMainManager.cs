@@ -15,7 +15,7 @@ public class SceneMainManager : MonoBehaviour
         // дать игроку оружие
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
-            HandOverWeapon();
+            Invoke("HandOverWeapon", 0.3f);
     }
 
     /// <summary>

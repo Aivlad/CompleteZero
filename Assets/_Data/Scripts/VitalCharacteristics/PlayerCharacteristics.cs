@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCharacteristics : VitalCharacteristics
 {
@@ -85,6 +86,10 @@ public class PlayerCharacteristics : VitalCharacteristics
             r2d.WakeUp();   // заставляем высегда быть активным (для моментов с StayTrigger)
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene(9);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("CenterRoom"))

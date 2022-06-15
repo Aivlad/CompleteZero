@@ -20,6 +20,7 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
 
     private void Start()
     {
+        isReadyAttack = true;
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagerNPCState>();
         cooldown = sceneManager.GetCooldownRanger(type);
         damage = sceneManager.GetDamageRanger(type);
@@ -35,6 +36,11 @@ public class NPCSimpleRangedAttackSpawn : MonoBehaviour
         {
             StartCoroutine(ActionAttack());
         }
+    }
+
+    private void OnEnable()
+    {
+        isReadyAttack = true;
     }
 
     private IEnumerator GetReadyForAttack()

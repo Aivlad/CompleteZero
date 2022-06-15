@@ -30,29 +30,35 @@ public class SwordOfLightAttackSysten : MonoBehaviour
         {
             if (isReadyAttack)
             {
-                //audio
-                if (playerSoundtrack != null)
-                    playerSoundtrack.PlaySound(false);
-
-                //animation
-                if (playerAnimator != null)
-                {
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 myPosition = transform.position;
-
-                    if (mousePosition.x < myPosition.x)
-                        playerAnimator.SetBool("isRightSwordAttack", true);
-                    else
-                        playerAnimator.SetBool("isLeftSwordAttack", true);
-                }
-
-                swordOfLightSystemSplash.SetActive(true);
-                StartCoroutine(StubAttackVisualization());
-                isReadyAttack = false;
-                StartCoroutine(Recharge());
-
+                Invoke("CallAttack", 0.5f);
+                
             }
         }
+    }
+
+    private void CallAttack()
+    {
+        //audio
+        if (playerSoundtrack != null)
+            playerSoundtrack.PlaySound(false);
+
+        //animation
+        if (playerAnimator != null)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPosition = transform.position;
+
+            if (mousePosition.x < myPosition.x)
+                playerAnimator.SetBool("isRightSwordAttack", true);
+            else
+                playerAnimator.SetBool("isLeftSwordAttack", true);
+        }
+
+        swordOfLightSystemSplash.SetActive(true);
+        StartCoroutine(StubAttackVisualization());
+        isReadyAttack = false;
+        StartCoroutine(Recharge());
+
     }
 
     IEnumerator Recharge()
