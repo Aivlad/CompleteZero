@@ -30,31 +30,37 @@ public class MorgenshternAttackSysten : MonoBehaviour
         {
             if (isReadyAttack)
             {
-                //audio
-                if (playerSoundtrack != null)
-                    playerSoundtrack.PlaySound(false);
-
-                //animation
-                if (playerAnimator != null)
-                {
-                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 myPosition = transform.position;
-
-                    if (mousePosition.x < myPosition.x)
-                        playerAnimator.SetBool("isRightMorgenshternAttack", true);
-                    else
-                        playerAnimator.SetBool("isLeftMorgenshternAttack", true);
-                }
-
-                morgenshternSystemSplash.SetActive(true);
-                StartCoroutine(StubAttackVisualization());
-                isReadyAttack = false;
-                StartCoroutine(Recharge());
+                Invoke("CallAttack", 0.5f);
+                
             }
         }
     }
 
-    IEnumerator Recharge()
+    private void CallAttack()
+    {
+        //audio
+        if (playerSoundtrack != null)
+            playerSoundtrack.PlaySound(false);
+
+        //animation
+        if (playerAnimator != null)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPosition = transform.position;
+
+            if (mousePosition.x < myPosition.x)
+                playerAnimator.SetBool("isRightMorgenshternAttack", true);
+            else
+                playerAnimator.SetBool("isLeftMorgenshternAttack", true);
+        }
+
+        morgenshternSystemSplash.SetActive(true);
+        StartCoroutine(StubAttackVisualization());
+        isReadyAttack = false;
+        StartCoroutine(Recharge());
+    }
+
+        IEnumerator Recharge()
     {
         yield return new WaitForSeconds(cooldown);
         isReadyAttack = true;

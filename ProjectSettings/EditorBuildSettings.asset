@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Dawn/_Scene/11000_Stub_End.unity
     guid: 0bbda749a0ea1e04a83da26325f1e61f
+  - enabled: 1
+    path: Assets/_Dawn/_Scene/11009_Gameover.unity
+    guid: e9de3b1e3e6906b4e842125f8fdd55b4
   m_configObjects: {}

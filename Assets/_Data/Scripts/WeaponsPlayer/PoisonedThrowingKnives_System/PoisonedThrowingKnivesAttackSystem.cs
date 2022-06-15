@@ -12,6 +12,8 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
     public bool isReadyAttack;
     public float cooldown;
 
+    private bool isInvoke = true;
+
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
@@ -31,35 +33,51 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
         {
             if (isReadyAttack)
             {
-                //audio
-                if (playerSoundtrack != null)
-                    playerSoundtrack.PlaySound(false);
-
-                GameObject knife = Instantiate(knifePrefab, transform.position, Quaternion.identity);
-                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 myPosition = transform.position;
-                Vector2 direction = (mousePosition - myPosition).normalized;
-                knife.GetComponent<Rigidbody2D>().velocity = direction * flightForce;
-                isReadyAttack = false;
-                
+                Invoke("CallAttack", 0.5f);
+               
                 //animation
                 if (playerAnimator != null)
                 {
+                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 myPosition = transform.position;
+                    Vector2 direction = (mousePosition - myPosition).normalized;
                     if (mousePosition.x < myPosition.x)
                         playerAnimator.SetBool("isRightKnifeAttack", true);
                     else
                         playerAnimator.SetBool("isLeftKnifeAttack", true);
                 }
-
-                StartCoroutine(Recharge());
             }
         }
     }
 
-    IEnumerator Recharge()
+    private void CallAttack()
+    {
+        if (isInvoke)
+        {
+            isInvoke = false;
+            //audio
+
+            if (playerSoundtrack != null)
+                playerSoundtrack.PlaySound(false);
+
+            GameObject knife = Instantiate(knifePrefab, transform.position, Quaternion.identity);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 myPosition = transform.position;
+            Vector2 direction = (mousePosition - myPosition).normalized;
+            knife.GetComponent<Rigidbody2D>().velocity = direction * flightForce;
+            isReadyAttack = false;
+
+            
+
+            StartCoroutine(Recharge());
+        }
+    }
+
+        IEnumerator Recharge()
     {
         yield return new WaitForSeconds(cooldown);
         isReadyAttack = true;
+        isInvoke = true;
     }
 
 }
