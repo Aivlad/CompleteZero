@@ -15,10 +15,14 @@ public class WandAttackSystem : MonoBehaviour
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
+    [Header("Animation")]
+    private Animator playerAnimator;
+
     private void Start()
     {
         isReadyAttack = true;
 
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -30,6 +34,10 @@ public class WandAttackSystem : MonoBehaviour
                 //audio
                 if (playerSoundtrack != null)
                     playerSoundtrack.PlaySound(false);
+
+                //animation
+                if (playerAnimator != null)
+                    playerAnimator.SetBool("isWandAttack", true);
 
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 myPosition = transform.position;

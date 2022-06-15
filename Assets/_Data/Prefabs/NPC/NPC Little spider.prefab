@@ -682,7 +682,7 @@ MonoBehaviour:
   bodyParent: {fileID: 4502227009501595522}
   zoneAttack: {fileID: 4502227007725163090}
   isReadyAttack: 0
-  parentAnimatorController: {fileID: 0}
+  parentAnimatorController: {fileID: 1545499080530393050}
 --- !u!1 &4502227007848407694
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +881,7 @@ GameObject:
   - component: {fileID: -4376846106418223043}
   - component: {fileID: -2614355143114034464}
   - component: {fileID: -6285965844115953006}
+  - component: {fileID: 1545499080530393050}
   m_Layer: 0
   m_Name: NPC Little spider
   m_TagString: Enemy
@@ -1098,3 +1099,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aebc5750618d2246b554cee58e717f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1545499080530393050
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502227009501595523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc03abd2331cff145a1ada7e1b7e9b14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

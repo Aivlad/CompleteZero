@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneMainManager : MonoBehaviour
 {
     public SpawnRoomController spawnRoomController;
-    public GameObject player;
+    private GameObject player;
 
     private void Start()
     {
@@ -13,7 +13,9 @@ public class SceneMainManager : MonoBehaviour
         spawnRoomController.LevelGeneration();
 
         // дать игроку оружие
-        HandOverWeapon();
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+            HandOverWeapon();
     }
 
     /// <summary>
@@ -26,6 +28,9 @@ public class SceneMainManager : MonoBehaviour
         WandAttackSystem was = player.GetComponent<WandAttackSystem>();
         PoisonedThrowingKnivesAttackSystem ptkas = player.GetComponent<PoisonedThrowingKnivesAttackSystem>();
         MorgenshternAttackSysten mas = player.GetComponent<MorgenshternAttackSysten>();
+
+        PlayerLinksHandLuggage visualHand = player.GetComponent<PlayerLinksHandLuggage>();
+
         if (!PlayerPrefs.HasKey(KeysPlayerPrefs.SOUND_KEY_PLAYER_PREFS))
         {
             // в теори ветка не достижима т.к. в сцене вручения оружия все создавалось все создавалось
@@ -33,6 +38,7 @@ public class SceneMainManager : MonoBehaviour
             was.enabled = false;
             ptkas.enabled = false;
             mas.enabled = false;
+            visualHand.ActivatedSword();
             return;
         }
         string nameSystem = PlayerPrefs.GetString(KeysPlayerPrefs.WEAPON_KEY_PLAYER_PREFS);
@@ -42,6 +48,7 @@ public class SceneMainManager : MonoBehaviour
             was.enabled = true;
             ptkas.enabled = false;
             mas.enabled = false;
+            visualHand.ActivatedWand();
         }
         else if (nameSystem == "PoisonedThrowingKnivesAttackSystem")
         {
@@ -49,6 +56,7 @@ public class SceneMainManager : MonoBehaviour
             was.enabled = false;
             ptkas.enabled = true;
             mas.enabled = false;
+            visualHand.ActivatedKnives();
         }
         else if (nameSystem == "MorgenshternAttackSysten")
         {
@@ -56,6 +64,7 @@ public class SceneMainManager : MonoBehaviour
             was.enabled = false;
             ptkas.enabled = false;
             mas.enabled = true;
+            visualHand.ActivatedMorgenshtern();
         }
         else
         {
@@ -63,6 +72,7 @@ public class SceneMainManager : MonoBehaviour
             was.enabled = false;
             ptkas.enabled = false;
             mas.enabled = false;
+            visualHand.ActivatedSword();
         }
     }
 }

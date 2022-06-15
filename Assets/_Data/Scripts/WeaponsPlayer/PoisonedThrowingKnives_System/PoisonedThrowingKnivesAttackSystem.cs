@@ -15,10 +15,14 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
+    [Header("Animation")]
+    private Animator playerAnimator;
+
     private void Start()
     {
         isReadyAttack = true;
 
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -37,6 +41,16 @@ public class PoisonedThrowingKnivesAttackSystem : MonoBehaviour
                 Vector2 direction = (mousePosition - myPosition).normalized;
                 knife.GetComponent<Rigidbody2D>().velocity = direction * flightForce;
                 isReadyAttack = false;
+                
+                //animation
+                if (playerAnimator != null)
+                {
+                    if (mousePosition.x < myPosition.x)
+                        playerAnimator.SetBool("isRightKnifeAttack", true);
+                    else
+                        playerAnimator.SetBool("isLeftKnifeAttack", true);
+                }
+
                 StartCoroutine(Recharge());
             }
         }

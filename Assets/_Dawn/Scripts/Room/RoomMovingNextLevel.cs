@@ -15,7 +15,9 @@ public class RoomMovingNextLevel : MonoBehaviour
     private void Start()
     {
         menuController = GameObject.FindGameObjectWithTag("MenuManager").GetComponent<MenuController>();
-        inventorySaveManager = GameObject.FindGameObjectWithTag("SimpleInventoryManager").GetComponent<SimpleInventoryManager>();
+        var inventoryObj = GameObject.FindGameObjectWithTag("SimpleInventoryManager");
+        if (inventoryObj != null)
+            inventorySaveManager = inventoryObj.GetComponent<SimpleInventoryManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

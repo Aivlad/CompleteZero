@@ -14,9 +14,14 @@ public class SwordOfLightAttackSysten : MonoBehaviour
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
+    [Header("Animation")]
+    private Animator playerAnimator;
+
     private void Start()
     {
         isReadyAttack = true;
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -29,10 +34,23 @@ public class SwordOfLightAttackSysten : MonoBehaviour
                 if (playerSoundtrack != null)
                     playerSoundtrack.PlaySound(false);
 
+                //animation
+                if (playerAnimator != null)
+                {
+                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 myPosition = transform.position;
+
+                    if (mousePosition.x < myPosition.x)
+                        playerAnimator.SetBool("isRightSwordAttack", true);
+                    else
+                        playerAnimator.SetBool("isLeftSwordAttack", true);
+                }
+
                 swordOfLightSystemSplash.SetActive(true);
                 StartCoroutine(StubAttackVisualization());
                 isReadyAttack = false;
                 StartCoroutine(Recharge());
+
             }
         }
     }

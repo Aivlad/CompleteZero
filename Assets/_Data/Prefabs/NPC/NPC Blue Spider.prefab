@@ -148,7 +148,7 @@ MonoBehaviour:
   bodyParent: {fileID: 2085191724155272719}
   zoneAttack: {fileID: 2085191723720911839}
   isReadyAttack: 0
-  parentAnimatorController: {fileID: 0}
+  parentAnimatorController: {fileID: 659540049069521590}
 --- !u!1 &2085191723597798147
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +397,7 @@ GameObject:
   - component: {fileID: 9051711332219944370}
   - component: {fileID: -5234259843778406423}
   - component: {fileID: 5373425734899767999}
+  - component: {fileID: 659540049069521590}
   m_Layer: 0
   m_Name: NPC Blue Spider
   m_TagString: Enemy
@@ -461,7 +462,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 518145322ff3682469ac2fa23b2a20cc, type: 3}
+  m_Sprite: {fileID: -7299582966485809699, guid: 647567d0cc8836748add312d204e8131, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -616,6 +617,25 @@ MonoBehaviour:
   itemsTypes:
   - {fileID: 2554404220786767154, guid: 98acaa9ee43169547a66737a2e521cbb, type: 3}
   chance: 70
+--- !u!95 &659540049069521590
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085191724155272718}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94554191a8a85bf43affecdea33a7f81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2085191724168952982
 GameObject:
   m_ObjectHideFlags: 0

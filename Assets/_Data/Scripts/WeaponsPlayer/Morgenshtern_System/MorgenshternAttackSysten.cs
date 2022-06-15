@@ -14,9 +14,14 @@ public class MorgenshternAttackSysten : MonoBehaviour
     [Header("Audio")]
     public PlayerSoundtrack playerSoundtrack;
 
+    [Header("Animation")]
+    private Animator playerAnimator;
+
     private void Start()
     {
         isReadyAttack = true;
+
+        playerAnimator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -28,6 +33,18 @@ public class MorgenshternAttackSysten : MonoBehaviour
                 //audio
                 if (playerSoundtrack != null)
                     playerSoundtrack.PlaySound(false);
+
+                //animation
+                if (playerAnimator != null)
+                {
+                    Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 myPosition = transform.position;
+
+                    if (mousePosition.x < myPosition.x)
+                        playerAnimator.SetBool("isRightMorgenshternAttack", true);
+                    else
+                        playerAnimator.SetBool("isLeftMorgenshternAttack", true);
+                }
 
                 morgenshternSystemSplash.SetActive(true);
                 StartCoroutine(StubAttackVisualization());
